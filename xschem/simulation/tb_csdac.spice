@@ -2,9 +2,13 @@
 **.subckt tb_csdac
 Vvcc vcc GND 1.8
 Vvss vss GND 0
-x1 vcc vss p0 p1 p2 p3 p4 p5 p6 p7 n0 n1 n2 n3 n4 n5 n6 n7 net1 net2 vbias csdac
-x2 vpos net1 vss tt08_analog_load
-x3 vneg net2 vss tt08_analog_load
+x1 vcc vss p0 p1 p2 p3 p4 p5 p6 p7 n0 n1 n2 n3 n4 n5 n6 n7 net2 net1 vbias csdac
+x2 net3 net4 vss tt08_analog_load
+x3 net5 net6 vss tt08_analog_load
+x4 vpos net2 vss tt08pin
+x5 vneg net1 vss tt08pin
+C2 vpos VGND 3p m=1
+C1 vneg VGND 3p m=1
 **** begin user architecture code
 
 
@@ -179,5 +183,32 @@ C1 a_int GND 2.5p m=1
 C2 a_ext GND 2.5p m=1
 .ends
 
+
+* expanding   symbol:  tt08pin.sym # of pins=3
+** sym_path: /home/anton/projects/tt08-vga-fun/xschem/tt08pin.sym
+** sch_path: /home/anton/projects/tt08-vga-fun/xschem/tt08pin.sch
+.subckt tt08pin pin mod VGND
+*.iopin pin
+*.iopin VGND
+*.iopin mod
+R1 net1 pin 1 m=1
+C1 pin VGND 1p m=1
+L1 net2 net1 1n m=1
+V1 VAPWR VGND 3.3
+C2 net2 VGND 2p m=1
+R2 net3 net2 50 m=1
+XM2 net3 VGND mod VAPWR sky130_fd_pr__pfet_g5v0d10v5 L=0.5 W=100 nf=20 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+XM1 net3 VAPWR mod VGND sky130_fd_pr__nfet_g5v0d10v5 L=0.5 W=60 nf=12 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+XM4 net3 VAPWR VGND VAPWR sky130_fd_pr__pfet_g5v0d10v5 L=0.5 W=100 nf=20 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=15 m=15
+XM3 net3 VGND VGND VGND sky130_fd_pr__nfet_g5v0d10v5 L=0.5 W=60 nf=12 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=15 m=15
+C3 mod VGND 250f m=1
+.ends
+
 .GLOBAL GND
+.GLOBAL VGND
+.GLOBAL VAPWR
 .end

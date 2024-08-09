@@ -6,8 +6,8 @@ V {}
 S {}
 E {}
 B 2 830 -940 2330 -50 {flags=graph
-y1=0.18
-y2=2
+y1=0.21
+y2=2.2
 ypos1=0
 ypos2=2
 divy=20
@@ -61,14 +61,26 @@ N 60 -480 110 -480 {
 lab=n6}
 N 60 -460 110 -460 {
 lab=n7}
-N 410 -740 500 -740 {
-lab=#net1}
 N 410 -720 440 -720 {
-lab=#net2}
+lab=#net1}
 N 440 -720 440 -660 {
-lab=#net2}
+lab=#net1}
 N 440 -660 500 -660 {
+lab=#net1}
+N 660 -800 760 -800 {
+lab=vpos}
+N 660 -660 760 -660 {
+lab=vneg}
+N 720 -740 720 -720 {
+lab=VGND}
+N 410 -740 440 -740 {
 lab=#net2}
+N 440 -800 440 -740 {
+lab=#net2}
+N 440 -800 500 -800 {
+lab=#net2}
+N 720 -600 720 -580 {
+lab=VGND}
 C {devices/vsource.sym} 110 -250 0 0 {name=Vvcc value=1.8 savecurrent=false}
 C {devices/lab_pin.sym} 110 -280 0 0 {name=p1 sig_type=std_logic lab=vcc}
 C {devices/gnd.sym} 110 -220 0 0 {name=l2 lab=GND}
@@ -166,10 +178,26 @@ C {devices/lab_pin.sym} 110 -400 0 0 {name=p42 sig_type=std_logic lab=vss}
 C {csdac.sym} 260 -630 0 0 {name=x1}
 C {devices/lab_pin.sym} 260 -830 0 0 {name=p2 sig_type=std_logic lab=vcc}
 C {devices/lab_pin.sym} 260 -430 0 0 {name=p3 sig_type=std_logic lab=vss}
-C {devices/lab_pin.sym} 740 -740 0 1 {name=p5 sig_type=std_logic lab=vpos}
+C {devices/lab_pin.sym} 760 -800 0 1 {name=p5 sig_type=std_logic lab=vpos}
 C {devices/lab_pin.sym} 410 -520 0 1 {name=p7 sig_type=std_logic lab=vbias}
-C {tt08_analog_load.sym} 590 -720 0 0 {name=x2}
-C {devices/lab_pin.sym} 740 -720 1 1 {name=p4 sig_type=std_logic lab=vss}
-C {tt08_analog_load.sym} 590 -640 0 0 {name=x3}
-C {devices/lab_pin.sym} 740 -640 1 1 {name=p9 sig_type=std_logic lab=vss}
-C {devices/lab_pin.sym} 740 -660 0 1 {name=p8 sig_type=std_logic lab=vneg}
+C {tt08_analog_load.sym} 490 -290 0 0 {name=x2}
+C {devices/lab_pin.sym} 640 -290 1 1 {name=p4 sig_type=std_logic lab=vss}
+C {tt08_analog_load.sym} 490 -210 0 0 {name=x3}
+C {devices/lab_pin.sym} 640 -210 1 1 {name=p9 sig_type=std_logic lab=vss}
+C {devices/lab_pin.sym} 760 -660 0 1 {name=p8 sig_type=std_logic lab=vneg}
+C {tt08pin.sym} 580 -780 0 0 {name=x4}
+C {tt08pin.sym} 580 -640 0 0 {name=x5}
+C {devices/lab_pin.sym} 660 -620 0 1 {name=p6 sig_type=std_logic lab=vss}
+C {devices/lab_pin.sym} 660 -760 0 1 {name=p10 sig_type=std_logic lab=vss}
+C {devices/capa.sym} 720 -770 0 0 {name=C2
+m=1
+value=3p
+footprint=1206
+device="ceramic capacitor"}
+C {devices/gnd.sym} 720 -720 0 0 {name=l5 lab=VGND}
+C {devices/capa.sym} 720 -630 0 0 {name=C1
+m=1
+value=3p
+footprint=1206
+device="ceramic capacitor"}
+C {devices/gnd.sym} 720 -580 0 0 {name=l1 lab=VGND}
