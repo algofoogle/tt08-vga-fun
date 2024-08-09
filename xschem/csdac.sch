@@ -5,6 +5,10 @@ K {}
 V {}
 S {}
 E {}
+T {NOTE: 25L (1481R) ~halves Vpp
+but gets full swing to nearly 40ns;
+make the res switchable by the design
+(inc. no res: external only)} 1100 -600 0 0 0.3 0.3 {}
 N 130 -360 130 -280 {
 lab=vcc}
 N 130 -280 130 -250 {
@@ -589,18 +593,6 @@ C {devices/lab_pin.sym} 1270 -320 1 0 {name=p53 sig_type=std_logic lab=vss}
 C {devices/lab_pin.sym} 1330 -320 1 0 {name=p54 sig_type=std_logic lab=vss}
 C {devices/lab_pin.sym} 1430 -320 1 0 {name=p55 sig_type=std_logic lab=vss}
 C {devices/lab_pin.sym} 1490 -320 1 0 {name=p56 sig_type=std_logic lab=vss}
-C {sky130_fd_pr/res_xhigh_po_1p41.sym} 1430 -540 0 0 {name=R1
-L=5.3
-model=res_xhigh_po_1p41
-spiceprefix=X
-mult=3}
-C {sky130_fd_pr/res_xhigh_po_1p41.sym} 1610 -540 0 0 {name=R2
-L=5.3
-model=res_xhigh_po_1p41
-spiceprefix=X
-mult=3}
-C {devices/lab_pin.sym} 1410 -540 3 0 {name=p57 sig_type=std_logic lab=vss}
-C {devices/lab_pin.sym} 1590 -540 3 0 {name=p58 sig_type=std_logic lab=vss}
 C {devices/iopin.sym} 100 -700 0 1 {name=p59 lab=vcc}
 C {devices/iopin.sym} 100 -680 0 1 {name=p77 lab=vss}
 C {devices/ipin.sym} 100 -640 0 0 {name=p60 lab=p0}
@@ -622,3 +614,14 @@ C {devices/ipin.sym} 160 -500 0 0 {name=p76 lab=n7}
 C {devices/opin.sym} 140 -460 0 0 {name=p61 lab=Vpos}
 C {devices/opin.sym} 140 -440 0 0 {name=p78 lab=Vneg}
 C {devices/opin.sym} 140 -420 0 0 {name=p79 lab=Vbias}
+C {devices/lab_pin.sym} 1410 -540 3 0 {name=p80 sig_type=std_logic lab=vss}
+C {sky130_fd_pr/res_high_po_5p73.sym} 1430 -540 0 0 {name=R5
+L=40
+model=res_high_po_5p73
+spiceprefix=X
+mult=1}
+C {sky130_fd_pr/res_high_po_5p73.sym} 1610 -540 0 0 {name=R6
+L=40
+model=res_high_po_5p73
+spiceprefix=X
+mult=1}

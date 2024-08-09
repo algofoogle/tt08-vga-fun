@@ -162,8 +162,8 @@ XMP7 Vpos p7 net7 vss sky130_fd_pr__nfet_01v8 L=0.15 W=3 nf=1 ad='int((nf+1)/2) 
 + ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
 XMN7 Vneg n7 net7 vss sky130_fd_pr__nfet_01v8 L=0.15 W=3 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)'
 + ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
-XR1 Vpos vcc vss sky130_fd_pr__res_xhigh_po_1p41 L=5.3 mult=3 m=3
-XR2 Vneg vcc vss sky130_fd_pr__res_xhigh_po_1p41 L=5.3 mult=3 m=3
+XR5 Vpos vcc vss sky130_fd_pr__res_high_po_5p73 L=40 mult=1 m=1
+XR6 Vneg vcc net9 sky130_fd_pr__res_high_po_5p73 L=40 mult=1 m=1
 .ends
 
 
