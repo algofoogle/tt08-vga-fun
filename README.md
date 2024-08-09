@@ -1,8 +1,14 @@
 ![](../../workflows/gds/badge.svg) ![](../../workflows/docs/badge.svg)
 
-# Tiny Tapeout Analog Project Template
 
-- [Read the documentation for project](docs/info.md)
+# tt08-vga-fun
+
+An attempt to create rough 8-bit VGA DACs, targeting [Tiny Tapeout 08 (TT08)](https://tinytapeout.com/runs/), and building on my prior experiment (and first analog ASIC project) in TT06: [tt06-grab-bag](https://github.com/algofoogle/tt06-grab-bag).
+
+- [Read the documentation for this project](docs/info.md)
+
+NOTE: This repo was created from: https://github.com/TinyTapeout/tt08-analog-template
+
 
 ## What is Tiny Tapeout?
 
@@ -10,13 +16,16 @@ Tiny Tapeout is an educational project that aims to make it easier and cheaper t
 
 To learn more and get started, visit https://tinytapeout.com.
 
+
 ## Analog projects
 
-For specifications and instructions, see the [analog specs page](https://tinytapeout.com/specs/analog/).
+For TT analog specifications and instructions, see the [analog specs page](https://tinytapeout.com/specs/analog/).
+
 
 ## Enable GitHub actions to build the results page
 
 - [Enabling GitHub Pages](https://tinytapeout.com/faq/#my-github-action-is-failing-on-the-pages-part)
+
 
 ## Resources
 
@@ -25,11 +34,3 @@ For specifications and instructions, see the [analog specs page](https://tinytap
 - [Learn how semiconductors work](https://tinytapeout.com/siliwiz/)
 - [Join the community](https://tinytapeout.com/discord)
 
-## What next?
-
-- [Submit your design to the next shuttle](https://app.tinytapeout.com/).
-- Edit [this README](README.md) and explain your design, how it works, and how to test it.
-- Share your project on your social network of choice:
-  - LinkedIn [#tinytapeout](https://www.linkedin.com/search/results/content/?keywords=%23tinytapeout) [@TinyTapeout](https://www.linkedin.com/company/100708654/)
-  - Mastodon [#tinytapeout](https://chaos.social/tags/tinytapeout) [@matthewvenn](https://chaos.social/@matthewvenn)
-  - X (formerly Twitter) [#tinytapeout](https://twitter.com/hashtag/tinytapeout) [@matthewvenn](https://twitter.com/matthewvenn)
