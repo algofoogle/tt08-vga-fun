@@ -2,8 +2,11 @@ v {xschem version=3.4.5 file_version=1.2
 }
 G {}
 K {type=subcircuit
-format="@name @pinlist @symname"
-template="name=x1"
+format="@name @pinlist @symname RPUL=@RPUL MULTI=@MULTI BIASPRG_W=@BIASPRG_W BIASPRG_L=@BIASPRG_L BIASMIR_W=@BIASMIR_W BIASMIR_L=@BIASMIR_L"
+template="name=x1 MULTI=1
++ RPUL=40
++ BIASPRG_W=0.5 BIASPRG_L=0.15
++ BIASMIR_W=0.5 BIASMIR_L=0.5"
 }
 V {}
 S {}
@@ -54,7 +57,7 @@ B 5 -152.5 167.5 -147.5 172.5 {name=n7 dir=in}
 B 5 147.5 -112.5 152.5 -107.5 {name=Vpos dir=out}
 B 5 147.5 -92.5 152.5 -87.5 {name=Vneg dir=out}
 B 5 147.5 107.5 152.5 112.5 {name=Vbias dir=out}
-T {@symname} -40.5 -6 0 0 0.3 0.3 {}
+T {@symname} -0.5 -6 0 0 0.3 0.3 {layer=13 hcenter=true}
 T {@name} 55 -197 0 0 0.2 0.2 {}
 T {vcc} 5 -154 1 1 0.2 0.2 {}
 T {vss} 5 176 1 1 0.2 0.2 {}
@@ -77,3 +80,7 @@ T {n6} -125 146 0 0 0.2 0.2 {}
 T {Vpos} 125 -114 0 1 0.2 0.2 {}
 T {Vneg} 125 -94 0 1 0.2 0.2 {}
 T {Vbias} 125 106 0 1 0.2 0.2 {}
+T {Bias Prg W/L: @BIASPRG_W / @BIASPRG_L
+Bias Mir W/L: @BIASMIR_W / @BIASMIR_L
+Pull-up resistor L: @RPUL
+Drive strength multiplier: @MULTI} -100.5 19 0 0 0.2 0.2 {}

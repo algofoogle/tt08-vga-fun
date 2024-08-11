@@ -8,7 +8,7 @@ E {}
 T {NOTE: 25L (1481R) ~halves Vpp
 but gets full swing to nearly 40ns;
 make the res switchable by the design
-(inc. no res: external only)} 1100 -600 0 0 0.3 0.3 {}
+(inc. no res option: external only)} 1100 -600 0 0 0.3 0.3 {}
 N 130 -360 130 -280 {
 lab=vcc}
 N 130 -280 130 -250 {
@@ -30,7 +30,7 @@ lab=Vneg}
 N 370 -160 370 -130 {
 lab=Vbias}
 N 500 -320 500 -200 {
-lab=#net1}
+lab=IS1}
 N 440 -480 440 -320 {
 lab=Vpos}
 N 560 -440 560 -320 {
@@ -38,7 +38,7 @@ lab=Vneg}
 N 530 -160 530 -130 {
 lab=Vbias}
 N 660 -320 660 -200 {
-lab=#net2}
+lab=IS2}
 N 600 -480 600 -320 {
 lab=Vpos}
 N 720 -440 720 -320 {
@@ -46,7 +46,7 @@ lab=Vneg}
 N 690 -160 690 -130 {
 lab=Vbias}
 N 820 -320 820 -200 {
-lab=#net3}
+lab=IS3}
 N 760 -480 760 -320 {
 lab=Vpos}
 N 880 -440 880 -320 {
@@ -54,7 +54,7 @@ lab=Vneg}
 N 850 -160 850 -130 {
 lab=Vbias}
 N 980 -320 980 -200 {
-lab=#net4}
+lab=IS4}
 N 920 -480 920 -320 {
 lab=Vpos}
 N 1040 -440 1040 -320 {
@@ -62,7 +62,7 @@ lab=Vneg}
 N 1010 -160 1010 -130 {
 lab=Vbias}
 N 1140 -320 1140 -200 {
-lab=#net5}
+lab=IS5}
 N 1080 -480 1080 -320 {
 lab=Vpos}
 N 1200 -440 1200 -320 {
@@ -70,7 +70,7 @@ lab=Vneg}
 N 1170 -160 1170 -130 {
 lab=Vbias}
 N 1300 -320 1300 -200 {
-lab=#net6}
+lab=IS6}
 N 1240 -480 1240 -320 {
 lab=Vpos}
 N 1360 -440 1360 -320 {
@@ -78,7 +78,7 @@ lab=Vneg}
 N 1330 -160 1330 -130 {
 lab=Vbias}
 N 1460 -320 1460 -200 {
-lab=#net7}
+lab=IS7}
 N 1400 -480 1400 -320 {
 lab=Vpos}
 N 1520 -440 1520 -320 {
@@ -142,7 +142,7 @@ lab=Vbias}
 N 200 -130 340 -130 {
 lab=Vbias}
 N 340 -320 340 -200 {
-lab=#net8}
+lab=IS0}
 N 1490 -130 1670 -130 {
 lab=Vbias}
 N 1430 -590 1430 -570 {
@@ -150,8 +150,8 @@ lab=vcc}
 N 1610 -590 1610 -570 {
 lab=vcc}
 C {sky130_fd_pr/pfet_01v8.sym} 110 -250 0 0 {name=Mprog
-L=0.15
-W=0.5
+L=BIASPRG_L
+W=BIASPRG_W
 nf=1
 mult=1
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
@@ -165,8 +165,8 @@ spiceprefix=X
 }
 C {devices/lab_pin.sym} 130 -360 0 0 {name=p5 sig_type=std_logic lab=vcc}
 C {sky130_fd_pr/nfet_01v8.sym} 150 -130 0 1 {name=Mmirror
-L=0.5
-W=0.5
+L=BIASMIR_L
+W=BIASMIR_W
 nf=1 
 mult=1
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
@@ -184,7 +184,7 @@ L=16
 W=0.5
 body=GND
 nf=1
-mult=1
+mult=MULTI
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
 pd="'2*int((nf+1)/2) * (W/nf + 0.29)'"
 as="'int((nf+2)/2) * W/nf * 0.29'" 
@@ -199,7 +199,7 @@ L=0.15
 W=0.5
 body=GND
 nf=1
-mult=1
+mult=MULTI
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
 pd="'2*int((nf+1)/2) * (W/nf + 0.29)'"
 as="'int((nf+2)/2) * W/nf * 0.29'" 
@@ -214,7 +214,7 @@ L=0.15
 W=0.5
 body=GND
 nf=1
-mult=1
+mult=MULTI
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
 pd="'2*int((nf+1)/2) * (W/nf + 0.29)'"
 as="'int((nf+2)/2) * W/nf * 0.29'" 
@@ -231,7 +231,7 @@ L=8
 W=0.5
 body=GND
 nf=1
-mult=1
+mult=MULTI
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
 pd="'2*int((nf+1)/2) * (W/nf + 0.29)'"
 as="'int((nf+2)/2) * W/nf * 0.29'" 
@@ -246,7 +246,7 @@ L=0.15
 W=0.5
 body=GND
 nf=1
-mult=1
+mult=MULTI
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
 pd="'2*int((nf+1)/2) * (W/nf + 0.29)'"
 as="'int((nf+2)/2) * W/nf * 0.29'" 
@@ -261,7 +261,7 @@ L=0.15
 W=0.5
 body=GND
 nf=1
-mult=1
+mult=MULTI
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
 pd="'2*int((nf+1)/2) * (W/nf + 0.29)'"
 as="'int((nf+2)/2) * W/nf * 0.29'" 
@@ -278,7 +278,7 @@ L=4
 W=0.5
 body=GND
 nf=1
-mult=1
+mult=MULTI
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
 pd="'2*int((nf+1)/2) * (W/nf + 0.29)'"
 as="'int((nf+2)/2) * W/nf * 0.29'" 
@@ -293,7 +293,7 @@ L=0.15
 W=0.5
 body=GND
 nf=1
-mult=1
+mult=MULTI
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
 pd="'2*int((nf+1)/2) * (W/nf + 0.29)'"
 as="'int((nf+2)/2) * W/nf * 0.29'" 
@@ -308,7 +308,7 @@ L=0.15
 W=0.5
 body=GND
 nf=1
-mult=1
+mult=MULTI
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
 pd="'2*int((nf+1)/2) * (W/nf + 0.29)'"
 as="'int((nf+2)/2) * W/nf * 0.29'" 
@@ -325,7 +325,7 @@ L=2.1
 W=0.5
 body=GND
 nf=1
-mult=1
+mult=MULTI
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
 pd="'2*int((nf+1)/2) * (W/nf + 0.29)'"
 as="'int((nf+2)/2) * W/nf * 0.29'" 
@@ -340,7 +340,7 @@ L=0.15
 W=0.5
 body=GND
 nf=1
-mult=1
+mult=MULTI
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
 pd="'2*int((nf+1)/2) * (W/nf + 0.29)'"
 as="'int((nf+2)/2) * W/nf * 0.29'" 
@@ -355,7 +355,7 @@ L=0.15
 W=0.5
 body=GND
 nf=1
-mult=1
+mult=MULTI
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
 pd="'2*int((nf+1)/2) * (W/nf + 0.29)'"
 as="'int((nf+2)/2) * W/nf * 0.29'" 
@@ -372,7 +372,7 @@ L=1
 W=0.5
 body=GND
 nf=1
-mult=1
+mult=MULTI
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
 pd="'2*int((nf+1)/2) * (W/nf + 0.29)'"
 as="'int((nf+2)/2) * W/nf * 0.29'" 
@@ -387,7 +387,7 @@ L=0.15
 W=0.5
 body=GND
 nf=1
-mult=1
+mult=MULTI
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
 pd="'2*int((nf+1)/2) * (W/nf + 0.29)'"
 as="'int((nf+2)/2) * W/nf * 0.29'" 
@@ -402,7 +402,7 @@ L=0.15
 W=0.5
 body=GND
 nf=1
-mult=1
+mult=MULTI
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
 pd="'2*int((nf+1)/2) * (W/nf + 0.29)'"
 as="'int((nf+2)/2) * W/nf * 0.29'" 
@@ -419,7 +419,7 @@ L=2.3
 W=1.9
 body=GND
 nf=1
-mult=1
+mult=MULTI
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
 pd="'2*int((nf+1)/2) * (W/nf + 0.29)'"
 as="'int((nf+2)/2) * W/nf * 0.29'" 
@@ -434,7 +434,7 @@ L=0.15
 W=1
 body=GND
 nf=1
-mult=1
+mult=MULTI
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
 pd="'2*int((nf+1)/2) * (W/nf + 0.29)'"
 as="'int((nf+2)/2) * W/nf * 0.29'" 
@@ -449,7 +449,7 @@ L=0.15
 W=1
 body=GND
 nf=1
-mult=1
+mult=MULTI
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
 pd="'2*int((nf+1)/2) * (W/nf + 0.29)'"
 as="'int((nf+2)/2) * W/nf * 0.29'" 
@@ -466,7 +466,7 @@ L=0.5
 W=1.1
 body=GND
 nf=1
-mult=1
+mult=MULTI
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
 pd="'2*int((nf+1)/2) * (W/nf + 0.29)'"
 as="'int((nf+2)/2) * W/nf * 0.29'" 
@@ -481,7 +481,7 @@ L=0.15
 W=2
 body=GND
 nf=1
-mult=1
+mult=MULTI
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
 pd="'2*int((nf+1)/2) * (W/nf + 0.29)'"
 as="'int((nf+2)/2) * W/nf * 0.29'" 
@@ -496,7 +496,7 @@ L=0.15
 W=2
 body=GND
 nf=1
-mult=1
+mult=MULTI
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
 pd="'2*int((nf+1)/2) * (W/nf + 0.29)'"
 as="'int((nf+2)/2) * W/nf * 0.29'" 
@@ -513,7 +513,7 @@ L=0.5
 W=2.1
 body=GND
 nf=1
-mult=1
+mult=MULTI
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
 pd="'2*int((nf+1)/2) * (W/nf + 0.29)'"
 as="'int((nf+2)/2) * W/nf * 0.29'" 
@@ -528,7 +528,7 @@ L=0.15
 W=3
 body=GND
 nf=1
-mult=1
+mult=MULTI
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
 pd="'2*int((nf+1)/2) * (W/nf + 0.29)'"
 as="'int((nf+2)/2) * W/nf * 0.29'" 
@@ -543,7 +543,7 @@ L=0.15
 W=3
 body=GND
 nf=1
-mult=1
+mult=MULTI
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
 pd="'2*int((nf+1)/2) * (W/nf + 0.29)'"
 as="'int((nf+2)/2) * W/nf * 0.29'" 
@@ -616,12 +616,21 @@ C {devices/opin.sym} 140 -440 0 0 {name=p78 lab=Vneg}
 C {devices/opin.sym} 140 -420 0 0 {name=p79 lab=Vbias}
 C {devices/lab_pin.sym} 1410 -540 3 0 {name=p80 sig_type=std_logic lab=vss}
 C {sky130_fd_pr/res_high_po_5p73.sym} 1430 -540 0 0 {name=R5
-L=40
+L=RPUL
 model=res_high_po_5p73
 spiceprefix=X
 mult=1}
 C {sky130_fd_pr/res_high_po_5p73.sym} 1610 -540 0 0 {name=R6
-L=40
+L=RPUL
 model=res_high_po_5p73
 spiceprefix=X
 mult=1}
+C {devices/lab_pin.sym} 1590 -540 3 0 {name=p57 sig_type=std_logic lab=vss}
+C {devices/lab_wire.sym} 340 -220 0 0 {name=p58 sig_type=std_logic lab=IS0}
+C {devices/lab_wire.sym} 500 -220 0 0 {name=p81 sig_type=std_logic lab=IS1}
+C {devices/lab_wire.sym} 660 -220 0 0 {name=p82 sig_type=std_logic lab=IS2}
+C {devices/lab_wire.sym} 820 -220 0 0 {name=p83 sig_type=std_logic lab=IS3}
+C {devices/lab_wire.sym} 980 -220 0 0 {name=p84 sig_type=std_logic lab=IS4}
+C {devices/lab_wire.sym} 1140 -220 0 0 {name=p85 sig_type=std_logic lab=IS5}
+C {devices/lab_wire.sym} 1300 -220 0 0 {name=p86 sig_type=std_logic lab=IS6}
+C {devices/lab_wire.sym} 1460 -220 0 0 {name=p87 sig_type=std_logic lab=IS7}

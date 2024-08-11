@@ -22,13 +22,23 @@ ylabmag=1.0
 node="vpos
 vneg
 vbias
-\\"load (mA);i(vvss) 1000 *\\""
-color="18 6 4 12"
+\\"load (mA);i(vvss) 1000 *\\"
+vcc"
+color="4 4 4 4 4"
 dataset=-1
 unitx=1
 logx=0
 logy=0
 rainbow=1}
+T {TT_MODELS is set to use
+'tt_mm' (for Monte Carlo)
+instead of just 'tt'.
+Use 'repeat' >1 in COMMANDS2
+to make use of this.} 370 -140 0 0 0.3 0.3 {}
+T {To introduce random variation in VCC for Monte Carlo,
+set this power supply value to:
+
+1.8 trrandom(1 15us 0s 100mV 0mV)} 180 -290 0 0 0.3 0.3 {}
 N 60 -800 110 -800 {
 lab=p0}
 N 60 -780 110 -780 {
@@ -81,22 +91,16 @@ N 440 -800 500 -800 {
 lab=#net2}
 N 720 -600 720 -580 {
 lab=VGND}
-C {devices/vsource.sym} 110 -250 0 0 {name=Vvcc value=1.8 savecurrent=false}
+C {devices/vsource.sym} 110 -250 0 0 {name=Vvcc value="1.8" savecurrent=false}
 C {devices/lab_pin.sym} 110 -280 0 0 {name=p1 sig_type=std_logic lab=vcc}
 C {devices/gnd.sym} 110 -220 0 0 {name=l2 lab=GND}
 C {devices/simulator_commands.sym} 120 -50 2 1 {name=COMMANDS2
 simulator=ngspice
 only_toplevel=false 
 value="
-* MPW:MMW=2.2:4.1 gets a linear range of 1V1..1V8 (0.7Vpp) with 2k5 pullups, uses ~600uA
-* 4:4 is what I was using for original measurements: 0V736..1V8 (1.064Vpp); uses ~900uA
-* 2:2 @ 2500R gets 0v733..1V8 (1.067Vpp) @ 650uA
-* 0.5:0.5 @ 2500R gets 0v708..1v8 (1.092Vpp) @ ~500uA (Vbias around 1.373)
-.param MPW=0.5
-.param MMW=0.5
-
 .param singlebits=0
 .IF (singlebits == 1)
+* Mode to just test each binary-weighted level:
 Vxp0 p0 GND pulse 0v 1.8v 1u 1n 1n 1u 10u
 Vxp1 p1 GND pulse 0v 1.8v 2u 1n 1n 1u 10u
 Vxp2 p2 GND pulse 0v 1.8v 3u 1n 1n 1u 10u
@@ -114,6 +118,7 @@ Vxn5 n5 GND pulse 1.8v 0v 6u 1n 1n 1u 10u
 Vxn6 n6 GND pulse 1.8v 0v 7u 1n 1n 1u 10u
 Vxn7 n7 GND pulse 1.8v 0v 8u 1n 1n 1u 10u
 .ELSEIF (singlebits == 0)
+* Mode to test full 0..255 trange:
 Vxp0 p0 GND pulse 1.8v 0v 0n 1n 1n 39n 80n
 Vxp1 p1 GND pulse 1.8v 0v 0n 1n 1n 79n 160n
 Vxp2 p2 GND pulse 1.8v 0v 0n 1n 1n 159n 320n
@@ -135,12 +140,21 @@ Vxn7 n7 GND pulse 0v 1.8v 0n 1n 1n 5119n 10240n
 .options savecurrents
 .control
 
-  save all
-  *reset
-  *alterparam MPW=4
-  *alterparam MMW=4
-  tran 1n 12.8u
-  write 11.raw i(vvcc) i(vvss) vpos vneg vbias
+  * If using Monte Carlo, change to repeat to (say) 5:
+  repeat 1
+    save all
+    tran 1n 12.8u
+    write 11.raw i(vvcc) i(vvss) vpos vneg vbias vcc
+    set appendwrite
+    reset
+  end
+
+*  save all
+*  *reset
+*  *alterparam MPW=4
+*  *alterparam MMW=4
+*  tran 1n 12.8u
+*  write 11.raw i(vvcc) i(vvss) vpos vneg vbias
 
 *  set appendwrite
 *  alterparam MPW=4
@@ -151,7 +165,6 @@ Vxn7 n7 GND pulse 0v 1.8v 0n 1n 1n 5119n 10240n
 
 .endc
 "}
-C {sky130_fd_pr/corner.sym} 10 -130 0 0 {name=CORNER only_toplevel=true corner=tt}
 C {devices/gnd.sym} 110 -340 0 0 {name=l6 lab=GND}
 C {devices/lab_pin.sym} 60 -660 0 0 {name=p23 sig_type=std_logic lab=p7}
 C {devices/lab_pin.sym} 60 -680 0 0 {name=p24 sig_type=std_logic lab=p6}
@@ -175,15 +188,11 @@ tclcommand="xschem raw_read $netlist_dir/11.raw tran"
 }
 C {devices/vsource.sym} 110 -370 0 0 {name=Vvss value=0 savecurrent=false}
 C {devices/lab_pin.sym} 110 -400 0 0 {name=p42 sig_type=std_logic lab=vss}
-C {csdac.sym} 260 -630 0 0 {name=x1}
+C {csdac.sym} 260 -630 0 0 {name=x1 RPUL=40 MULTI=1}
 C {devices/lab_pin.sym} 260 -830 0 0 {name=p2 sig_type=std_logic lab=vcc}
 C {devices/lab_pin.sym} 260 -430 0 0 {name=p3 sig_type=std_logic lab=vss}
 C {devices/lab_pin.sym} 760 -800 0 1 {name=p5 sig_type=std_logic lab=vpos}
 C {devices/lab_pin.sym} 410 -520 0 1 {name=p7 sig_type=std_logic lab=vbias}
-C {tt08_analog_load.sym} 490 -290 0 0 {name=x2}
-C {devices/lab_pin.sym} 640 -290 1 1 {name=p4 sig_type=std_logic lab=vss}
-C {tt08_analog_load.sym} 490 -210 0 0 {name=x3}
-C {devices/lab_pin.sym} 640 -210 1 1 {name=p9 sig_type=std_logic lab=vss}
 C {devices/lab_pin.sym} 760 -660 0 1 {name=p8 sig_type=std_logic lab=vneg}
 C {tt08pin.sym} 580 -780 0 0 {name=x4}
 C {tt08pin.sym} 580 -640 0 0 {name=x5}
@@ -201,3 +210,12 @@ value=3p
 footprint=1206
 device="ceramic capacitor"}
 C {devices/gnd.sym} 720 -580 0 0 {name=l1 lab=VGND}
+C {devices/code.sym} 250 -150 0 0 {name=TT_MODELS
+only_toplevel=true
+format="tcleval( @value )"
+value="
+** opencircuitdesign pdks install
+.lib $::SKYWATER_MODELS/sky130.lib.spice tt_mm
+
+"
+spice_ignore=false}
