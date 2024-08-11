@@ -1,92 +1,28 @@
-** sch_path: /home/anton/projects/tt08-vga-fun/xschem/tb_csdac.sch
-**.subckt tb_csdac
-Vvcc vcc GND 1.8
-Vvss vss GND 0
-x1 vcc vss p0 p1 p2 p3 p4 p5 p6 p7 n0 n1 n2 n3 n4 n5 n6 n7 net2 net1 vbias csdac RPUL=40 MULTI=1 BIASPRG_W=0.5 BIASPRG_L=0.15
+** sch_path: /home/anton/projects/tt08-vga-fun/xschem/csdac_nom.sch
+**.subckt csdac_nom p7 p6 p5 p4 p3 p2 p1 p0 n7 n6 n5 n4 n3 n2 n1 n0 vcc vss vbias vneg vpos
+*.ipin p7
+*.ipin p6
+*.ipin p5
+*.ipin p4
+*.ipin p3
+*.ipin p2
+*.ipin p1
+*.ipin p0
+*.ipin n7
+*.ipin n6
+*.ipin n5
+*.ipin n4
+*.ipin n3
+*.ipin n2
+*.ipin n1
+*.ipin n0
+*.iopin vcc
+*.iopin vss
+*.opin vbias
+*.opin vneg
+*.opin vpos
+x1 vcc vss p0 p1 p2 p3 p4 p5 p6 p7 n0 n1 n2 n3 n4 n5 n6 n7 vpos vneg vbias csdac RPUL=40 MULTI=1 BIASPRG_W=0.5 BIASPRG_L=0.15
 + BIASMIR_W=0.5 BIASMIR_L=0.5
-x4 vpos net2 vss tt08pin
-x5 vneg net1 vss tt08pin
-C2 vpos VGND 3p m=1
-C1 vneg VGND 3p m=1
-**** begin user architecture code
-
-
-
-.param singlebits=0
-.IF (singlebits == 1)
-* Mode to just test each binary-weighted level:
-Vxp0 p0 GND pulse 0v 1.8v 1u 1n 1n 1u 10u
-Vxp1 p1 GND pulse 0v 1.8v 2u 1n 1n 1u 10u
-Vxp2 p2 GND pulse 0v 1.8v 3u 1n 1n 1u 10u
-Vxp3 p3 GND pulse 0v 1.8v 4u 1n 1n 1u 10u
-Vxp4 p4 GND pulse 0v 1.8v 5u 1n 1n 1u 10u
-Vxp5 p5 GND pulse 0v 1.8v 6u 1n 1n 1u 10u
-Vxp6 p6 GND pulse 0v 1.8v 7u 1n 1n 1u 10u
-Vxp7 p7 GND pulse 0v 1.8v 8u 1n 1n 1u 10u
-Vxn0 n0 GND pulse 1.8v 0v 1u 1n 1n 1u 10u
-Vxn1 n1 GND pulse 1.8v 0v 2u 1n 1n 1u 10u
-Vxn2 n2 GND pulse 1.8v 0v 3u 1n 1n 1u 10u
-Vxn3 n3 GND pulse 1.8v 0v 4u 1n 1n 1u 10u
-Vxn4 n4 GND pulse 1.8v 0v 5u 1n 1n 1u 10u
-Vxn5 n5 GND pulse 1.8v 0v 6u 1n 1n 1u 10u
-Vxn6 n6 GND pulse 1.8v 0v 7u 1n 1n 1u 10u
-Vxn7 n7 GND pulse 1.8v 0v 8u 1n 1n 1u 10u
-.ELSEIF (singlebits == 0)
-* Mode to test full 0..255 trange:
-Vxp0 p0 GND pulse 1.8v 0v 0n 1n 1n 39n 80n
-Vxp1 p1 GND pulse 1.8v 0v 0n 1n 1n 79n 160n
-Vxp2 p2 GND pulse 1.8v 0v 0n 1n 1n 159n 320n
-Vxp3 p3 GND pulse 1.8v 0v 0n 1n 1n 319n 640n
-Vxp4 p4 GND pulse 1.8v 0v 0n 1n 1n 639n 1280n
-Vxp5 p5 GND pulse 1.8v 0v 0n 1n 1n 1279n 2560n
-Vxp6 p6 GND pulse 1.8v 0v 0n 1n 1n 2559n 5120n
-Vxp7 p7 GND pulse 1.8v 0v 0n 1n 1n 5119n 10240n
-Vxn0 n0 GND pulse 0v 1.8v 0n 1n 1n 39n 80n
-Vxn1 n1 GND pulse 0v 1.8v 0n 1n 1n 79n 160n
-Vxn2 n2 GND pulse 0v 1.8v 0n 1n 1n 159n 320n
-Vxn3 n3 GND pulse 0v 1.8v 0n 1n 1n 319n 640n
-Vxn4 n4 GND pulse 0v 1.8v 0n 1n 1n 639n 1280n
-Vxn5 n5 GND pulse 0v 1.8v 0n 1n 1n 1279n 2560n
-Vxn6 n6 GND pulse 0v 1.8v 0n 1n 1n 2559n 5120n
-Vxn7 n7 GND pulse 0v 1.8v 0n 1n 1n 5119n 10240n
-.ENDIF
-
-.options savecurrents
-.control
-
-  * If using Monte Carlo, change to repeat to (say) 5:
-  repeat 1
-    save all
-    tran 1n 12.8u
-    write 11.raw i(vvcc) i(vvss) vpos vneg vbias vcc
-    set appendwrite
-    reset
-  end
-
-*  save all
-*  *reset
-*  *alterparam MPW=4
-*  *alterparam MMW=4
-*  tran 1n 12.8u
-*  write 11.raw i(vvcc) i(vvss) vpos vneg vbias
-
-*  set appendwrite
-*  alterparam MPW=4
-*  alterparam MMW=4
-*  reset
-*  tran 1n 12.8u
-*  write 11.raw i(vvcc) i(vvss) vpos vneg vbias
-
-.endc
-
-
-
-
-** opencircuitdesign pdks install
-.lib /home/anton/.volare/sky130A/libs.tech/ngspice/sky130.lib.spice tt
-
-
-**** end user architecture code
 **.ends
 
 * expanding   symbol:  csdac.sym # of pins=21
@@ -171,32 +107,4 @@ XR5 Vpos vcc vss sky130_fd_pr__res_high_po_5p73 L=RPUL mult=1 m=1
 XR6 Vneg vcc vss sky130_fd_pr__res_high_po_5p73 L=RPUL mult=1 m=1
 .ends
 
-
-* expanding   symbol:  tt08pin.sym # of pins=3
-** sym_path: /home/anton/projects/tt08-vga-fun/xschem/tt08pin.sym
-** sch_path: /home/anton/projects/tt08-vga-fun/xschem/tt08pin.sch
-.subckt tt08pin pin mod VGND
-*.iopin pin
-*.iopin VGND
-*.iopin mod
-R1 net1 pin 1 m=1
-C1 pin VGND 1p m=1
-L1 net2 net1 1n m=1
-V1 VAPWR VGND 3.3
-C2 net2 VGND 2p m=1
-R2 net3 net2 50 m=1
-XM2 net3 VGND mod VAPWR sky130_fd_pr__pfet_g5v0d10v5 L=0.5 W=100 nf=20 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
-+ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
-XM1 net3 VAPWR mod VGND sky130_fd_pr__nfet_g5v0d10v5 L=0.5 W=60 nf=12 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
-+ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
-XM4 net3 VAPWR VGND VAPWR sky130_fd_pr__pfet_g5v0d10v5 L=0.5 W=100 nf=20 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
-+ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=15 m=15
-XM3 net3 VGND VGND VGND sky130_fd_pr__nfet_g5v0d10v5 L=0.5 W=60 nf=12 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
-+ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=15 m=15
-C3 mod VGND 250f m=1
-.ends
-
-.GLOBAL GND
-.GLOBAL VGND
-.GLOBAL VAPWR
 .end
