@@ -39,6 +39,9 @@ T {To introduce random variation in VCC for Monte Carlo,
 set this power supply value to:
 
 1.8 trrandom(1 15us 0s 100mV 0mV)} 180 -290 0 0 0.3 0.3 {}
+T {NOTE: This is csdac.sch (parametric).
+There is also csdac_nom.sch (fixed typical values)
+suitable for SPICE import into Magic.} 400 -490 0 0 0.3 0.3 {}
 N 60 -800 110 -800 {
 lab=p0}
 N 60 -780 110 -780 {
