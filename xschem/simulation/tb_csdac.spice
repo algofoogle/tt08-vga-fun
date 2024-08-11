@@ -58,7 +58,7 @@ Vxn7 n7 GND pulse 0v 1.8v 0n 1n 1n 5119n 10240n
   repeat 1
     save all
     tran 1n 12.8u
-    write 11.raw i(vvcc) i(vvss) vpos vneg vbias vcc
+    write tb_csdac.raw i(vvcc) i(vvss) vpos vneg vbias vcc
     set appendwrite
     reset
   end

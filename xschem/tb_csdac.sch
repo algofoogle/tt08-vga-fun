@@ -144,7 +144,7 @@ Vxn7 n7 GND pulse 0v 1.8v 0n 1n 1n 5119n 10240n
   repeat 1
     save all
     tran 1n 12.8u
-    write 11.raw i(vvcc) i(vvss) vpos vneg vbias vcc
+    write tb_csdac.raw i(vvcc) i(vvss) vpos vneg vbias vcc
     set appendwrite
     reset
   end
@@ -182,9 +182,9 @@ C {devices/lab_pin.sym} 60 -540 0 0 {name=p35 sig_type=std_logic lab=n3}
 C {devices/lab_pin.sym} 60 -560 0 0 {name=p36 sig_type=std_logic lab=n2}
 C {devices/lab_pin.sym} 60 -580 0 0 {name=p37 sig_type=std_logic lab=n1}
 C {devices/lab_pin.sym} 60 -600 0 0 {name=p38 sig_type=std_logic lab=n0}
-C {devices/launcher.sym} 680 -30 0 0 {name=h5
+C {devices/launcher.sym} 890 -20 0 0 {name=h5
 descr="load waves" 
-tclcommand="xschem raw_read $netlist_dir/11.raw tran"
+tclcommand="xschem raw_read $netlist_dir/tb_csdac.raw tran"
 }
 C {devices/vsource.sym} 110 -370 0 0 {name=Vvss value=0 savecurrent=false}
 C {devices/lab_pin.sym} 110 -400 0 0 {name=p42 sig_type=std_logic lab=vss}
