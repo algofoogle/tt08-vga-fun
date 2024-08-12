@@ -1,94 +1,21 @@
 magic
 tech sky130A
 magscale 1 2
-timestamp 1723353804
+timestamp 1723412611
 << error_s >>
-rect 17658 8263 17693 8297
-rect 17659 8244 17693 8263
-rect 298 1015 333 1032
-rect 299 1014 333 1015
-rect 299 978 369 1014
-rect 129 947 187 953
-rect 129 913 141 947
-rect 316 944 387 978
-rect 737 944 772 978
-rect 129 907 187 913
-rect 129 719 187 725
-rect 129 685 141 719
-rect 129 679 187 685
-rect 316 583 386 944
-rect 738 925 772 944
-rect 316 547 369 583
-rect 757 530 772 925
-rect 791 891 826 925
-rect 4276 891 4311 925
-rect 791 530 825 891
-rect 4277 872 4311 891
-rect 791 496 806 530
-rect 4296 477 4311 872
-rect 4330 838 4365 872
-rect 4645 838 4680 872
-rect 4330 477 4364 838
-rect 4646 819 4680 838
-rect 4476 770 4534 776
-rect 4476 736 4488 770
-rect 4476 730 4534 736
-rect 4476 560 4534 566
-rect 4476 526 4488 560
-rect 4476 520 4534 526
-rect 4330 443 4345 477
-rect 4665 424 4680 819
-rect 4699 785 4734 819
-rect 5014 785 5049 819
-rect 4699 424 4733 785
-rect 5015 766 5049 785
-rect 4845 717 4903 723
-rect 4845 683 4857 717
-rect 4845 677 4903 683
-rect 4845 507 4903 513
-rect 4845 473 4857 507
-rect 4845 467 4903 473
-rect 4699 390 4714 424
-rect 5034 371 5049 766
-rect 5068 732 5103 766
-rect 6953 732 6988 766
-rect 5068 371 5102 732
-rect 6954 713 6988 732
-rect 5068 337 5083 371
-rect 6973 318 6988 713
-rect 7007 679 7042 713
-rect 7322 679 7357 713
-rect 7007 318 7041 679
-rect 7323 660 7357 679
-rect 7153 611 7211 617
-rect 7153 577 7165 611
-rect 7153 571 7211 577
-rect 7153 401 7211 407
-rect 7153 367 7165 401
-rect 7153 361 7211 367
-rect 7007 284 7022 318
-rect 7342 265 7357 660
-rect 7376 626 7411 660
-rect 7691 626 7726 660
-rect 7376 265 7410 626
-rect 7692 607 7726 626
-rect 7522 558 7580 564
-rect 7522 524 7534 558
-rect 7522 518 7580 524
-rect 7522 348 7580 354
-rect 7522 314 7534 348
-rect 7522 308 7580 314
-rect 7376 231 7391 265
-rect 7711 212 7726 607
-rect 7745 573 7780 607
-rect 8830 573 8865 607
-rect 7745 212 7779 573
-rect 8831 554 8865 573
-rect 7745 178 7760 212
-rect 8850 159 8865 554
-rect 8884 520 8919 554
+rect 5552 4902 5610 4908
+rect 5962 4902 6020 4908
+rect 5552 4868 5564 4902
+rect 5962 4868 5974 4902
+rect 5552 4862 5610 4868
+rect 5962 4862 6020 4868
+rect 5552 4692 5610 4698
+rect 5962 4692 6020 4698
+rect 5552 4658 5564 4692
+rect 5962 4658 5974 4692
+rect 5552 4652 5610 4658
+rect 5962 4652 6020 4658
 rect 9199 520 9234 554
-rect 8884 159 8918 520
 rect 9200 501 9234 520
 rect 9030 452 9088 458
 rect 9030 418 9042 452
@@ -96,7 +23,6 @@ rect 9030 412 9088 418
 rect 9030 242 9088 248
 rect 9030 208 9042 242
 rect 9030 202 9088 208
-rect 8884 125 8899 159
 rect 9219 106 9234 501
 rect 9253 467 9288 501
 rect 9568 467 9603 501
@@ -245,188 +171,341 @@ rect 16064 -606 16122 -600
 rect 16064 -640 16076 -606
 rect 16064 -646 16122 -640
 rect 15918 -723 15933 -689
-rect 16253 -742 16268 206
-rect 16287 -742 16321 260
-rect 16287 -776 16302 -742
-rect 17678 -795 17693 8244
-rect 17712 8210 17747 8244
-rect 17712 -795 17746 8210
-rect 17712 -829 17727 -795
+<< viali >>
+rect 7360 6170 7610 6220
+rect 7890 6180 8060 6230
+rect 7270 5850 7320 6130
+rect 7650 6070 7710 6120
+rect 7650 5860 7710 5910
+rect 8100 5840 8160 6140
+rect 7360 5760 7410 5810
+rect 7560 5760 7610 5810
+rect 7890 5750 8060 5800
+rect 6130 5340 6180 5620
+rect 6850 5340 6900 5620
+rect 6220 5250 6400 5300
+rect 6640 5250 6820 5300
+rect 6390 1570 6440 4930
+rect 6800 1570 6850 4820
+rect 6470 1490 6770 1540
 << metal1 >>
-rect 0 0 200 200
-rect 0 -400 200 -200
-rect 0 -800 200 -600
-rect 0 -1200 200 -1000
-rect 0 -1600 200 -1400
-rect 0 -2000 200 -1800
-rect 0 -2400 200 -2200
-rect 0 -2800 200 -2600
-rect 0 -3200 200 -3000
-rect 0 -3600 200 -3400
-rect 0 -4000 200 -3800
-rect 0 -4400 200 -4200
-rect 0 -4800 200 -4600
-rect 0 -5200 200 -5000
-rect 0 -5600 200 -5400
-rect 0 -6000 200 -5800
-rect 0 -6400 200 -6200
-rect 0 -6800 200 -6600
-rect 0 -7200 200 -7000
-rect 0 -7600 200 -7400
-rect 0 -8000 200 -7800
-use csdac_nom__devices/sky130_fd_pr__nfet_01v8_HZS9GD  XMB0
+rect 592 7110 792 7310
+rect 992 7110 1192 7310
+rect 1392 7110 1592 7310
+rect 1792 7110 1992 7310
+rect 2192 7110 2392 7310
+rect 2592 7110 2792 7310
+rect 2992 7110 3192 7310
+rect 3392 7110 3592 7310
+rect 3792 7110 3992 7310
+rect 4192 7110 4392 7310
+rect 4592 7110 4792 7310
+rect 4992 7110 5192 7310
+rect 5392 7110 5592 7310
+rect 5792 7110 5992 7310
+rect 6192 7110 6392 7310
+rect 6592 7110 6792 7310
+rect 6120 5620 6190 5640
+rect 6280 5620 6340 7110
+rect 6690 5620 6750 7110
+rect 7392 6335 7592 7310
+rect 7874 7308 8072 7310
+rect 7872 7110 8072 7308
+rect 7235 6230 7592 6335
+rect 7874 6270 8072 7110
+rect 7860 6240 8080 6270
+rect 7860 6230 8170 6240
+rect 7235 6220 7720 6230
+rect 7235 6170 7360 6220
+rect 7610 6170 7720 6220
+rect 7860 6180 7890 6230
+rect 8060 6180 8170 6230
+rect 7860 6170 8170 6180
+rect 7235 6160 7720 6170
+rect 7235 6130 7345 6160
+rect 7640 6130 7720 6160
+rect 8090 6140 8170 6170
+rect 7235 5850 7270 6130
+rect 7320 5850 7345 6130
+rect 7430 6070 7600 6130
+rect 7540 6020 7600 6070
+rect 7640 6120 8010 6130
+rect 7640 6070 7650 6120
+rect 7710 6080 8010 6120
+rect 7710 6070 7720 6080
+rect 7640 6050 7720 6070
+rect 7900 6020 7950 6050
+rect 8090 6040 8100 6140
+rect 7540 5960 7950 6020
+rect 7540 5910 7600 5960
+rect 7900 5930 7950 5960
+rect 7990 5940 8100 6040
+rect 7430 5850 7600 5910
+rect 7640 5910 7720 5930
+rect 7640 5860 7650 5910
+rect 7710 5900 7720 5910
+rect 7710 5860 8010 5900
+rect 7640 5850 8010 5860
+rect 7235 5820 7345 5850
+rect 7235 5810 7430 5820
+rect 7235 5760 7360 5810
+rect 7410 5760 7430 5810
+rect 7235 5750 7430 5760
+rect 6840 5620 6910 5640
+rect 6120 5340 6130 5620
+rect 6180 5340 6190 5620
+rect 6270 5560 6370 5620
+rect 6430 5560 6440 5620
+rect 6590 5560 6600 5620
+rect 6660 5560 6760 5620
+rect 6330 5430 6700 5530
+rect 6270 5340 6370 5400
+rect 6430 5340 6440 5400
+rect 6120 5310 6190 5340
+rect 6120 5300 6450 5310
+rect 6120 5250 6220 5300
+rect 6400 5250 6450 5300
+rect 6120 5240 6450 5250
+rect 6380 5175 6450 5240
+rect 6380 4930 6450 5105
+rect 6380 1570 6390 4930
+rect 6440 1570 6450 4930
+rect 6490 1635 6540 5430
+rect 6590 5340 6600 5400
+rect 6660 5340 6760 5400
+rect 6840 5340 6850 5620
+rect 6900 5340 6910 5620
+rect 6840 5310 6910 5340
+rect 6620 5300 6910 5310
+rect 6620 5250 6640 5300
+rect 6820 5250 6910 5300
+rect 6620 5240 6910 5250
+rect 6840 5190 6910 5240
+rect 7235 5190 7345 5750
+rect 6820 5170 7345 5190
+rect 6820 5110 6840 5170
+rect 6910 5110 7345 5170
+rect 6820 5080 7345 5110
+rect 7460 4950 7510 5850
+rect 7640 5820 7720 5850
+rect 7540 5810 7720 5820
+rect 8090 5840 8100 5940
+rect 8160 5840 8170 6140
+rect 8090 5810 8170 5840
+rect 7540 5760 7560 5810
+rect 7610 5760 7720 5810
+rect 7540 5750 7720 5760
+rect 7870 5800 8170 5810
+rect 7870 5750 7890 5800
+rect 8060 5750 8170 5800
+rect 7870 5740 8170 5750
+rect 6570 4900 7515 4950
+rect 6570 1600 6670 4900
+rect 6700 4820 6860 4850
+rect 6700 1670 6800 4820
+rect 6380 1560 6450 1570
+rect 6790 1570 6800 1670
+rect 6850 4805 6860 4820
+rect 6850 4735 6995 4805
+rect 7065 4735 7071 4805
+rect 6850 1570 6860 4735
+rect 6790 1560 6860 1570
+rect 6380 1540 6860 1560
+rect 6380 1490 6470 1540
+rect 6770 1490 6860 1540
+rect 6380 1480 6860 1490
+rect 7465 -5385 7515 4900
+rect 7015 -5435 7515 -5385
+rect 7015 -7482 7065 -5435
+rect 6940 -7682 7140 -7482
+rect 7340 -7682 7540 -7482
+rect 7740 -7682 7940 -7482
+<< via1 >>
+rect 6370 5560 6430 5620
+rect 6600 5560 6660 5620
+rect 6370 5340 6430 5400
+rect 6380 5105 6450 5175
+rect 6600 5340 6660 5400
+rect 6840 5110 6910 5170
+rect 6995 4735 7065 4805
+<< metal2 >>
+rect 6360 5620 6440 5630
+rect 6360 5560 6370 5620
+rect 6430 5560 6440 5620
+rect 6360 5400 6440 5560
+rect 6360 5340 6370 5400
+rect 6430 5340 6440 5400
+rect 6360 5330 6440 5340
+rect 6590 5620 6670 5630
+rect 6590 5560 6600 5620
+rect 6660 5560 6670 5620
+rect 6590 5400 6670 5560
+rect 6590 5340 6600 5400
+rect 6660 5340 6670 5400
+rect 6590 5330 6670 5340
+rect 6370 5175 6460 5180
+rect 6370 5105 6380 5175
+rect 6450 5170 7065 5175
+rect 6450 5110 6840 5170
+rect 6910 5110 7065 5170
+rect 6450 5105 7065 5110
+rect 6370 5100 6460 5105
+rect 6995 4805 7065 5105
+rect 6995 4729 7065 4735
+use sky130_fd_pr__nfet_01v8_HZS9GD  XMB0 csdac_nom__devices
 timestamp 1723353804
-transform 1 0 2551 0 1 701
+transform 0 1 6620 -1 0 3256
 box -1796 -260 1796 260
-use csdac_nom__devices/sky130_fd_pr__nfet_01v8_FMHZDY  XMB1
+use sky130_fd_pr__nfet_01v8_FMHZDY  XMB1 csdac_nom__devices
 timestamp 1723353804
-transform 1 0 6028 0 1 542
+transform 0 1 5900 -1 0 3266
 box -996 -260 996 260
-use csdac_nom__devices/sky130_fd_pr__nfet_01v8_AHZR5K  XMB2
+use sky130_fd_pr__nfet_01v8_AHZR5K  XMB2 csdac_nom__devices
 timestamp 1723353804
-transform 1 0 8305 0 1 383
+transform 1 0 3256 0 1 2820
 box -596 -260 596 260
-use csdac_nom__devices/sky130_fd_pr__nfet_01v8_BHEWB6  XMB3
+use sky130_fd_pr__nfet_01v8_BHEWB6  XMB3 csdac_nom__devices
 timestamp 1723353804
 transform 1 0 9992 0 1 224
 box -406 -260 406 260
-use csdac_nom__devices/sky130_fd_pr__nfet_01v8_FMMQLY  XMB4
+use sky130_fd_pr__nfet_01v8_FMMQLY  XMB4 csdac_nom__devices
 timestamp 1723353804
 transform 1 0 11379 0 1 65
 box -296 -260 296 260
-use csdac_nom__devices/sky130_fd_pr__nfet_01v8_C4RU6Y  XMB5
+use sky130_fd_pr__nfet_01v8_C4RU6Y  XMB5 csdac_nom__devices
 timestamp 1723353804
 transform 1 0 12786 0 1 46
 box -426 -400 426 400
-use csdac_nom__devices/sky130_fd_pr__nfet_01v8_N5FCK4  XMB6
+use sky130_fd_pr__nfet_01v8_N5FCK4  XMB6 csdac_nom__devices
 timestamp 1723353804
 transform 1 0 14143 0 1 -193
 box -246 -320 246 320
-use csdac_nom__devices/sky130_fd_pr__nfet_01v8_8TEC39  XMB7
+use sky130_fd_pr__nfet_01v8_8TEC39  XMB7 csdac_nom__devices
 timestamp 1723353804
 transform 1 0 15320 0 1 -252
 box -246 -420 246 420
-use csdac_nom__devices/sky130_fd_pr__nfet_01v8_SMGLWN  XMmirror
+use sky130_fd_pr__nfet_01v8_SMGLWN  XMmirror csdac_nom__devices
 timestamp 1723353804
-transform 1 0 562 0 1 754
+transform 1 0 7486 0 1 5990
 box -246 -260 246 260
-use csdac_nom__devices/sky130_fd_pr__nfet_01v8_L9ESAD  XMN0
+use sky130_fd_pr__nfet_01v8_L9ESAD  XMN0 csdac_nom__devices
 timestamp 1723353804
-transform 1 0 4874 0 1 595
+transform 1 0 6311 0 1 5480
 box -211 -260 211 260
-use csdac_nom__devices/sky130_fd_pr__nfet_01v8_L9ESAD  XMN1
+use sky130_fd_pr__nfet_01v8_L9ESAD  XMN1
 timestamp 1723353804
-transform 1 0 7551 0 1 436
+transform 1 0 5581 0 1 4780
 box -211 -260 211 260
-use csdac_nom__devices/sky130_fd_pr__nfet_01v8_L9ESAD  XMN2
+use sky130_fd_pr__nfet_01v8_L9ESAD  XMN2
 timestamp 1723353804
 transform 1 0 9428 0 1 277
 box -211 -260 211 260
-use csdac_nom__devices/sky130_fd_pr__nfet_01v8_L9ESAD  XMN3
+use sky130_fd_pr__nfet_01v8_L9ESAD  XMN3
 timestamp 1723353804
 transform 1 0 10925 0 1 118
 box -211 -260 211 260
-use csdac_nom__devices/sky130_fd_pr__nfet_01v8_L9ESAD  XMN4
+use sky130_fd_pr__nfet_01v8_L9ESAD  XMN4
 timestamp 1723353804
 transform 1 0 12202 0 1 -41
 box -211 -260 211 260
-use csdac_nom__devices/sky130_fd_pr__nfet_01v8_648S5X  XMN5
+use sky130_fd_pr__nfet_01v8_648S5X  XMN5 csdac_nom__devices
 timestamp 1723353804
 transform 1 0 13739 0 1 -150
 box -211 -310 211 310
-use csdac_nom__devices/sky130_fd_pr__nfet_01v8_ATLS57  XMN6
+use sky130_fd_pr__nfet_01v8_ATLS57  XMN6 csdac_nom__devices
 timestamp 1723353804
 transform 1 0 14916 0 1 -209
 box -211 -410 211 410
-use csdac_nom__devices/sky130_fd_pr__nfet_01v8_J2SMEF  XMN7
+use sky130_fd_pr__nfet_01v8_J2SMEF  XMN7 csdac_nom__devices
 timestamp 1723353804
 transform 1 0 16093 0 1 -268
 box -211 -510 211 510
-use csdac_nom__devices/sky130_fd_pr__nfet_01v8_L9ESAD  XMP0
+use sky130_fd_pr__nfet_01v8_L9ESAD  XMP0
 timestamp 1723353804
-transform 1 0 4505 0 1 648
+transform 1 0 6721 0 1 5480
 box -211 -260 211 260
-use csdac_nom__devices/sky130_fd_pr__nfet_01v8_L9ESAD  XMP1
+use sky130_fd_pr__nfet_01v8_L9ESAD  XMP1
 timestamp 1723353804
-transform 1 0 7182 0 1 489
+transform 1 0 5991 0 1 4780
 box -211 -260 211 260
-use csdac_nom__devices/sky130_fd_pr__nfet_01v8_L9ESAD  XMP2
+use sky130_fd_pr__nfet_01v8_L9ESAD  XMP2
 timestamp 1723353804
 transform 1 0 9059 0 1 330
 box -211 -260 211 260
-use csdac_nom__devices/sky130_fd_pr__nfet_01v8_L9ESAD  XMP3
+use sky130_fd_pr__nfet_01v8_L9ESAD  XMP3
 timestamp 1723353804
 transform 1 0 10556 0 1 171
 box -211 -260 211 260
-use csdac_nom__devices/sky130_fd_pr__nfet_01v8_L9ESAD  XMP4
+use sky130_fd_pr__nfet_01v8_L9ESAD  XMP4
 timestamp 1723353804
 transform 1 0 11833 0 1 12
 box -211 -260 211 260
-use csdac_nom__devices/sky130_fd_pr__nfet_01v8_648S5X  XMP5
+use sky130_fd_pr__nfet_01v8_648S5X  XMP5
 timestamp 1723353804
 transform 1 0 13370 0 1 -97
 box -211 -310 211 310
-use csdac_nom__devices/sky130_fd_pr__nfet_01v8_ATLS57  XMP6
+use sky130_fd_pr__nfet_01v8_ATLS57  XMP6
 timestamp 1723353804
 transform 1 0 14547 0 1 -156
 box -211 -410 211 410
-use csdac_nom__devices/sky130_fd_pr__nfet_01v8_J2SMEF  XMP7
+use sky130_fd_pr__nfet_01v8_J2SMEF  XMP7
 timestamp 1723353804
 transform 1 0 15724 0 1 -215
 box -211 -510 211 510
-use csdac_nom__devices/sky130_fd_pr__pfet_01v8_XJ7GBL  XMprog
+use sky130_fd_pr__pfet_01v8_XJ7GBL  XMprog csdac_nom__devices
 timestamp 1723353804
-transform 1 0 158 0 1 816
+transform 1 0 7971 0 1 5989
 box -211 -269 211 269
-use csdac_nom__devices/sky130_fd_pr__res_high_po_5p73_MRHKYZ  XR5
+use sky130_fd_pr__res_high_po_5p73_MRHKYZ  XR5 csdac_nom__devices
 timestamp 1723353804
-transform 1 0 16990 0 1 3751
+transform 1 0 14129 0 1 7402
 box -739 -4582 739 4582
-use csdac_nom__devices/sky130_fd_pr__res_high_po_5p73_MRHKYZ  XR6
+use sky130_fd_pr__res_high_po_5p73_MRHKYZ  XR6
 timestamp 1723353804
 transform 1 0 18415 0 1 3698
 box -739 -4582 739 4582
 << labels >>
-flabel metal1 0 0 200 200 0 FreeSans 256 0 0 0 vcc
-port 0 nsew
-flabel metal1 0 -400 200 -200 0 FreeSans 256 0 0 0 vss
-port 1 nsew
-flabel metal1 0 -800 200 -600 0 FreeSans 256 0 0 0 p0
-port 2 nsew
-flabel metal1 0 -1200 200 -1000 0 FreeSans 256 0 0 0 n0
-port 3 nsew
-flabel metal1 0 -1600 200 -1400 0 FreeSans 256 0 0 0 p1
-port 4 nsew
-flabel metal1 0 -2000 200 -1800 0 FreeSans 256 0 0 0 n1
-port 5 nsew
-flabel metal1 0 -2400 200 -2200 0 FreeSans 256 0 0 0 p2
-port 6 nsew
-flabel metal1 0 -2800 200 -2600 0 FreeSans 256 0 0 0 n2
-port 7 nsew
-flabel metal1 0 -3200 200 -3000 0 FreeSans 256 0 0 0 p3
-port 8 nsew
-flabel metal1 0 -3600 200 -3400 0 FreeSans 256 0 0 0 n3
-port 9 nsew
-flabel metal1 0 -4000 200 -3800 0 FreeSans 256 0 0 0 p4
-port 10 nsew
-flabel metal1 0 -4400 200 -4200 0 FreeSans 256 0 0 0 n4
-port 11 nsew
-flabel metal1 0 -4800 200 -4600 0 FreeSans 256 0 0 0 p5
-port 12 nsew
-flabel metal1 0 -5200 200 -5000 0 FreeSans 256 0 0 0 n5
-port 13 nsew
-flabel metal1 0 -5600 200 -5400 0 FreeSans 256 0 0 0 p6
-port 14 nsew
-flabel metal1 0 -6000 200 -5800 0 FreeSans 256 0 0 0 n6
-port 15 nsew
-flabel metal1 0 -6400 200 -6200 0 FreeSans 256 0 0 0 p7
-port 16 nsew
-flabel metal1 0 -6800 200 -6600 0 FreeSans 256 0 0 0 n7
-port 17 nsew
-flabel metal1 0 -7200 200 -7000 0 FreeSans 256 0 0 0 Vpos
+flabel metal1 7740 -7682 7940 -7482 0 FreeSans 256 90 0 0 Vpos
 port 18 nsew
-flabel metal1 0 -7600 200 -7400 0 FreeSans 256 0 0 0 Vneg
+flabel metal1 7340 -7682 7540 -7482 0 FreeSans 256 90 0 0 Vneg
 port 19 nsew
-flabel metal1 0 -8000 200 -7800 0 FreeSans 256 0 0 0 Vbias
+flabel metal1 6940 -7682 7140 -7482 0 FreeSans 256 90 0 0 Vbias
 port 20 nsew
+flabel metal1 6592 7110 6792 7310 0 FreeSans 256 90 0 0 p0
+port 2 nsew
+flabel metal1 6192 7110 6392 7310 0 FreeSans 256 90 0 0 n0
+port 3 nsew
+flabel metal1 5792 7110 5992 7310 0 FreeSans 256 90 0 0 p1
+port 4 nsew
+flabel metal1 5392 7110 5592 7310 0 FreeSans 256 90 0 0 n1
+port 5 nsew
+flabel metal1 4992 7110 5192 7310 0 FreeSans 256 90 0 0 p2
+port 6 nsew
+flabel metal1 4592 7110 4792 7310 0 FreeSans 256 90 0 0 n2
+port 7 nsew
+flabel metal1 4192 7110 4392 7310 0 FreeSans 256 90 0 0 p3
+port 8 nsew
+flabel metal1 3792 7110 3992 7310 0 FreeSans 256 90 0 0 n3
+port 9 nsew
+flabel metal1 3392 7110 3592 7310 0 FreeSans 256 90 0 0 p4
+port 10 nsew
+flabel metal1 2992 7110 3192 7310 0 FreeSans 256 90 0 0 n4
+port 11 nsew
+flabel metal1 2592 7110 2792 7310 0 FreeSans 256 90 0 0 p5
+port 12 nsew
+flabel metal1 2192 7110 2392 7310 0 FreeSans 256 90 0 0 n5
+port 13 nsew
+flabel metal1 1792 7110 1992 7310 0 FreeSans 256 90 0 0 p6
+port 14 nsew
+flabel metal1 1392 7110 1592 7310 0 FreeSans 256 90 0 0 n6
+port 15 nsew
+flabel metal1 992 7110 1192 7310 0 FreeSans 256 90 0 0 p7
+port 16 nsew
+flabel metal1 592 7110 792 7310 0 FreeSans 256 90 0 0 n7
+port 17 nsew
+flabel metal1 7392 7110 7592 7310 0 FreeSans 256 90 0 0 vss
+port 1 nsew
+flabel space 7872 7110 8072 7310 0 FreeSans 256 90 0 0 vcc
+port 0 nsew
+flabel metal1 6490 5190 6540 5250 0 FreeSans 320 0 0 0 IS0
 << end >>
