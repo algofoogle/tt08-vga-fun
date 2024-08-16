@@ -1,7 +1,7 @@
 magic
 tech sky130A
 magscale 1 2
-timestamp 1723783597
+timestamp 1723783876
 << pwell >>
 rect 6700 1410 6780 1450
 rect 6900 1420 7000 1470
@@ -2089,38 +2089,6 @@ flabel metal2 2250 -4480 2350 -4140 0 FreeSans 800 0 0 0 IS3
 flabel metal2 6500 2150 6750 2250 0 FreeSans 800 0 0 0 IS2
 flabel metal2 6800 -100 6900 640 0 FreeSans 800 0 0 0 IS1
 flabel metal2 6800 -2460 6900 -1720 0 FreeSans 800 0 0 0 IS0
-flabel metal1 7994 5256 8194 5456 0 FreeSans 256 90 0 0 p0
-port 2 nsew
-flabel metal1 7594 5256 7794 5456 0 FreeSans 256 90 0 0 n0
-port 3 nsew
-flabel metal1 7194 5256 7394 5456 0 FreeSans 256 90 0 0 p1
-port 4 nsew
-flabel metal1 6794 5256 6994 5456 0 FreeSans 256 90 0 0 n1
-port 5 nsew
-flabel metal1 6394 5256 6594 5456 0 FreeSans 256 90 0 0 p2
-port 6 nsew
-flabel metal1 5994 5256 6194 5456 0 FreeSans 256 90 0 0 n2
-port 7 nsew
-flabel metal1 5594 5256 5794 5456 0 FreeSans 256 90 0 0 p3
-port 8 nsew
-flabel metal1 5194 5256 5394 5456 0 FreeSans 256 90 0 0 n3
-port 9 nsew
-flabel metal1 4794 5256 4994 5456 0 FreeSans 256 90 0 0 p4
-port 10 nsew
-flabel metal1 4394 5256 4594 5456 0 FreeSans 256 90 0 0 n4
-port 11 nsew
-flabel metal1 3994 5256 4194 5456 0 FreeSans 256 90 0 0 p5
-port 12 nsew
-flabel metal1 3594 5256 3794 5456 0 FreeSans 256 90 0 0 n5
-port 13 nsew
-flabel metal1 3194 5256 3394 5456 0 FreeSans 256 90 0 0 p6
-port 14 nsew
-flabel metal1 2794 5256 2994 5456 0 FreeSans 256 90 0 0 n6
-port 15 nsew
-flabel metal1 2394 5256 2594 5456 0 FreeSans 256 90 0 0 p7
-port 16 nsew
-flabel metal1 1994 5256 2194 5456 0 FreeSans 256 90 0 0 n7
-port 17 nsew
 flabel metal4 0 4000 300 4200 0 FreeSans 1120 0 0 0 vcc
 port 21 nsew
 flabel metal4 0 3600 300 3800 0 FreeSans 1120 0 0 0 vss
@@ -2131,4 +2099,36 @@ flabel metal4 11090 -6070 11390 -5870 0 FreeSans 640 0 0 0 Vneg
 port 24 nsew
 flabel metal4 11090 -5670 11390 -5470 0 FreeSans 640 0 0 0 Vbias
 port 25 nsew
+flabel metal1 3194 5256 3394 5456 0 FreeSans 640 0 0 0 p6
+port 14 nsew
+flabel metal1 3594 5256 3794 5456 0 FreeSans 640 0 0 0 n5
+port 13 nsew
+flabel metal1 3994 5256 4194 5456 0 FreeSans 640 0 0 0 p5
+port 12 nsew
+flabel metal1 4394 5256 4594 5456 0 FreeSans 640 0 0 0 n4
+port 11 nsew
+flabel metal1 4794 5256 4994 5456 0 FreeSans 640 0 0 0 p4
+port 10 nsew
+flabel metal1 5194 5256 5394 5456 0 FreeSans 640 0 0 0 n3
+port 9 nsew
+flabel metal1 5594 5256 5794 5456 0 FreeSans 640 0 0 0 p3
+port 8 nsew
+flabel metal1 5994 5256 6194 5456 0 FreeSans 640 0 0 0 n2
+port 7 nsew
+flabel metal1 6394 5256 6594 5456 0 FreeSans 640 0 0 0 p2
+port 6 nsew
+flabel metal1 6794 5256 6994 5456 0 FreeSans 640 0 0 0 n1
+port 5 nsew
+flabel metal1 7194 5256 7394 5456 0 FreeSans 640 0 0 0 p1
+port 4 nsew
+flabel metal1 7594 5256 7794 5456 0 FreeSans 640 0 0 0 n0
+port 3 nsew
+flabel metal1 7994 5256 8194 5456 0 FreeSans 640 0 0 0 p0
+port 2 nsew
+flabel metal1 2794 5256 2994 5456 0 FreeSans 640 0 0 0 n6
+port 15 nsew
+flabel metal1 2394 5256 2594 5456 0 FreeSans 640 0 0 0 p7
+port 16 nsew
+flabel metal1 1994 5256 2194 5456 0 FreeSans 640 0 0 0 n7
+port 17 nsew
 << end >>
