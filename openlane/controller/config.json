@@ -1,0 +1,76 @@
+{
+    "//": "Chunks of this I nicked from:",
+    "//": "https://github.com/psychogenic/tt06-analog-wowa/blob/main/openlane/config.json",
+    "DESIGN_NAME": "controller",
+    "RUN_CTS": 1,
+    "RUN_LINTER": 1,
+    "RT_MAX_LAYER": "met4",
+    "LINTER_INCLUDE_PDK_MODELS": 1,
+    "VERILOG_FILES": [
+        "dir::../../verilog/vga_sync.v",
+        "dir::../../verilog/controller.v"
+    ],
+    "CLOCK_PERIOD": 40,
+    "CLOCK_PORT": "clk",
+    "CLOCK_NET": "controller.clk",
+    "//": "PDN",
+    "FP_PDN_VOFFSET": 5,
+    "FP_PDN_HOFFSET": 5,
+    "FP_PDN_VWIDTH": 2,
+    "FP_PDN_HWIDTH": 2,
+    "FP_PDN_VPITCH": 30,
+    "FP_PDN_HPITCH": 30,
+    "FP_PDN_SKIPTRIM": true,
+    "//": "This is the old DESIGN_IS_CORE, now FP_PDN_MULTILAYER",
+    "//DESIGN_IS_CORE": "0",
+    "FP_PDN_MULTILAYER": "0", 
+
+    "//": "Some other stuff below I got from:",
+    "//": "https://github.com/mattvenn/tt06-analog-r2r-dac/blob/main/openlane/r2r_dac_control/config.tcl",
+
+    "//": "Allow use of specific sky130 cells",
+    "SYNTH_READ_BLACKBOX_LIB": 1,
+
+    "//": "Reduce wasted space",
+    "TOP_MARGIN_MULT": 1,
+    "BOTTOM_MARGIN_MULT": 1,
+    "LEFT_MARGIN_MULT": 6,
+    "RIGHT_MARGIN_MULT": 6,
+
+    "//": "Other Matt Venn specials",
+    "GRT_ALLOW_CONGESTION": 1,
+    "FP_IO_HLENGTH": 2,
+    "FP_IO_VLENGTH": 2,
+    "//DECAP_CELL": [
+        "sky130_fd_sc_hd__decap_3",
+        "sky130_fd_sc_hd__decap_4",
+        "sky130_fd_sc_hd__decap_6",
+        "sky130_fd_sc_hd__decap_8",
+        "sky130_ef_sc_hd__decap_12"
+    ],
+
+    "//": "Other general stuff",
+    "PL_BASIC_PLACEMENT": 0,
+
+    "//": "Below is the stuff Anton would most like to customise",
+
+    "MAX_FANOUT_CONSTRAINT": 4,
+    "//FP_SIZING": "relative",
+    "FP_SIZING": "absolute",
+    "DIE_AREA": "0 0 120 120",
+    "FP_CORE_UTIL": 80,
+    "PL_TARGET_DENSITY": 0.86,
+    "FP_PIN_ORDER_CFG": "dir::pin_order.cfg",
+    "//PL_RESIZER_HOLD_SLACK_MARGIN": 0.1,
+    "//GLB_RESIZER_HOLD_SLACK_MARGIN": 0.05,
+    "//BASE_SDC_FILE": "dir::controller.sdc",
+    "//PNR_SDC_FILE": "dir::src/controller.sdc",
+    "//SIGNOFF_SDC_FILE": "dir::src/controller.sdc",
+    "//RUN_HEURISTIC_DIODE_INSERTION": 1,
+    "//RUN_CVC": 1,
+    "//QUIT_ON_LINTER_ERRORS": 0,
+
+    "ROUTING_CORES": 16,
+    "RUN_KLAYOUT_XOR": false,
+    "RUN_KLAYOUT_DRC": false
+}
