@@ -14,6 +14,8 @@ C3 vpos_pex VGND 3p m=1
 C4 vneg_pex VGND 3p m=1
 Vvccnom vcc1 vcc_nom 0
 Vvccpex vcc1 vcc_pex 0
+R1 vpos_pex VGND 100k m=1
+R2 vneg_pex VGND 100k m=1
 **** begin user architecture code
 
 
