@@ -20,17 +20,67 @@ module tt_um_algofoogle_tt08_vga_fun (
     input  wire       rst_n     // reset_n - low to reset
 );
 
+    // WARNING: Netgetn doesn't seem to like a pattern of:
+    //      wire [7:0] r, rn;
+    // as it incorrectly interprets only `r` as a bus, and `rn` as a single wire.
     wire [7:0] r;
     wire [7:0] g;
     wire [7:0] b;
+    wire [7:0] rn;
+    wire [7:0] gn;
+    wire [7:0] bn;
 
-    // *** INSTANTIATE DIGITAL CONTROLLER BLOCK HERE ***
+    controller controller_0 (
+        .VPWR       (VDPWR),
+        .VGND       (VGND),
+        .clk        (clk),
+        .rst_n      (rst_n),
+        .ui_in      (ui_in),
+        .vblank     (uio_out[0]),
+        .hblank     (uio_out[1]),
+        .r          (r),
+        .g          (g),
+        .b          (b),
+        .rn         (rn),
+        .gn         (gn),
+        .bn         (bn),
+        .r7         (uo_out[0]),
+        .g7         (uo_out[1]),
+        .b7         (uo_out[2]),
+        .vsync      (uo_out[3]),
+        .r6         (uo_out[4]),
+        .g6         (uo_out[5]),
+        .b6         (uo_out[6]),
+        .hsync      (uo_out[7])
+    );
 
-    // *** INSTANTIATE EACH OF THE DAC BLOCKS HERE ***
+    csdac_nom green_dac (
+        .vcc        (VDPWR),
+        .vss        (VGND),
+        .p0         (g[0]),
+        .n0         (gn[0]),
+        .p1         (g[1]),
+        .n1         (gn[1]),
+        .p2         (g[2]),
+        .n2         (gn[2]),
+        .p3         (g[3]),
+        .n3         (gn[3]),
+        .p4         (g[4]),
+        .n4         (gn[4]),
+        .p5         (g[5]),
+        .n5         (gn[5]),
+        .p6         (g[6]),
+        .n6         (gn[6]),
+        .p7         (g[7]),
+        .n7         (gn[7]),
+        .Vbias      (ua[0]),
+        .Vneg       (ua[1]),
+        .Vpos       (ua[2])
+    );
 
     // Configure uio directions...
     //NOTE: Using power ports instead of constants,
-    // because there is design is not synthesized,
+    // because the design is not synthesized,
     // but rather laid out by hand:
     assign uio_oe[0] = VDPWR;   // Output: vblank
     assign uio_oe[1] = VDPWR;   // Output: hblank
@@ -42,8 +92,8 @@ module tt_um_algofoogle_tt08_vga_fun (
     assign uio_oe[7] = VGND;    // Input: UNUSED
 
     // Tie unused digital outputs, so they don't float:
-    assign uio_out[0] = VDPWR;  // Later this will be driven by the design.
-    assign uio_out[1] = VDPWR;  // Later this will be driven by the design.
+    // assign uio_out[0] = hblank;
+    // assign uio_out[1] = vblank;
     assign uio_out[2] = VGND;
     assign uio_out[3] = VGND;
     assign uio_out[4] = VGND;
