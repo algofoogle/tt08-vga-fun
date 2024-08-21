@@ -1,0 +1,226 @@
+Cosimulation of my VGA digital test block with 3 R2R DACs, using Verilator and d_cosim in ngspice-42
+
+*.lib /home/matt/work/asic-workshop/shuttle-2404/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+.lib /home/anton/.volare/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+
+* https://sourceforge.net/p/ngspice/ngspice/ci/master/tree/examples/xspice/verilator/
+
+* The digital portion of the circuit is specified in compiled Verilog.
+* list the inputs and outputs.
+* NOTE: We name bus signals individually, in the order they're defined
+* in the 'spicewrap.v' Verilog:
+adut 
++ [ clk rst_n ui_in7 ui_in6 ui_in5 ui_in4 ui_in3 ui_in2 ui_in1 ui_in0 ]
++ [
++ hsync vsync hblank vblank
++ r7 r6 r5 r4 r3 r2 r1 r0
++ g7 g6 g5 g4 g3 g2 g1 g0
++ b7 b6 b5 b4 b3 b2 b1 b0
++ rn7 rn6 rn5 rn4 rn3 rn2 rn1 rn0
++ gn7 gn6 gn5 gn4 gn3 gn2 gn1 gn0
++ bn7 bn6 bn5 bn4 bn3 bn2 bn1 bn0
++ dr7 dg7 db7
++ dr6 dg6 db6
++] null dut
+.model dut d_cosim simulation="./spicewrap.so"
+* Debug outputs:
+*+ m7 m6 m5 m4 m3 m2 m1 m0
+*+ o_reset o_visible
+*+ c7 c6 c5 c4 c3 c2 c1 c0
+*+ o_clk
+*+ x7 x6 x5 x4 x3 x2 x1 x0
+*+ o_clk2 o_zero o_one
+
+
+* connect the driver to the R2R dac
+* had to edit spice exported by xschem to add the subckt and ends
+
+.include "../../xschem/simulation/csdac_nom.spice" 
+* This is the model of estimated TT08 pin loading:
+.include "tt08pin.spice"
+*.include "../../xschem/simulation/dacboost.spice" 
+*.include "../mag/r2r.spice" 
+
+
+* Below is the csdac_nom DAC, driven by
+* (assumed) zero-impedance digital outputs that Verilator/cosim presents.
+
+********** NOTE: To speed this simulation up a fair bit,
+********** you can comment out DACs/outputs you don't
+********** care about, and the corresponding output pin
+********** loading, and remove them from the `write` line.
+
+Rhsync hsync GND 10000000
+Rvsync vsync GND 10000000
+Rhblank hblank GND 10000000
+Rvblank vblank GND 10000000
+
+XRpin routpin VnegR GND vcca tt08pin
+XGpin goutpin VnegG GND vcca tt08pin
+XBpin boutpin VnegB GND vcca tt08pin
+
+* Additional pin loading:
+CRpin routpin GND 5p
+CGpin goutpin GND 5p
+CBpin boutpin GND 5p
+RRpin routpin GND 1000k
+RGpin goutpin GND 1000k
+RBpin boutpin GND 1000k
+
+Xred_dac vcc GND
++ r0 rn0 r1 rn1 r2 rn2 r3 rn3 r4 rn4 r5 rn5 r6 rn6 r7 rn7
++ VposR VnegR VbiasR
++ csdac_nom
+
+Xgreen_dac vcc GND
++ g0 gn0 g1 gn1 g2 gn2 g3 gn3 g4 gn4 g5 gn5 g6 gn6 g7 gn7
++ VposG VnegG VbiasG
++ csdac_nom
+
+Xblue_dac vcc GND
++ b0 bn0 b1 bn1 b2 bn2 b3 bn3 b4 bn4 b5 bn5 b6 bn6 b7 bn7
++ VposB VnegB VbiasB
++ csdac_nom
+
+**** End of the DAC and its subcircuits.  Begin test circuit ****
+
+.param vcc=1.8
+vcc vcc 0 {vcc}
+.param vapwr=3.3
+vcca vcca 0 {vapwr}
+
+* * 25MHz Digital clock signal
+* aclock 0 clk clock
+* .model clock d_osc cntl_array=[-1 1] freq_array=[25Meg 25Meg]
+* * reset signal
+* Vreset rst_n GND PULSE 1.8 0 40n 1n 1n 120n 34m ;256u
+
+* Pulse generators...
+*       net     ref fn     init   alt  dly  rise  fall  dut  period
+* 25MHz clock:
+Vclk    clk     GND PULSE   0.0 {vcc}   0n    1n    1n  20n  40n
+* reset signal
+Vreset  rst_n   GND PULSE {vcc}   0.0  10n    1n    1n  80n  34m
+
+
+* Pulse duty cycle parameters for when we do Mode 0 (pass-thru):
+.param rise=    1n
+.param fall=    1n
+.param h0=  40n-1n
+.param h1=  80n-1n
+.param h2= 160n-1n
+.param h3= 320n-1n
+.param h4= 640n-1n
+.param h5=1280n-1n
+.param h6=2560n-1n
+.param h7=5120n-1n
+
+* * --- Mode 0: PASS: ui_in passes thru directly to all 3 DACs ---
+* * In this case, set up as a ramp with a 20.48ms period:
+* Vin0 ui_in0 GND PULSE   0.0  1.8   200n {rise} {fall} {h0}    80n
+* Vin1 ui_in1 GND PULSE   0.0  1.8   200n {rise} {fall} {h1}   160n
+* Vin2 ui_in2 GND PULSE   0.0  1.8   200n {rise} {fall} {h2}   320n
+* Vin3 ui_in3 GND PULSE   0.0  1.8   200n {rise} {fall} {h3}   640n
+* Vin4 ui_in4 GND PULSE   0.0  1.8   200n {rise} {fall} {h4}  1280n
+* Vin5 ui_in5 GND PULSE   0.0  1.8   200n {rise} {fall} {h5}  2560n
+* Vin6 ui_in6 GND PULSE   0.0  1.8   200n {rise} {fall} {h6}  5120n
+* Vin7 ui_in7 GND PULSE   0.0  1.8   200n {rise} {fall} {h7} 10240n
+
+* * --- MODE 2: BARS:
+* Vin0 ui_in0 GND dc 0.0
+* Vin1 ui_in1 GND dc 0.0
+* Vin2 ui_in2 GND dc 0.0
+* Vin3 ui_in3 GND dc 0.0
+* Vin4 ui_in4 GND dc 0.0
+* Vin5 ui_in5 GND dc {vcc}
+* Vin6 ui_in6 GND dc 0.0
+* Vin7 ui_in7 GND dc 0.0
+
+* --- MODE 5: XOR2, starting line 32:
+Vin0 ui_in0 GND dc 0.0
+Vin1 ui_in1 GND dc {vcc}
+Vin2 ui_in2 GND dc 0.0
+Vin3 ui_in3 GND dc {vcc}
+Vin4 ui_in4 GND dc {vcc}
+Vin5 ui_in5 GND dc 0.0
+Vin6 ui_in6 GND dc {vcc}
+Vin7 ui_in7 GND dc 0.0
+
+* * --- Mode 1: RAMP: Ramp generator with primary=X, secondary=Y, fade=frame# ---
+* Vin0 ui_in0 GND dc 0.0 ; Primary...
+* Vin1 ui_in1 GND dc 0.0 ; ...= 0 (Red primary, Green secondary, Blue fade)
+* Vin2 ui_in2 GND dc 0.0 ; Divider...
+* Vin3 ui_in3 GND dc 0.0 ; ...= 0 (none)
+* Vin4 ui_in4 GND dc 1.8 ; Mode...
+* Vin5 ui_in5 GND dc 1.8 ; ...
+* Vin6 ui_in6 GND dc 0.0 ; ...= 011 (XOR)
+* Vin7 ui_in7 GND dc 0.0 ; Timing = 0 (standard VGA)
+
+
+.control
+  save 
+  + vcc vcca
+  + VposR VnegR VbiasR
+  + VposG VnegG VbiasG
+  + VposB VnegB VbiasB
+  + routpin goutpin boutpin
+  + hsync vsync
+  + r7 r6 r5 r4 r3 r2 r1 r0
+  + g7 g6 g5 g4 g3 g2 g1 g0
+  + b7 b6 b5 b4 b3 b2 b1 b0
+  + rn7 rn6 rn5 rn4 rn3 rn2 rn1 rn0
+  + gn7 gn6 gn5 gn4 gn3 gn2 gn1 gn0
+  + bn7 bn6 bn5 bn4 bn3 bn2 bn1 bn0
+  + dr7 dg7 db7
+  + dr6 dg6 db6
+  + vblank hblank
+  + clk rst_n
+  + ui_in0 ui_in1 ui_in2 ui_in3 ui_in4 ui_in5 ui_in6 ui_in7
+
+  * 16.8ms is 1 full frame.
+  tran 8n 16.8m 0 8n UIC
+  * let r_digi = (r7/2)+(r6/4)+(r5/8)+(r4/16)+(r3/32)+(r2/64)+(r1/128)+(r0/256)
+  * let g_digi = (g7/2)+(g6/4)+(g5/8)+(g4/16)+(g3/32)+(g2/64)+(g1/128)+(g0/256)
+  * let b_digi = (b7/2)+(b6/4)+(b5/8)+(b4/16)+(b3/32)+(b2/64)+(b1/128)+(b0/256)
+  * let in_digi = (in7/2)+(in6/4)+(in5/8)+(in4/16)+(in3/32)+(in2/64)+(in1/128)+(in0/256)
+  * let s_in0 = in0 + 2
+  * let s_in1 = in1 + 4
+  * let s_in2 = in2 + 6
+  * let s_in3 = in3 + 8
+  * let s_in4 = in4 + 10
+  * let s_in5 = in5 + 12
+  * let s_in6 = in6 + 14
+  * let s_in7 = in7 + 16
+  * set color2=rgb:F/0/0
+  * set color3=rgb:0/F/0
+  * set color4=rgb:0/0/F
+  * plot in_digi s_in0 s_in1 s_in2 s_in3 s_in4 s_in5 s_in6 s_in7 title 'Digital inputs'
+  * plot r_digi g_digi b_digi title 'Digital block outputs'
+  * plot red_pin_out green_pin_out blue_pin_out title 'Analog DAC outputs'
+
+  * dac = normal DAC hiZ output into dacboost.
+  * out = dacboost output, before TT pin.
+  * outpin = dacboost output, after TT pin.
+  * dachzpin = unbuffered DAC output, after TT pin.
+  * dachhzpin = weak digital drive unbuffered DAC output, after TT pin.
+  write sim_out/mixed.raw
+  + vcc vcca
+  + VposR VnegR VbiasR
+  + VposG VnegG VbiasG
+  + VposB VnegB VbiasB
+  + routpin goutpin boutpin
+  + hsync vsync
+  + r7 r6 r5 r4 r3 r2 r1 r0
+  + g7 g6 g5 g4 g3 g2 g1 g0
+  + b7 b6 b5 b4 b3 b2 b1 b0
+  + rn7 rn6 rn5 rn4 rn3 rn2 rn1 rn0
+  + gn7 gn6 gn5 gn4 gn3 gn2 gn1 gn0
+  + bn7 bn6 bn5 bn4 bn3 bn2 bn1 bn0
+  + dr7 dg7 db7
+  + dr6 dg6 db6
+  + vblank hblank
+  + clk rst_n
+  + ui_in0 ui_in1 ui_in2 ui_in3 ui_in4 ui_in5 ui_in6 ui_in7
+  * quit
+.endc
+.end

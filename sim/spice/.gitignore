@@ -1,0 +1,8 @@
+*.so
+*_obj_dir
+inputs.h
+outputs.h
+inouts.h
+render.log
+sim_out/*.raw
+*.ppm

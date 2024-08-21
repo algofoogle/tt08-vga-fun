@@ -1,0 +1,16 @@
+* NOTE: Some bits of this are borrowed from:
+* https://ngspice.sourceforge.io/applic.html#sky
+
+* Make it clear which file is currently being used:
+echo Using tt-vga-fun/sim/.spiceinit
+
+set ngbehavior=hsa     ; set compatibility for reading PDK libs
+set skywaterpdk        ; skip some checks for faster lib loading
+set ng_nomodcheck      ; don't check the model parameters
+set num_threads=20     ; CPU processor cores available
+option noinit          ; don't print operating point data
+option klu             ; select KLU as matrix solver
+
+* Commented-out options; not necessarily ideal for my case:
+*set xtrtol=1
+*optran 0 0 0 100p 2n 0 ; don't use dc operating point, but transient op

@@ -1,0 +1,15 @@
+** sch_path: /home/anton/projects/tt08-vga-fun/xschem/tt08pin.sch
+.subckt tt08pin pin mod VGND VAPWR
+*.PININFO pin:B VGND:B mod:B
+R1 net1 pin 1 m=1
+C1 pin VGND 1p m=1
+L1 net2 net1 1n m=1
+C2 net2 VGND 2p m=1
+R2 net3 net2 50 m=1
+XM2 net3 VGND mod VAPWR sky130_fd_pr__pfet_g5v0d10v5 L=0.5 W=100 nf=20 m=1
+XM1 net3 VAPWR mod VGND sky130_fd_pr__nfet_g5v0d10v5 L=0.5 W=60 nf=12 m=1
+XM4 net3 VAPWR VGND VAPWR sky130_fd_pr__pfet_g5v0d10v5 L=0.5 W=100 nf=20 m=15
+XM3 net3 VGND VGND VGND sky130_fd_pr__nfet_g5v0d10v5 L=0.5 W=60 nf=12 m=15
+C3 mod VGND 250f m=1
+.ends
+.end

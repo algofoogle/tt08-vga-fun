@@ -1,0 +1,257 @@
+Full circuit sim of extracted digital and analog blocks
+
+*.lib /home/matt/work/asic-workshop/shuttle-2404/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+.lib /home/anton/.volare/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+
+*NOTE: In order to use this, you must first extract tt_um_algofoogle_tt08_vga_fun.sim.spice
+* by being in the mag/ directory and running: make tt_um_algofoogle_tt08_vga_fun.sim.spice
+.include "../../mag/tt_um_algofoogle_tt08_vga_fun.sim.spice"
+
+* This is the model of estimated TT08 pin loading:
+.include "tt08pin.spice"
+
+* Disable mismatch:
+.param mc_mm_switch=0
+* Disable Monte Carlo:
+.param mc_pr_switch=0
+
+*NOTE: Weird port ordering matches how it was extracted by Magic:
+
+xtt
++ clk
++ ena
++ rst_n
++ ua0
++ ua3
++ ua4
++ ua5
++ ua6
++ ua7
++ ui_in1
++ ui_in6
++ uio_in0
++ uio_in1
++ uio_in2
++ uio_in3
++ uio_in4
++ uio_in5
++ uio_in6
++ uio_in7
++ uio_oe0
++ uio_oe1
++ uio_oe2
++ uio_oe3
++ uio_oe4
++ uio_oe5
++ uio_oe6
++ uio_oe7
++ uio_out2
++ uio_out3
++ uio_out4
++ uio_out5
++ uio_out6
++ uio_out7
++ uo_out3
++ uo_out4
++ uo_out5
++ uo_out6
++ vcca
++ ui_in3
++ ua1
++ ua2
++ ui_in5
++ uio_out1
++ uo_out0
++ ui_in7
++ uo_out7
++ ui_in0
++ uo_out2
++ uo_out1
++ uio_out0
++ ui_in2
++ ui_in4
++ 0
++ vcc
++ tt_um_algofoogle_tt08_vga_fun_parax
+
+
+XRpin routpin ua0 GND vcca tt08pin ; ua0 is actually Vbias
+XGpin goutpin ua1 GND vcca tt08pin ; ua1 is actually Vneg
+XBpin boutpin ua2 GND vcca tt08pin ; ua2 is actually Vpos
+
+
+**** End of the DAC and its subcircuits.  Begin test circuit ****
+
+.param vcc=1.8
+vcc vcc 0 {vcc}
+.param vapwr=3.3
+vcca vcca 0 {vapwr}
+
+*NOTE: Can using .csparam (https://electronics.stackexchange.com/a/635638)
+* here be used to simplify this?
+.param rise=     1n
+.param fall=     1n
+* Duty cycle (high time) of each digital input:
+.param h0=   40n-1n
+.param h1=   80n-1n
+.param h2=  160n-1n
+.param h3=  320n-1n
+.param h4=  640n-1n
+.param h5= 1280n-1n
+.param h6= 2560n-1n
+.param h7= 5120n-1n
+* Period of each digital input:
+.param p0=   80n
+.param p1=  160n
+.param p2=  320n
+.param p3=  640n
+.param p4= 1280n
+.param p5= 2560n
+.param p6= 5120n
+.param p7=10240n
+
+* * --- Mode 0: PASS: ui_in passes thru directly to all 3 DACs ---
+* Vin0 ui_in0 GND     PULSE   0.0  {vcc}   120n {rise} {fall} {h7} {p7} ;NOTE: h0/p0 used on MSB!
+* Vin1 ui_in1 GND     PULSE   0.0  {vcc}   120n {rise} {fall} {h1} {p1}
+* Vin2 ui_in2 GND     PULSE   0.0  {vcc}   120n {rise} {fall} {h2} {p2}
+* Vin3 ui_in3 GND     PULSE   0.0  {vcc}   120n {rise} {fall} {h3} {p3}
+* Vin4 ui_in4 GND     PULSE   0.0  {vcc}   120n {rise} {fall} {h4} {p4}
+* Vin5 ui_in5 GND     PULSE   0.0  {vcc}   120n {rise} {fall} {h5} {p5}
+* Vin6 ui_in6 GND     PULSE   0.0  {vcc}   120n {rise} {fall} {h6} {p6}
+* Vin7 ui_in7 GND     PULSE   0.0  {vcc}   120n {rise} {fall} {h0} {p0}
+
+* * --- MODE 2: BARS:
+* Vin0 ui_in0 GND dc 0.0
+* Vin1 ui_in1 GND dc 0.0
+* Vin2 ui_in2 GND dc 0.0
+* Vin3 ui_in3 GND dc 0.0
+* Vin4 ui_in4 GND dc 0.0
+* Vin5 ui_in5 GND dc {vcc}
+* Vin6 ui_in6 GND dc 0.0
+* Vin7 ui_in7 GND dc 0.0
+
+* --- MODE 5: XOR2:
+Vin0 ui_in0 GND dc 0.0
+Vin1 ui_in1 GND dc 0.0
+Vin2 ui_in2 GND dc 0.0
+Vin3 ui_in3 GND dc 0.0
+Vin4 ui_in4 GND dc {vcc}
+Vin5 ui_in5 GND dc 0.0
+Vin6 ui_in6 GND dc {vcc}
+Vin7 ui_in7 GND dc 0.0
+
+* * Digital clock signal
+* aclock 0 clk clock
+* .model clock d_osc cntl_array=[-1 1] freq_array=[25Meg 25Meg]
+
+* Pulse generators...
+*       net     ref fn     init   alt  dly  rise  fall  dut  period
+* 25MHz clock:
+Vclk    clk     GND PULSE   0.0 {vcc}   0n    1n    1n  20n  40n
+* reset signal
+Vreset  rst_n   GND PULSE {vcc}   0.0  10n    1n    1n  80n  34m
+
+.control
+    * option trtol=8 reltol=2e-3
+    * NOTE: ua0..2 are internal analog signals,
+    * while goutpin has TT external pin loading.
+    save
+    + vcc
+    + vcca
+    + i(vcc)
+    + v(ua0)
+    + v(ua1)
+    + v(ua2)
+    + v(routpin)
+    + v(goutpin)
+    + v(boutpin)
+    + v(uo_out0)
+    + v(uo_out1)
+    + v(uo_out2)
+    + v(uo_out3)
+    + v(uo_out4)
+    + v(uo_out5)
+    + v(uo_out6)
+    + v(uo_out7)
+    + v(uio_out0)
+    + v(uio_out1)
+    + clk
+    + rst_n
+    * + "xtt.controller_0.g[0]"
+    * + "xtt.controller_0.g[1]"
+    * + "xtt.controller_0.g[2]"
+    * + "xtt.controller_0.g[3]"
+    * + "xtt.controller_0.g[4]"
+    * + "xtt.controller_0.g[5]"
+    * + "xtt.controller_0.g[6]"
+    * + "xtt.controller_0.g[7]"
+    * + "xtt.controller_0.gn[0]"
+    * + "xtt.controller_0.gn[1]"
+    * + "xtt.controller_0.gn[2]"
+    * + "xtt.controller_0.gn[3]"
+    * + "xtt.controller_0.gn[4]"
+    * + "xtt.controller_0.gn[5]"
+    * + "xtt.controller_0.gn[6]"
+    * + "xtt.controller_0.gn[7]"
+
+    tran 8n 8193u 0 8n UIC ; 8192u is about 256 lines.
+    *plot routpin goutpin boutpin
+    *NOTE: We write out:
+    * ua0           = R internal
+    * ua1           = G internal
+    * ua2           = B internal
+    * routpin       = R external
+    * goutpin       = G external
+    * boutpin       = B external
+    * uo_out0       = r7
+    * uo_out1       = g7
+    * uo_out2       = b7
+    * uo_out3       = vsync
+    * uo_out4       = r6
+    * uo_out5       = g6
+    * uo_out6       = b6
+    * uo_out7       = hsync
+    * uio_out0      = vblank
+    * uio_out1      = hblank
+    * clk
+    * rst_n
+    write sim_out/fss8n000.raw
+    + vcc
+    + vcca
+    + i(vcc)
+    + v(ua0)
+    + v(ua1)
+    + v(ua2)
+    + v(routpin)
+    + v(goutpin)
+    + v(boutpin)
+    + v(uo_out0)
+    + v(uo_out1)
+    + v(uo_out2)
+    + v(uo_out3)
+    + v(uo_out4)
+    + v(uo_out5)
+    + v(uo_out6)
+    + v(uo_out7)
+    + v(uio_out0)
+    + v(uio_out1)
+    + clk
+    + rst_n
+    * + "xtt.controller_0.g[0]"
+    * + "xtt.controller_0.g[1]"
+    * + "xtt.controller_0.g[2]"
+    * + "xtt.controller_0.g[3]"
+    * + "xtt.controller_0.g[4]"
+    * + "xtt.controller_0.g[5]"
+    * + "xtt.controller_0.g[6]"
+    * + "xtt.controller_0.g[7]"
+    * + "xtt.controller_0.gn[0]"
+    * + "xtt.controller_0.gn[1]"
+    * + "xtt.controller_0.gn[2]"
+    * + "xtt.controller_0.gn[3]"
+    * + "xtt.controller_0.gn[4]"
+    * + "xtt.controller_0.gn[5]"
+    * + "xtt.controller_0.gn[6]"
+    * + "xtt.controller_0.gn[7]"
+.endc
+.end
