@@ -3,7 +3,7 @@
 module controller(
   input   wire        clk,
   input   wire        rst_n,
-  input   wire [7:0]  ui_in,
+  input   wire [7:0]  ui_in,             //NOTE: See https://github.com/algofoogle/journal/blob/master/0215-2024-08-21.md#explanation-of-digital-block-control-inputs
   output  wire        hsync, vsync,      // Polarity determined by vga_sync module per vga_timing_mode.
   output  wire        hblank, vblank,    // High during blanking.
   output  wire [7:0]  r, g, b,           // Positive colour channel bits. Primarily goes to DACs.
