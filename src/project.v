@@ -54,6 +54,30 @@ module tt_um_algofoogle_tt08_vga_fun (
         .hsync      (uo_out[7])
     );
 
+    csdac_nom red_dac (
+        .vcc        (VDPWR),
+        .vss        (VGND),
+        .p0         (r[0]),
+        .n0         (rn[0]),
+        .p1         (r[1]),
+        .n1         (rn[1]),
+        .p2         (r[2]),
+        .n2         (rn[2]),
+        .p3         (r[3]),
+        .n3         (rn[3]),
+        .p4         (r[4]),
+        .n4         (rn[4]),
+        .p5         (r[5]),
+        .n5         (rn[5]),
+        .p6         (r[6]),
+        .n6         (rn[6]),
+        .p7         (r[7]),
+        .n7         (rn[7]),
+        .Vneg       (ua[0])
+        // .Vbias      (ua[1]),
+        // .Vpos       (ua[2])
+    );
+
     csdac_nom green_dac (
         .vcc        (VDPWR),
         .vss        (VGND),
@@ -73,9 +97,9 @@ module tt_um_algofoogle_tt08_vga_fun (
         .n6         (gn[6]),
         .p7         (g[7]),
         .n7         (gn[7]),
-        .Vbias      (ua[0]),
-        .Vneg       (ua[1]),
-        .Vpos       (ua[2])
+        .Vbias      (ua[1]),
+        .Vneg       (ua[2])
+        // .Vpos       (ua[2])
     );
 
     // Configure uio directions...
