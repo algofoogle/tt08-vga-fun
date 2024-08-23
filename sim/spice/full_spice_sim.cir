@@ -16,13 +16,11 @@ Full circuit sim of extracted digital and analog blocks
 .param mc_pr_switch=0
 
 *NOTE: Weird port ordering matches how it was extracted by Magic:
-
 xtt
 + clk
 + ena
 + rst_n
 + ua0
-+ ua3
 + ua4
 + ua5
 + ua6
@@ -57,18 +55,19 @@ xtt
 + uo_out6
 + vcca
 + ui_in3
-+ ua1
 + ua2
 + ui_in5
 + uio_out1
 + uo_out0
 + ui_in7
++ ua1
 + uo_out7
 + ui_in0
 + uo_out2
 + uo_out1
 + uio_out0
 + ui_in2
++ ua3
 + ui_in4
 + 0
 + vcc

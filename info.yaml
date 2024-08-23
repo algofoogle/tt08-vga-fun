@@ -55,10 +55,10 @@ pinout:
   uio[7]: ""
 
   # Analog pins - make sure to also set "analog_pins" above, else the pins won't be connected
-  ua[0]: "r"
-  ua[1]: "g"
-  ua[2]: "b"
-  ua[3]: "alt"
+  ua[0]: "VbiasR"
+  ua[1]: "r"
+  ua[2]: "g"
+  ua[3]: "b"
   ua[4]: ""
   ua[5]: ""
 

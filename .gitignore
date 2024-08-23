@@ -14,4 +14,5 @@ test/gate_level_netlist.v
 JUNK
 sim/spice/sim_out/*.raw
 xschem/simulation/*.raw
+*.raw.bz2
 
