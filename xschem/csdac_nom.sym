@@ -80,5 +80,5 @@ T {Vbias} 125 106 0 1 0.2 0.2 {}
 T {FIXED parameters:
 Bias Prg W/L: 0.5 / 0.15
 Bias Mir W/L: 0.5 / 0.5
-Pull-up resistor L: 40
+Pull-up resistor L: 40 (series split)
 Drive strength multiplier: 1} -100.5 19 0 0 0.2 0.2 {}

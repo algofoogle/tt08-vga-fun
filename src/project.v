@@ -20,7 +20,7 @@ module tt_um_algofoogle_tt08_vga_fun (
     input  wire       rst_n     // reset_n - low to reset
 );
 
-    // WARNING: Netgetn doesn't seem to like a pattern of:
+    // WARNING: Netget doesn't seem to like a pattern of:
     //      wire [7:0] r, rn;
     // as it incorrectly interprets only `r` as a bus, and `rn` as a single wire.
     wire [7:0] r;
@@ -54,7 +54,7 @@ module tt_um_algofoogle_tt08_vga_fun (
         .hsync      (uo_out[7])
     );
 
-    csdac_nom red_dac (
+    csdac_nom R_dac (
         .vcc        (VDPWR),
         .vss        (VGND),
         .p0         (r[0]),
@@ -73,12 +73,12 @@ module tt_um_algofoogle_tt08_vga_fun (
         .n6         (rn[6]),
         .p7         (r[7]),
         .n7         (rn[7]),
-        .Vneg       (ua[0])
-        // .Vbias      (ua[1]),
+        .Vbias      (ua[0]),
+        .Vneg       (ua[1])
         // .Vpos       (ua[2])
     );
 
-    csdac_nom green_dac (
+    csdac_nom G_dac (
         .vcc        (VDPWR),
         .vss        (VGND),
         .p0         (g[0]),
@@ -97,8 +97,32 @@ module tt_um_algofoogle_tt08_vga_fun (
         .n6         (gn[6]),
         .p7         (g[7]),
         .n7         (gn[7]),
-        .Vbias      (ua[1]),
         .Vneg       (ua[2])
+        // .Vbias      (ua[1]),
+        // .Vpos       (ua[2])
+    );
+
+    csdac_nom B_dac (
+        .vcc        (VDPWR),
+        .vss        (VGND),
+        .p0         (b[0]),
+        .n0         (bn[0]),
+        .p1         (b[1]),
+        .n1         (bn[1]),
+        .p2         (b[2]),
+        .n2         (bn[2]),
+        .p3         (b[3]),
+        .n3         (bn[3]),
+        .p4         (b[4]),
+        .n4         (bn[4]),
+        .p5         (b[5]),
+        .n5         (bn[5]),
+        .p6         (b[6]),
+        .n6         (bn[6]),
+        .p7         (b[7]),
+        .n7         (bn[7]),
+        .Vneg       (ua[3])
+        // .Vbias      (ua[1]),
         // .Vpos       (ua[2])
     );
 

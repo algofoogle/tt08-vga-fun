@@ -1,5 +1,5 @@
 ** sch_path: /home/anton/projects/tt08-vga-fun/xschem/csdac_nom.sch
-.subckt csdac_nom vcc vss p0 n0 p1 n1 p2 n2 p3 n3 p4 n4 p5 n5 p6 n6 p7 n7 Vpos Vneg Vbias
+.subckt csdac_nom vcc vss p0 p1 p2 p3 p4 p5 p6 p7 n0 n1 n2 n3 n4 n5 n6 n7 Vpos Vneg Vbias
 *.PININFO vcc:B vss:B p0:I n0:I p1:I n1:I p2:I n2:I p3:I n3:I p4:I n4:I p5:I n5:I p6:I n6:I p7:I n7:I Vpos:O Vneg:O Vbias:O
 XMprog Vbias vss vcc vcc sky130_fd_pr__pfet_01v8 L=0.15 W=0.5 nf=1 m=1
 XMmirror Vbias Vbias vss vss sky130_fd_pr__nfet_01v8 L=0.5 W=0.5 nf=1 m=1
@@ -27,7 +27,9 @@ XMN6 Vneg n6 IS6 vss sky130_fd_pr__nfet_01v8 L=0.15 W=2 nf=1 m=1
 XMB7 IS7 Vbias vss vss sky130_fd_pr__nfet_01v8 L=0.5 W=2.1 nf=1 m=1
 XMP7 Vpos p7 IS7 vss sky130_fd_pr__nfet_01v8 L=0.15 W=3 nf=1 m=1
 XMN7 Vneg n7 IS7 vss sky130_fd_pr__nfet_01v8 L=0.15 W=3 nf=1 m=1
-XR5 Vpos vcc vss sky130_fd_pr__res_high_po_5p73 L=40 mult=1 m=1
-XR6 Vneg vcc vss sky130_fd_pr__res_high_po_5p73 L=40 mult=1 m=1
+XRLP Vpos net1 vss sky130_fd_pr__res_high_po_5p73 L=28 mult=1 m=1
+XRLN Vneg net2 vss sky130_fd_pr__res_high_po_5p73 L=28 mult=1 m=1
+XRSP net1 vcc vss sky130_fd_pr__res_high_po_5p73 L=11 mult=1 m=1
+XRSN net2 vcc vss sky130_fd_pr__res_high_po_5p73 L=11 mult=1 m=1
 .ends
 .end
