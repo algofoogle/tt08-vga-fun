@@ -6,8 +6,8 @@ V {}
 S {}
 E {}
 B 2 830 -940 2330 -50 {flags=graph
-y1=0.21
-y2=2.2
+y1=0.2
+y2=2.1
 ypos1=0
 ypos2=2
 divy=20
@@ -328,13 +328,13 @@ C {devices/lab_pin.sym} 750 -40 0 0 {name=p50 sig_type=std_logic lab=vcc_pex}
 C {devices/lab_pin.sym} 750 -520 0 0 {name=p51 sig_type=std_logic lab=vcc1}
 C {devices/lab_pin.sym} 750 -100 0 0 {name=p52 sig_type=std_logic lab=vcc1}
 C {devices/res.sym} 730 -360 0 1 {name=R1
-value=100k
+value=1000k
 footprint=1206
 device=resistor
 m=1}
 C {devices/gnd.sym} 730 -310 0 0 {name=l7 lab=VGND}
 C {devices/res.sym} 730 -220 0 1 {name=R2
-value=100k
+value=1000k
 footprint=1206
 device=resistor
 m=1}

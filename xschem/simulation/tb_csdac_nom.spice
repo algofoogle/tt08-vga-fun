@@ -7,15 +7,15 @@ x4 vpos net2 vss tt08pin
 x5 vneg net1 vss tt08pin
 C2 vpos VGND 3p m=1
 C1 vneg VGND 3p m=1
-x2 p0 n0 p1 n1 p2 n2 p3 n3 p4 n4 p5 n5 p6 n6 p7 n7 vcc_pex vss net4 net3 vbias_pex csdac_nom_parax
+x2 vcc_pex vss n7 p7 n6 p6 n5 p5 n4 p4 n3 p3 n2 p2 n1 p1 n0 p0 vbias_pex net3 net4 csdac_nom_parax
 x3 vpos_pex net4 vss tt08pin
 x6 vneg_pex net3 vss tt08pin
 C3 vpos_pex VGND 3p m=1
 C4 vneg_pex VGND 3p m=1
 Vvccnom vcc1 vcc_nom 0
 Vvccpex vcc1 vcc_pex 0
-R1 vpos_pex VGND 100k m=1
-R2 vneg_pex VGND 100k m=1
+R1 vpos_pex VGND 1000k m=1
+R2 vneg_pex VGND 1000k m=1
 **** begin user architecture code
 
 
@@ -126,7 +126,7 @@ Vxn7 n7 GND pulse 0v 1.8v 0n 1n 1n 5119n 10240n
 *.opin Vbias
 XMprog Vbias vss vcc vcc sky130_fd_pr__pfet_01v8 L=0.15 W=0.5 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
 + pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
-XMmirror Vbias Vbias vss vss sky130_fd_pr__nfet_01v8 L=0.5 W=0.5 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
+XMmirror Vbias Vbias vss vss sky130_fd_pr__nfet_01v8 L=1.4 W=0.4 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
 + pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
 XMB0 IS0 Vbias vss vss sky130_fd_pr__nfet_01v8 L=16 W=0.5 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)'
 + ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
@@ -176,8 +176,10 @@ XMP7 Vpos p7 IS7 vss sky130_fd_pr__nfet_01v8 L=0.15 W=3 nf=1 ad='int((nf+1)/2) *
 + ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
 XMN7 Vneg n7 IS7 vss sky130_fd_pr__nfet_01v8 L=0.15 W=3 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)'
 + ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
-XR5 Vpos vcc vss sky130_fd_pr__res_high_po_5p73 L=40 mult=1 m=1
-XR6 Vneg vcc vss sky130_fd_pr__res_high_po_5p73 L=40 mult=1 m=1
+XRLP Vpos net1 vss sky130_fd_pr__res_high_po_5p73 L=18 mult=1 m=1
+XRLN Vneg net2 vss sky130_fd_pr__res_high_po_5p73 L=18 mult=1 m=1
+XRSP net1 vcc vss sky130_fd_pr__res_high_po_5p73 L=6 mult=1 m=1
+XRSN net2 vcc vss sky130_fd_pr__res_high_po_5p73 L=6 mult=1 m=1
 .ends
 
 

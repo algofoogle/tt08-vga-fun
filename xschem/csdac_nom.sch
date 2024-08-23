@@ -175,8 +175,8 @@ spiceprefix=X
 }
 C {devices/lab_pin.sym} 130 -360 0 0 {name=p5 sig_type=std_logic lab=vcc}
 C {sky130_fd_pr/nfet_01v8.sym} 150 -130 0 1 {name=Mmirror
-L=0.5
-W=0.5
+L=1.4
+W=0.4
 nf=1 
 mult=1
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
@@ -626,12 +626,12 @@ C {devices/opin.sym} 140 -440 0 0 {name=p78 lab=Vneg}
 C {devices/opin.sym} 140 -420 0 0 {name=p79 lab=Vbias}
 C {devices/lab_pin.sym} 1370 -540 3 0 {name=p80 sig_type=std_logic lab=vss}
 C {sky130_fd_pr/res_high_po_5p73.sym} 1390 -540 0 0 {name=RLP
-L=28
+L=18
 model=res_high_po_5p73
 spiceprefix=X
 mult=1}
 C {sky130_fd_pr/res_high_po_5p73.sym} 1540 -540 0 0 {name=RLN
-L=28
+L=18
 model=res_high_po_5p73
 spiceprefix=X
 mult=1}
@@ -645,12 +645,12 @@ C {devices/lab_wire.sym} 1100 -220 0 0 {name=p85 sig_type=std_logic lab=IS5}
 C {devices/lab_wire.sym} 1260 -220 0 0 {name=p86 sig_type=std_logic lab=IS6}
 C {devices/lab_wire.sym} 1420 -220 0 0 {name=p87 sig_type=std_logic lab=IS7}
 C {sky130_fd_pr/res_high_po_5p73.sym} 1390 -620 0 0 {name=RSP
-L=11
+L=6
 model=res_high_po_5p73
 spiceprefix=X
 mult=1}
 C {sky130_fd_pr/res_high_po_5p73.sym} 1540 -620 0 0 {name=RSN
-L=11
+L=6
 model=res_high_po_5p73
 spiceprefix=X
 mult=1}
