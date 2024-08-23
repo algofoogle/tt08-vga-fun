@@ -30,6 +30,11 @@ adut
 
 * csdac_nom_parax SPICE with parasitics extracted from layout (csdac_nom.mag):
 .include "../../mag/csdac_nom.sim.spice" 
+* WARNING: If you change the csdac_nom.mag layout, this will mean that in mag/
+* you need to re-run: PROJECT_NAME=csdac_nom make csdac_nom.sim.spice
+* -- in turn that means you'll need to ensure the `.subckt csdac_nom_parax ...`
+* port list matches what the instances of csdac_nom_parax expect.
+
 * This is the model of estimated TT08 pin loading:
 .include "tt08pin.spice"
 
@@ -63,18 +68,18 @@ RGpin   goutpin GND 1000k
 RBpin   boutpin GND 1000k
 
 XR_dac vcc GND
-+ r0 rn0 r1 rn1 r2 rn2 r3 rn3 r4 rn4 r5 rn5 r6 rn6 r7 rn7
-+ VposR VnegR VbiasR
++ rn7 r7 rn6 r6 rn5 r5 rn4 r4 rn3 r3 rn2 r2 rn1 r1 rn0 r0
++ VbiasR VnegR VposR
 + csdac_nom_parax
 
 XG_dac vcc GND
-+ g0 gn0 g1 gn1 g2 gn2 g3 gn3 g4 gn4 g5 gn5 g6 gn6 g7 gn7
-+ VposG VnegG VbiasG
++ gn7 g7 gn6 g6 gn5 g5 gn4 g4 gn3 g3 gn2 g2 gn1 g1 gn0 g0
++ VbiasG VnegG VposG
 + csdac_nom_parax
 
 XB_dac vcc GND
-+ b0 bn0 b1 bn1 b2 bn2 b3 bn3 b4 bn4 b5 bn5 b6 bn6 b7 bn7
-+ VposB VnegB VbiasB
++ bn7 b7 bn6 b6 bn5 b5 bn4 b4 bn3 b3 bn2 b2 bn1 b1 bn0 b0
++ VbiasB VnegB VposB
 + csdac_nom_parax
 
 **** End of the DAC and its subcircuits.  Begin test circuit ****
