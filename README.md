@@ -1,7 +1,9 @@
 ![](../../workflows/gds/badge.svg) ![](../../workflows/docs/badge.svg)
 
 
-# tt08-vga-fun
+# TT08 VGA FUN! (tt08-vga-fun)
+
+![](./docs/tt08-gds-doco2.png)
 
 An attempt to create rough 8-bit VGA DACs, targeting [Tiny Tapeout 08 (TT08)](https://tinytapeout.com/runs/), and building on my prior experiment (and first analog ASIC project) in TT06: [tt06-grab-bag](https://github.com/algofoogle/tt06-grab-bag).
 

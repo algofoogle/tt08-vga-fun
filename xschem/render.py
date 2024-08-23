@@ -31,7 +31,7 @@ VB = 'V(boutpin)'
 # scale_max = 1.80
 
 # --- tt08-vga-fun csdac_nom range: ---
-scale_min = 0.85
+scale_min = 0.83
 scale_max = 1.80
 
 # # --- Typical amplified outputs: ---
