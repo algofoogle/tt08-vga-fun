@@ -1,0 +1,14 @@
+** sch_path: /home/anton/projects/tt08-vga-fun/xschem/thermo2bit.sch
+**.subckt thermo2bit VCC VSS s3 b1 s2 s1 b0
+*.ipin b1
+*.opin s2
+*.ipin b0
+*.opin s1
+*.opin s3
+*.iopin VCC
+*.iopin VSS
+x2 b0 b1 VSS VSS VCC VCC s3 sky130_fd_sc_hd__and2_1
+x3 b1 b0 VSS VSS VCC VCC s1 sky130_fd_sc_hd__or2_1
+R1 s2 b1 0 m=1
+**.ends
+.end
