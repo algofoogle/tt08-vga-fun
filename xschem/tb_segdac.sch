@@ -6,8 +6,8 @@ V {}
 S {}
 E {}
 B 2 950 -980 2450 -90 {flags=graph
-y1=-0.0025
-y2=1.8
+y1=-0.019
+y2=1.9
 ypos1=0
 ypos2=2
 divy=20
@@ -38,9 +38,11 @@ rainbow=1
 
 
 
-color="11 6"
+color="11 10 6 8"
 node="vout
-\\"nom mA;i(vvccnom) 1000 *\\""}
+vbias
+\\"nom mA;i(vvccnom) 1000 *\\"
+\\"out mA;i(vcurrent) 1000 *\\""}
 T {TT_MODELS is set to use
 'tt_mm' (for Monte Carlo)
 instead of just 'tt'.
@@ -54,26 +56,10 @@ setting power supply to:
 1.8 trrandom(1 15us 0s 100mV 0mV)} 610 -960 0 0 0.3 0.3 {}
 T {This is csdac_nom.sch (fixed, nominal).
 There is also csdac.sch (parametric).} 390 -510 0 0 0.3 0.3 {}
-N 50 -80 100 -80 {
+N 500 -40 550 -40 {
 lab=p0}
-N 50 -100 100 -100 {
+N 500 -60 550 -60 {
 lab=p1}
-N 760 -210 810 -210 {
-lab=n0}
-N 760 -190 810 -190 {
-lab=n1}
-N 760 -170 810 -170 {
-lab=n2}
-N 760 -150 810 -150 {
-lab=n3}
-N 760 -130 810 -130 {
-lab=n4}
-N 760 -110 810 -110 {
-lab=n5}
-N 760 -90 810 -90 {
-lab=n6}
-N 760 -70 810 -70 {
-lab=n7}
 N 380 -760 450 -760 {
 lab=Vbias}
 N 50 -820 80 -820 {
@@ -110,38 +96,43 @@ N 420 -800 420 -680 {
 lab=vss}
 N 100 -40 120 -40 {
 lab=vcc_nom}
-N 50 -200 100 -200 {
+N 500 -160 550 -160 {
 lab=p2}
-N 50 -220 100 -220 {
+N 500 -180 550 -180 {
 lab=p3}
 N 100 -160 120 -160 {
 lab=vcc_nom}
-N 50 -320 100 -320 {
+N 500 -280 550 -280 {
 lab=p4}
-N 50 -340 100 -340 {
+N 500 -300 550 -300 {
 lab=p5}
 N 100 -280 120 -280 {
 lab=vcc_nom}
 N 100 -400 120 -400 {
 lab=vcc_nom}
-N 50 -460 100 -460 {
+N 500 -420 550 -420 {
 lab=p7}
-N 50 -440 100 -440 {
+N 500 -400 550 -400 {
 lab=p6}
 N 380 -780 520 -780 {
 lab=#net1}
-N 520 -780 580 -780 {
-lab=#net1}
-N 740 -780 880 -780 {
+N 680 -720 820 -720 {
 lab=vout}
+N 740 -840 760 -840 {
+lab=vcc_nom}
+N 520 -780 520 -720 {
+lab=#net1}
+N 520 -780 620 -780 {
+lab=#net1}
+N 620 -840 680 -840 {
+lab=#net2}
 C {devices/vsource.sym} 550 -920 0 0 {name=Vvcc1 value="1.8" savecurrent=false}
 C {devices/lab_pin.sym} 550 -950 0 0 {name=p1 sig_type=std_logic lab=vcc1}
 C {devices/gnd.sym} 550 -890 0 0 {name=l2 lab=GND}
-C {devices/simulator_commands.sym} 10 -910 2 1 {name=COMMANDS2
+C {devices/simulator_commands.sym} 130 -990 0 1 {name=COMMANDS2
 simulator=ngspice
 only_toplevel=false 
 value="
-
 .param singlebits=0
 .IF (singlebits == 1)
 * Mode to just test each binary-weighted level:
@@ -188,7 +179,7 @@ Vxn7 n7 GND pulse 0v 1.8v 0n 1n 1n 5119n 10240n
   repeat 1
     save all
     tran 1n 12.8u
-    write tb_segdac.raw i(vvss) vcc1 vbias vout i(vvccnom)
+    write tb_segdac.raw i(vvss) vcc1 vbias vout i(vvccnom) i(vcurrent)
     + p0 p1 p2 p3 p4 p5 p6 p7
     + sa1 sa2 sa3 sb1 sb2 sb3 sc1 sc2 sc3 sd1 sd2 sd3
     * + i(voutload)
@@ -228,22 +219,22 @@ value="
 .include $::SKYWATER_STDCELLS/sky130_fd_sc_hd.spice
 "
 spice_ignore=false}
-C {devices/lab_pin.sym} 50 -460 2 1 {name=p4 sig_type=std_logic lab=p7}
-C {devices/lab_pin.sym} 50 -440 2 1 {name=p9 sig_type=std_logic lab=p6}
-C {devices/lab_pin.sym} 50 -340 2 1 {name=p11 sig_type=std_logic lab=p5}
-C {devices/lab_pin.sym} 50 -320 2 1 {name=p12 sig_type=std_logic lab=p4}
-C {devices/lab_pin.sym} 50 -220 2 1 {name=p13 sig_type=std_logic lab=p3}
-C {devices/lab_pin.sym} 50 -200 2 1 {name=p14 sig_type=std_logic lab=p2}
-C {devices/lab_pin.sym} 50 -100 2 1 {name=p15 sig_type=std_logic lab=p1}
-C {devices/lab_pin.sym} 50 -80 2 1 {name=p16 sig_type=std_logic lab=p0}
-C {devices/lab_pin.sym} 760 -70 0 0 {name=p17 sig_type=std_logic lab=n7}
-C {devices/lab_pin.sym} 760 -90 0 0 {name=p18 sig_type=std_logic lab=n6}
-C {devices/lab_pin.sym} 760 -110 0 0 {name=p19 sig_type=std_logic lab=n5}
-C {devices/lab_pin.sym} 760 -130 0 0 {name=p20 sig_type=std_logic lab=n4}
-C {devices/lab_pin.sym} 760 -150 0 0 {name=p21 sig_type=std_logic lab=n3}
-C {devices/lab_pin.sym} 760 -170 0 0 {name=p22 sig_type=std_logic lab=n2}
-C {devices/lab_pin.sym} 760 -190 0 0 {name=p39 sig_type=std_logic lab=n1}
-C {devices/lab_pin.sym} 760 -210 0 0 {name=p40 sig_type=std_logic lab=n0}
+C {devices/lab_pin.sym} 500 -420 2 1 {name=p4 sig_type=std_logic lab=p7}
+C {devices/lab_pin.sym} 500 -400 2 1 {name=p9 sig_type=std_logic lab=p6}
+C {devices/lab_pin.sym} 500 -300 2 1 {name=p11 sig_type=std_logic lab=p5}
+C {devices/lab_pin.sym} 500 -280 2 1 {name=p12 sig_type=std_logic lab=p4}
+C {devices/lab_pin.sym} 500 -180 2 1 {name=p13 sig_type=std_logic lab=p3}
+C {devices/lab_pin.sym} 500 -160 2 1 {name=p14 sig_type=std_logic lab=p2}
+C {devices/lab_pin.sym} 500 -60 2 1 {name=p15 sig_type=std_logic lab=p1}
+C {devices/lab_pin.sym} 500 -40 2 1 {name=p16 sig_type=std_logic lab=p0}
+C {devices/lab_pin.sym} 100 -460 2 1 {name=p17 sig_type=std_logic lab=n7}
+C {devices/lab_pin.sym} 100 -440 2 1 {name=p18 sig_type=std_logic lab=n6}
+C {devices/lab_pin.sym} 100 -340 2 1 {name=p19 sig_type=std_logic lab=n5}
+C {devices/lab_pin.sym} 100 -320 2 1 {name=p20 sig_type=std_logic lab=n4}
+C {devices/lab_pin.sym} 100 -220 2 1 {name=p21 sig_type=std_logic lab=n3}
+C {devices/lab_pin.sym} 100 -200 2 1 {name=p22 sig_type=std_logic lab=n2}
+C {devices/lab_pin.sym} 100 -100 2 1 {name=p39 sig_type=std_logic lab=n1}
+C {devices/lab_pin.sym} 100 -80 2 1 {name=p40 sig_type=std_logic lab=n0}
 C {devices/vsource.sym} 750 -490 0 0 {name=Vvccnom value=0 savecurrent=false}
 C {devices/lab_pin.sym} 750 -460 0 0 {name=p49 sig_type=std_logic lab=vcc_nom}
 C {devices/lab_pin.sym} 750 -520 0 0 {name=p51 sig_type=std_logic lab=vcc1}
@@ -281,24 +272,40 @@ C {devices/lab_pin.sym} 300 -340 2 0 {name=p53 lab=sc3}
 C {devices/lab_pin.sym} 300 -420 2 0 {name=p54 lab=sd1}
 C {devices/lab_pin.sym} 300 -440 2 0 {name=p55 lab=sd2}
 C {devices/lab_pin.sym} 300 -460 2 0 {name=p56 lab=sd3}
-C {devices/lab_pin.sym} 520 -840 0 0 {name=p3 sig_type=std_logic lab=vcc_nom}
-C {sky130_fd_pr/res_high_po_5p73.sym} 520 -810 0 0 {name=R2
-L=20
-model=res_high_po_5p73
-spiceprefix=X
-mult=1}
 C {devices/gnd.sym} 420 -680 0 0 {name=l1 lab=vss}
-C {devices/gnd.sym} 500 -810 1 0 {name=l3 lab=vss}
 C {devices/lab_pin.sym} 280 -400 0 1 {name=p10 sig_type=std_logic lab=vss}
 C {devices/lab_pin.sym} 280 -280 0 1 {name=p24 sig_type=std_logic lab=vss}
 C {devices/lab_pin.sym} 280 -160 0 1 {name=p37 sig_type=std_logic lab=vss}
 C {devices/lab_pin.sym} 280 -40 0 1 {name=p41 sig_type=std_logic lab=vss}
-C {tt08pin.sym} 660 -760 0 0 {name=x2}
-C {devices/gnd.sym} 740 -740 0 0 {name=l4 lab=vss}
-C {devices/lab_pin.sym} 880 -780 0 1 {name=p45 lab=vout}
-C {devices/capa.sym} 830 -750 0 0 {name=C1
+C {tt08pin.sym} 600 -700 0 0 {name=x2}
+C {devices/gnd.sym} 680 -680 0 0 {name=l4 lab=vss}
+C {devices/lab_pin.sym} 820 -720 0 1 {name=p45 lab=vout}
+C {devices/capa.sym} 770 -690 0 0 {name=C1
 m=1
 value=3p
 footprint=1206
 device="ceramic capacitor"}
-C {devices/gnd.sym} 830 -720 0 0 {name=l5 lab=vss}
+C {devices/gnd.sym} 770 -660 0 0 {name=l5 lab=vss}
+C {devices/lab_pin.sym} 760 -840 0 1 {name=p58 sig_type=std_logic lab=vcc_nom}
+C {sky130_fd_pr/res_high_po_5p73.sym} 620 -810 0 0 {name=R1
+L=30
+model=res_high_po_5p73
+spiceprefix=X
+mult=1}
+C {devices/gnd.sym} 600 -810 1 0 {name=l7 lab=vss}
+C {devices/vsource.sym} 710 -840 1 0 {name=VCurrent value=0 savecurrent=false}
+C {sky130_fd_pr/nfet3_03v3_nvt.sym} 720 -210 0 0 {name=M1
+W=4
+L=0.5
+body=GND
+nf=1
+mult=1
+ad="'int((nf+1)/2) * W/nf * 0.29'" 
+pd="'2*int((nf+1)/2) * (W/nf + 0.29)'"
+as="'int((nf+2)/2) * W/nf * 0.29'" 
+ps="'2*int((nf+2)/2) * (W/nf + 0.29)'"
+nrd="'0.29 / W'" nrs="'0.29 / W'"
+sa=0 sb=0 sd=0
+model=nfet_03v3_nvt
+spiceprefix=X
+}

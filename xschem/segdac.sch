@@ -134,7 +134,7 @@ lab=Vbias}
 N 260 -130 260 -60 {
 lab=Vbias}
 C {sky130_fd_pr/pfet_01v8.sym} 110 -250 0 0 {name=Mprog
-L=0.7
+L=0.5
 W=0.5
 nf=1
 mult=1
@@ -150,7 +150,7 @@ spiceprefix=X
 C {devices/lab_pin.sym} 130 -360 0 0 {name=p5 sig_type=std_logic lab=vcc}
 C {sky130_fd_pr/nfet_01v8.sym} 150 -130 0 1 {name=Mmirror
 L=0.5
-W=1
+W=0.5
 nf=1 
 mult=1
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
@@ -182,7 +182,7 @@ C {devices/ipin.sym} 100 -420 0 0 {name=p13 lab=sd2}
 C {devices/ipin.sym} 100 -400 0 0 {name=p14 lab=sd3}
 C {sky130_fd_pr/nfet3_01v8.sym} 340 -130 0 0 {name=Mia1
 W=0.5
-L=2.4
+L=5
 body=vss
 nf=1
 mult=1
@@ -198,7 +198,7 @@ spiceprefix=X
 C {devices/lab_pin.sym} 360 -100 0 0 {name=p15 sig_type=std_logic lab=vss}
 C {sky130_fd_pr/nfet3_01v8.sym} 460 -130 0 0 {name=Mia2
 W=0.5
-L=2.4
+L=5
 body=vss
 nf=1
 mult=1
@@ -214,7 +214,7 @@ spiceprefix=X
 C {devices/lab_pin.sym} 480 -100 0 0 {name=p16 sig_type=std_logic lab=vss}
 C {sky130_fd_pr/nfet3_01v8.sym} 580 -130 0 0 {name=Mia3
 W=0.5
-L=2.4
+L=5
 body=vss
 nf=1
 mult=1
@@ -277,7 +277,7 @@ spiceprefix=X
 }
 C {devices/lab_pin.sym} 560 -210 0 0 {name=p20 sig_type=std_logic lab=sa3}
 C {sky130_fd_pr/nfet3_01v8.sym} 340 -330 0 0 {name=Mib1
-W=1.1
+W=0.5
 L=1.2
 body=vss
 nf=1
@@ -293,7 +293,7 @@ spiceprefix=X
 }
 C {devices/lab_pin.sym} 360 -300 0 0 {name=p23 sig_type=std_logic lab=vss}
 C {sky130_fd_pr/nfet3_01v8.sym} 460 -330 0 0 {name=Mib2
-W=1.1
+W=0.5
 L=1.2
 body=vss
 nf=1
@@ -309,7 +309,7 @@ spiceprefix=X
 }
 C {devices/lab_pin.sym} 480 -300 0 0 {name=p24 sig_type=std_logic lab=vss}
 C {sky130_fd_pr/nfet3_01v8.sym} 580 -330 0 0 {name=Mib3
-W=1.1
+W=0.5
 L=1.2
 body=vss
 nf=1
@@ -325,7 +325,7 @@ spiceprefix=X
 }
 C {devices/lab_pin.sym} 600 -300 0 0 {name=p25 sig_type=std_logic lab=vss}
 C {sky130_fd_pr/nfet3_01v8.sym} 340 -410 0 0 {name=Msb1
-W=0.5
+W=1
 L=0.15
 body=vss
 nf=1
@@ -341,7 +341,7 @@ spiceprefix=X
 }
 C {devices/lab_pin.sym} 320 -410 0 0 {name=p26 sig_type=std_logic lab=sb1}
 C {sky130_fd_pr/nfet3_01v8.sym} 460 -410 0 0 {name=Msb2
-W=0.5
+W=1
 L=0.15
 body=vss
 nf=1
@@ -357,7 +357,7 @@ spiceprefix=X
 }
 C {devices/lab_pin.sym} 440 -410 0 0 {name=p27 sig_type=std_logic lab=sb2}
 C {sky130_fd_pr/nfet3_01v8.sym} 580 -410 0 0 {name=Msb3
-W=0.5
+W=1
 L=0.15
 body=vss
 nf=1
@@ -373,8 +373,8 @@ spiceprefix=X
 }
 C {devices/lab_pin.sym} 560 -410 0 0 {name=p28 sig_type=std_logic lab=sb3}
 C {sky130_fd_pr/nfet3_01v8.sym} 340 -530 0 0 {name=Mic1
-W=1.8
-L=0.25
+W=1
+L=0.5
 body=vss
 nf=1
 mult=1
@@ -389,8 +389,8 @@ spiceprefix=X
 }
 C {devices/lab_pin.sym} 360 -500 0 0 {name=p29 sig_type=std_logic lab=vss}
 C {sky130_fd_pr/nfet3_01v8.sym} 460 -530 0 0 {name=Mic2
-W=1.8
-L=0.25
+W=1
+L=0.5
 body=vss
 nf=1
 mult=1
@@ -405,8 +405,8 @@ spiceprefix=X
 }
 C {devices/lab_pin.sym} 480 -500 0 0 {name=p30 sig_type=std_logic lab=vss}
 C {sky130_fd_pr/nfet3_01v8.sym} 580 -530 0 0 {name=Mic3
-W=1.8
-L=0.25
+W=1
+L=0.5
 body=vss
 nf=1
 mult=1
@@ -421,7 +421,7 @@ spiceprefix=X
 }
 C {devices/lab_pin.sym} 600 -500 0 0 {name=p31 sig_type=std_logic lab=vss}
 C {sky130_fd_pr/nfet3_01v8.sym} 340 -610 0 0 {name=Msc1
-W=1.9
+W=1.4
 L=0.15
 body=vss
 nf=1
@@ -437,7 +437,7 @@ spiceprefix=X
 }
 C {devices/lab_pin.sym} 320 -610 0 0 {name=p32 sig_type=std_logic lab=sc1}
 C {sky130_fd_pr/nfet3_01v8.sym} 460 -610 0 0 {name=Msc2
-W=1.9
+W=1.4
 L=0.15
 body=vss
 nf=1
@@ -453,7 +453,7 @@ spiceprefix=X
 }
 C {devices/lab_pin.sym} 440 -610 0 0 {name=p33 sig_type=std_logic lab=sc2}
 C {sky130_fd_pr/nfet3_01v8.sym} 580 -610 0 0 {name=Msc3
-W=1.9
+W=1.4
 L=0.15
 body=vss
 nf=1
@@ -469,8 +469,8 @@ spiceprefix=X
 }
 C {devices/lab_pin.sym} 560 -610 0 0 {name=p34 sig_type=std_logic lab=sc3}
 C {sky130_fd_pr/nfet3_01v8.sym} 340 -730 0 0 {name=Mid1
-W=4
-L=0.15
+W=2.6
+L=0.3
 body=vss
 nf=1
 mult=1
@@ -485,8 +485,8 @@ spiceprefix=X
 }
 C {devices/lab_pin.sym} 360 -700 0 0 {name=p35 sig_type=std_logic lab=vss}
 C {sky130_fd_pr/nfet3_01v8.sym} 460 -730 0 0 {name=Mid2
-W=4
-L=0.15
+W=2.6
+L=0.3
 body=vss
 nf=1
 mult=1
@@ -501,8 +501,8 @@ spiceprefix=X
 }
 C {devices/lab_pin.sym} 480 -700 0 0 {name=p36 sig_type=std_logic lab=vss}
 C {sky130_fd_pr/nfet3_01v8.sym} 580 -730 0 0 {name=Mid3
-W=4
-L=0.15
+W=2.6
+L=0.3
 body=vss
 nf=1
 mult=1
@@ -517,8 +517,8 @@ spiceprefix=X
 }
 C {devices/lab_pin.sym} 600 -700 0 0 {name=p37 sig_type=std_logic lab=vss}
 C {sky130_fd_pr/nfet3_01v8.sym} 340 -810 0 0 {name=Msd1
-W=5.7
-L=0.15
+W=3.3
+L=0.2
 body=vss
 nf=1
 mult=1
@@ -533,8 +533,8 @@ spiceprefix=X
 }
 C {devices/lab_pin.sym} 320 -810 0 0 {name=p38 sig_type=std_logic lab=sd1}
 C {sky130_fd_pr/nfet3_01v8.sym} 460 -810 0 0 {name=Msd2
-W=5.7
-L=0.15
+W=3.3
+L=0.2
 body=vss
 nf=1
 mult=1
@@ -549,8 +549,8 @@ spiceprefix=X
 }
 C {devices/lab_pin.sym} 440 -810 0 0 {name=p42 sig_type=std_logic lab=sd2}
 C {sky130_fd_pr/nfet3_01v8.sym} 580 -810 0 0 {name=Msd3
-W=5.7
-L=0.15
+W=3.3
+L=0.2
 body=vss
 nf=1
 mult=1
