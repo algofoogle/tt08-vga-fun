@@ -126,6 +126,8 @@ N 520 -780 620 -780 {
 lab=#net1}
 N 620 -840 680 -840 {
 lab=#net2}
+N 230 -570 250 -570 {
+lab=vcc_nom}
 C {devices/vsource.sym} 550 -920 0 0 {name=Vvcc1 value="1.8" savecurrent=false}
 C {devices/lab_pin.sym} 550 -950 0 0 {name=p1 sig_type=std_logic lab=vcc1}
 C {devices/gnd.sym} 550 -890 0 0 {name=l2 lab=GND}
@@ -210,7 +212,6 @@ tclcommand="xschem raw_read $netlist_dir/tb_segdac.raw tran"
 }
 C {devices/vsource.sym} 470 -920 0 0 {name=Vvss value=0 savecurrent=false}
 C {devices/lab_pin.sym} 470 -950 0 0 {name=p42 sig_type=std_logic lab=vss}
-C {devices/lab_pin.sym} 400 -860 0 0 {name=p2 sig_type=std_logic lab=vcc_nom}
 C {devices/code.sym} 130 -990 0 0 {name=TT_MODELS
 only_toplevel=true
 format="tcleval( @value )"
@@ -288,24 +289,12 @@ device="ceramic capacitor"}
 C {devices/gnd.sym} 770 -660 0 0 {name=l5 lab=vss}
 C {devices/lab_pin.sym} 760 -840 0 1 {name=p58 sig_type=std_logic lab=vcc_nom}
 C {sky130_fd_pr/res_high_po_5p73.sym} 620 -810 0 0 {name=R1
-L=30
+L=28
 model=res_high_po_5p73
 spiceprefix=X
 mult=1}
 C {devices/gnd.sym} 600 -810 1 0 {name=l7 lab=vss}
 C {devices/vsource.sym} 710 -840 1 0 {name=VCurrent value=0 savecurrent=false}
-C {sky130_fd_pr/nfet3_03v3_nvt.sym} 720 -210 0 0 {name=M1
-W=4
-L=0.5
-body=GND
-nf=1
-mult=1
-ad="'int((nf+1)/2) * W/nf * 0.29'" 
-pd="'2*int((nf+1)/2) * (W/nf + 0.29)'"
-as="'int((nf+2)/2) * W/nf * 0.29'" 
-ps="'2*int((nf+2)/2) * (W/nf + 0.29)'"
-nrd="'0.29 / W'" nrs="'0.29 / W'"
-sa=0 sb=0 sd=0
-model=nfet_03v3_nvt
-spiceprefix=X
-}
+C {devices/gnd.sym} 210 -570 0 0 {name=l3 lab=vss}
+C {devices/lab_pin.sym} 400 -860 2 1 {name=p3 sig_type=std_logic lab=vcc_nom}
+C {devices/lab_pin.sym} 250 -570 2 0 {name=p57 sig_type=std_logic lab=vcc_nom}
