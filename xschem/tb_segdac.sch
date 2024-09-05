@@ -5,9 +5,9 @@ K {}
 V {}
 S {}
 E {}
-B 2 830 -940 2330 -50 {flags=graph
-y1=-0.0014
-y2=0.87
+B 2 950 -980 2450 -90 {flags=graph
+y1=-0.0025
+y2=1.8
 ypos1=0
 ypos2=2
 divy=20
@@ -19,15 +19,28 @@ divx=20
 subdivx=1
 xlabmag=1.0
 ylabmag=1.0
-node="vbias
-\\"nom mA;i(vvccnom) 1000 *\\"
-\\"load mA;i(voutload) 1000 *\\""
-color="10 6 4"
+
+
 dataset=-1
 unitx=1
 logx=0
 logy=0
-rainbow=1}
+rainbow=1
+
+
+
+
+
+
+
+
+
+
+
+
+color="11 6"
+node="vout
+\\"nom mA;i(vvccnom) 1000 *\\""}
 T {TT_MODELS is set to use
 'tt_mm' (for Monte Carlo)
 instead of just 'tt'.
@@ -116,9 +129,11 @@ lab=p7}
 N 50 -440 100 -440 {
 lab=p6}
 N 380 -780 520 -780 {
-lab=Vout}
-N 520 -780 540 -780 {
-lab=Vout}
+lab=#net1}
+N 520 -780 580 -780 {
+lab=#net1}
+N 740 -780 880 -780 {
+lab=vout}
 C {devices/vsource.sym} 550 -920 0 0 {name=Vvcc1 value="1.8" savecurrent=false}
 C {devices/lab_pin.sym} 550 -950 0 0 {name=p1 sig_type=std_logic lab=vcc1}
 C {devices/gnd.sym} 550 -890 0 0 {name=l2 lab=GND}
@@ -173,9 +188,10 @@ Vxn7 n7 GND pulse 0v 1.8v 0n 1n 1n 5119n 10240n
   repeat 1
     save all
     tran 1n 12.8u
-    write tb_segdac.raw i(vvss) vcc1 vbias vout i(vvccnom) i(voutload)
+    write tb_segdac.raw i(vvss) vcc1 vbias vout i(vvccnom)
     + p0 p1 p2 p3 p4 p5 p6 p7
     + sa1 sa2 sa3 sb1 sb2 sb3 sc1 sc2 sc3 sd1 sd2 sd3
+    * + i(voutload)
     set appendwrite
     reset
   end
@@ -197,7 +213,7 @@ Vxn7 n7 GND pulse 0v 1.8v 0n 1n 1n 5119n 10240n
 .endc
 "}
 C {devices/gnd.sym} 470 -890 0 0 {name=l6 lab=GND}
-C {devices/launcher.sym} 890 -20 0 0 {name=h5
+C {devices/launcher.sym} 1010 -50 0 0 {name=h5
 descr="load waves" 
 tclcommand="xschem raw_read $netlist_dir/tb_segdac.raw tran"
 }
@@ -234,7 +250,6 @@ C {devices/lab_pin.sym} 750 -520 0 0 {name=p51 sig_type=std_logic lab=vcc1}
 C {segdac.sym} 230 -710 0 0 {name=x1}
 C {devices/lab_pin.sym} 50 -820 0 0 {name=p6 lab=sa1}
 C {devices/lab_pin.sym} 50 -800 0 0 {name=p23 lab=sa2}
-C {devices/lab_pin.sym} 420 -680 0 1 {name=p24 lab=vss}
 C {devices/lab_pin.sym} 50 -780 0 0 {name=p25 lab=sa3}
 C {devices/lab_pin.sym} 50 -760 0 0 {name=p27 lab=sb1}
 C {devices/lab_pin.sym} 50 -740 0 0 {name=p28 lab=sb2}
@@ -246,21 +261,16 @@ C {devices/lab_pin.sym} 50 -660 0 0 {name=p33 lab=sc3}
 C {devices/lab_pin.sym} 50 -640 0 0 {name=p34 lab=sd1}
 C {devices/lab_pin.sym} 50 -620 0 0 {name=p35 lab=sd2}
 C {devices/lab_pin.sym} 50 -600 0 0 {name=p36 lab=sd3}
-C {devices/vsource.sym} 520 -810 0 0 {name=VoutLoad value=0 savecurrent=false}
 C {thermo2bit.sym} 200 -40 0 0 {name=XSA}
 C {devices/lab_pin.sym} 300 -60 2 0 {name=p5 lab=sa1}
 C {devices/lab_pin.sym} 300 -80 2 0 {name=p7 lab=sa2}
 C {devices/lab_pin.sym} 300 -100 2 0 {name=p8 lab=sa3}
-C {devices/lab_pin.sym} 280 -40 0 1 {name=p10 sig_type=std_logic lab=vss}
 C {devices/lab_pin.sym} 100 -40 0 0 {name=p26 sig_type=std_logic lab=vcc_nom}
 C {thermo2bit.sym} 200 -160 0 0 {name=XSB}
-C {devices/lab_pin.sym} 280 -160 0 1 {name=p45 sig_type=std_logic lab=vss}
 C {devices/lab_pin.sym} 100 -160 0 0 {name=p46 sig_type=std_logic lab=vcc_nom}
 C {thermo2bit.sym} 200 -280 0 0 {name=XSC}
-C {devices/lab_pin.sym} 280 -280 0 1 {name=p41 sig_type=std_logic lab=vss}
 C {devices/lab_pin.sym} 100 -280 0 0 {name=p43 sig_type=std_logic lab=vcc_nom}
 C {thermo2bit.sym} 200 -400 0 0 {name=XSD}
-C {devices/lab_pin.sym} 280 -400 0 1 {name=p37 sig_type=std_logic lab=vss}
 C {devices/lab_pin.sym} 100 -400 0 0 {name=p38 sig_type=std_logic lab=vcc_nom}
 C {devices/lab_pin.sym} 300 -180 2 0 {name=p44 lab=sb1}
 C {devices/lab_pin.sym} 300 -200 2 0 {name=p47 lab=sb2}
@@ -271,5 +281,24 @@ C {devices/lab_pin.sym} 300 -340 2 0 {name=p53 lab=sc3}
 C {devices/lab_pin.sym} 300 -420 2 0 {name=p54 lab=sd1}
 C {devices/lab_pin.sym} 300 -440 2 0 {name=p55 lab=sd2}
 C {devices/lab_pin.sym} 300 -460 2 0 {name=p56 lab=sd3}
-C {devices/lab_pin.sym} 540 -780 0 1 {name=p57 lab=Vout}
 C {devices/lab_pin.sym} 520 -840 0 0 {name=p3 sig_type=std_logic lab=vcc_nom}
+C {sky130_fd_pr/res_high_po_5p73.sym} 520 -810 0 0 {name=R2
+L=20
+model=res_high_po_5p73
+spiceprefix=X
+mult=1}
+C {devices/gnd.sym} 420 -680 0 0 {name=l1 lab=vss}
+C {devices/gnd.sym} 500 -810 1 0 {name=l3 lab=vss}
+C {devices/lab_pin.sym} 280 -400 0 1 {name=p10 sig_type=std_logic lab=vss}
+C {devices/lab_pin.sym} 280 -280 0 1 {name=p24 sig_type=std_logic lab=vss}
+C {devices/lab_pin.sym} 280 -160 0 1 {name=p37 sig_type=std_logic lab=vss}
+C {devices/lab_pin.sym} 280 -40 0 1 {name=p41 sig_type=std_logic lab=vss}
+C {tt08pin.sym} 660 -760 0 0 {name=x2}
+C {devices/gnd.sym} 740 -740 0 0 {name=l4 lab=vss}
+C {devices/lab_pin.sym} 880 -780 0 1 {name=p45 lab=vout}
+C {devices/capa.sym} 830 -750 0 0 {name=C1
+m=1
+value=3p
+footprint=1206
+device="ceramic capacitor"}
+C {devices/gnd.sym} 830 -720 0 0 {name=l5 lab=vss}

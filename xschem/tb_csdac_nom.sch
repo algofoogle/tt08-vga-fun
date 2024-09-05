@@ -87,13 +87,13 @@ lab=vpos}
 N 610 -680 710 -680 {
 lab=vneg}
 N 670 -760 670 -740 {
-lab=VGND}
+lab=vss}
 N 400 -760 430 -760 {
 lab=#net2}
 N 430 -820 430 -760 {
 lab=#net2}
 N 670 -620 670 -600 {
-lab=VGND}
+lab=vss}
 N 50 -390 100 -390 {
 lab=p0}
 N 50 -370 100 -370 {
@@ -135,21 +135,21 @@ lab=vpos_pex}
 N 590 -250 730 -250 {
 lab=vneg_pex}
 N 640 -330 640 -310 {
-lab=VGND}
+lab=vss}
 N 400 -330 430 -330 {
 lab=#net4}
 N 430 -390 430 -330 {
 lab=#net4}
 N 640 -190 640 -170 {
-lab=VGND}
+lab=vss}
 N 430 -820 450 -820 {
 lab=#net2}
 N 430 -680 450 -680 {
 lab=#net1}
 N 730 -330 730 -310 {
-lab=VGND}
+lab=vss}
 N 730 -190 730 -170 {
-lab=VGND}
+lab=vss}
 C {devices/vsource.sym} 550 -920 0 0 {name=Vvcc1 value="1.8" savecurrent=false}
 C {devices/lab_pin.sym} 550 -950 0 0 {name=p1 sig_type=std_logic lab=vcc1}
 C {devices/gnd.sym} 550 -890 0 0 {name=l2 lab=GND}
@@ -264,13 +264,13 @@ m=1
 value=3p
 footprint=1206
 device="ceramic capacitor"}
-C {devices/gnd.sym} 670 -740 0 0 {name=l5 lab=VGND}
+C {devices/gnd.sym} 670 -740 0 0 {name=l5 lab=vss}
 C {devices/capa.sym} 670 -650 0 0 {name=C1
 m=1
 value=3p
 footprint=1206
 device="ceramic capacitor"}
-C {devices/gnd.sym} 670 -600 0 0 {name=l1 lab=VGND}
+C {devices/gnd.sym} 670 -600 0 0 {name=l1 lab=vss}
 C {devices/code.sym} 130 -990 0 0 {name=TT_MODELS
 only_toplevel=true
 format="tcleval( @value )"
@@ -314,13 +314,13 @@ m=1
 value=3p
 footprint=1206
 device="ceramic capacitor"}
-C {devices/gnd.sym} 640 -310 0 0 {name=l3 lab=VGND}
+C {devices/gnd.sym} 640 -310 0 0 {name=l3 lab=vss}
 C {devices/capa.sym} 640 -220 0 0 {name=C4
 m=1
 value=3p
 footprint=1206
 device="ceramic capacitor"}
-C {devices/gnd.sym} 640 -170 0 0 {name=l4 lab=VGND}
+C {devices/gnd.sym} 640 -170 0 0 {name=l4 lab=vss}
 C {devices/vsource.sym} 750 -490 0 0 {name=Vvccnom value=0 savecurrent=false}
 C {devices/lab_pin.sym} 750 -460 0 0 {name=p49 sig_type=std_logic lab=vcc_nom}
 C {devices/vsource.sym} 750 -70 0 0 {name=Vvccpex value=0 savecurrent=false}
@@ -332,10 +332,10 @@ value=100k
 footprint=1206
 device=resistor
 m=1}
-C {devices/gnd.sym} 730 -310 0 0 {name=l7 lab=VGND}
+C {devices/gnd.sym} 730 -310 0 0 {name=l7 lab=vss}
 C {devices/res.sym} 730 -220 0 1 {name=R2
 value=100k
 footprint=1206
 device=resistor
 m=1}
-C {devices/gnd.sym} 730 -170 0 0 {name=l8 lab=VGND}
+C {devices/gnd.sym} 730 -170 0 0 {name=l8 lab=vss}

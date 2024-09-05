@@ -134,7 +134,7 @@ lab=Vbias}
 N 260 -130 260 -60 {
 lab=Vbias}
 C {sky130_fd_pr/pfet_01v8.sym} 110 -250 0 0 {name=Mprog
-L=0.6
+L=0.7
 W=0.5
 nf=1
 mult=1
@@ -149,7 +149,7 @@ spiceprefix=X
 }
 C {devices/lab_pin.sym} 130 -360 0 0 {name=p5 sig_type=std_logic lab=vcc}
 C {sky130_fd_pr/nfet_01v8.sym} 150 -130 0 1 {name=Mmirror
-L=0.15
+L=0.5
 W=1
 nf=1 
 mult=1
