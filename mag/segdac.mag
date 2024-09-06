@@ -1,7 +1,7 @@
 magic
 tech sky130A
 magscale 1 2
-timestamp 1725598663
+timestamp 1725599052
 << viali >>
 rect -1470 4780 -1420 4970
 rect -510 4890 -450 4970
@@ -1006,12 +1006,12 @@ rect 1470 2630 1670 2750
 rect 2050 2630 2470 3010
 rect 2690 2630 2890 2750
 << metal4 >>
-rect -1900 3530 -390 3540
+rect -1900 3530 -460 3540
 rect -1900 3450 -1490 3530
 rect -1410 3450 -630 3530
 rect -1900 3400 -630 3450
-rect -530 3400 -390 3530
-rect -1900 3140 -390 3400
+rect -530 3400 -460 3530
+rect -1900 3140 -460 3400
 rect -1900 3010 2980 3020
 rect -1900 2930 -1300 3010
 rect -1220 2930 -1120 3010
@@ -1031,116 +1031,116 @@ rect 2470 2750 2980 3010
 rect 2470 2630 2690 2750
 rect 2890 2630 2980 2750
 rect -1900 2620 2980 2630
-use sky130_fd_pr__pfet_01v8_JE7DK3  XM1
-timestamp 1725517196
+use sky130_fd_pr__pfet_01v8_JE7DK3  XM1 segdac__devices
+timestamp 1725599052
 transform 1 0 -1254 0 1 4929
 box -246 -269 246 269
-use sky130_fd_pr__pfet_01v8_QBPJZQ  XM2
-timestamp 1725517196
+use sky130_fd_pr__pfet_01v8_QBPJZQ  XM2 segdac__devices
+timestamp 1725599052
 transform 1 0 -724 0 1 4929
 box -296 -269 296 269
-use sky130_fd_pr__pfet_01v8_8JDY5S  XM3
-timestamp 1725517196
+use sky130_fd_pr__pfet_01v8_8JDY5S  XM3 segdac__devices
+timestamp 1725599052
 transform 1 0 -914 0 1 4409
 box -396 -269 396 269
-use sky130_fd_pr__nfet_01v8_DB7J7C  XMia1
-timestamp 1725517196
+use sky130_fd_pr__nfet_01v8_DB7J7C  XMia1 segdac__devices
+timestamp 1725599052
 transform 0 1 10 -1 0 4076
 box -696 -260 696 260
 use sky130_fd_pr__nfet_01v8_DB7J7C  XMia2
-timestamp 1725517196
+timestamp 1725599052
 transform 0 1 520 -1 0 4076
 box -696 -260 696 260
 use sky130_fd_pr__nfet_01v8_DB7J7C  XMia3
-timestamp 1725517196
+timestamp 1725599052
 transform 0 1 1030 -1 0 4076
 box -696 -260 696 260
-use sky130_fd_pr__nfet_01v8_33M553  XMib1
-timestamp 1725517196
+use sky130_fd_pr__nfet_01v8_33M553  XMib1 segdac__devices
+timestamp 1725599052
 transform 1 0 1696 0 1 3540
 box -316 -260 316 260
 use sky130_fd_pr__nfet_01v8_33M553  XMib2
-timestamp 1725517196
+timestamp 1725599052
 transform 0 1 2260 -1 0 3716
 box -316 -260 316 260
 use sky130_fd_pr__nfet_01v8_33M553  XMib3
-timestamp 1725517196
+timestamp 1725599052
 transform 1 0 2836 0 1 3540
 box -316 -260 316 260
-use sky130_fd_pr__nfet_01v8_7DN82Q  XMic1
-timestamp 1725517196
+use sky130_fd_pr__nfet_01v8_7DN82Q  XMic1 segdac__devices
+timestamp 1725599052
 transform 0 1 2790 -1 0 2076
 box -246 -310 246 310
 use sky130_fd_pr__nfet_01v8_7DN82Q  XMic2
-timestamp 1725517196
+timestamp 1725599052
 transform 0 1 2180 -1 0 2076
 box -246 -310 246 310
 use sky130_fd_pr__nfet_01v8_7DN82Q  XMic3
-timestamp 1725517196
+timestamp 1725599052
 transform 0 1 1570 -1 0 2076
 box -246 -310 246 310
-use sky130_fd_pr__nfet_01v8_3ZUKNL  XMid1
-timestamp 1725517196
+use sky130_fd_pr__nfet_01v8_3ZUKNL  XMid1 segdac__devices
+timestamp 1725599052
 transform 0 1 590 -1 0 2086
 box -226 -470 226 470
 use sky130_fd_pr__nfet_01v8_3ZUKNL  XMid2
-timestamp 1725517196
+timestamp 1725599052
 transform 0 1 -140 -1 0 1636
 box -226 -470 226 470
 use sky130_fd_pr__nfet_01v8_3ZUKNL  XMid3
-timestamp 1725517196
+timestamp 1725599052
 transform 0 1 -870 -1 0 2086
 box -226 -470 226 470
-use sky130_fd_pr__nfet_01v8_VRHU84  XMmirror
-timestamp 1725517196
+use sky130_fd_pr__nfet_01v8_VRHU84  XMmirror segdac__devices
+timestamp 1725599052
 transform 1 0 -1064 0 1 3830
 box -246 -260 246 260
-use sky130_fd_pr__nfet_01v8_AJ3M4R  XMsa1
-timestamp 1725517196
+use sky130_fd_pr__nfet_01v8_AJ3M4R  XMsa1 segdac__devices
+timestamp 1725599052
 transform 1 0 111 0 1 5020
 box -211 -260 211 260
 use sky130_fd_pr__nfet_01v8_AJ3M4R  XMsa2
-timestamp 1725517196
+timestamp 1725599052
 transform 1 0 521 0 1 5020
 box -211 -260 211 260
 use sky130_fd_pr__nfet_01v8_AJ3M4R  XMsa3
-timestamp 1725517196
+timestamp 1725599052
 transform 1 0 931 0 1 5030
 box -211 -260 211 260
-use sky130_fd_pr__nfet_01v8_V8CAV6  XMsb1
-timestamp 1725517196
+use sky130_fd_pr__nfet_01v8_V8CAV6  XMsb1 segdac__devices
+timestamp 1725599052
 transform 0 1 1650 -1 0 4161
 box -211 -310 211 310
 use sky130_fd_pr__nfet_01v8_V8CAV6  XMsb2
-timestamp 1725517196
+timestamp 1725599052
 transform 0 1 2260 -1 0 4331
 box -211 -310 211 310
 use sky130_fd_pr__nfet_01v8_V8CAV6  XMsb3
-timestamp 1725517196
+timestamp 1725599052
 transform 0 1 2870 -1 0 4161
 box -211 -310 211 310
-use sky130_fd_pr__nfet_01v8_V8CYR7  XMsc1
-timestamp 1725517196
+use sky130_fd_pr__nfet_01v8_V8CYR7  XMsc1 segdac__devices
+timestamp 1725599052
 transform 0 1 2870 -1 0 1531
 box -211 -350 211 350
 use sky130_fd_pr__nfet_01v8_V8CYR7  XMsc2
-timestamp 1725517196
+timestamp 1725599052
 transform 0 1 2180 -1 0 1531
 box -211 -350 211 350
 use sky130_fd_pr__nfet_01v8_V8CYR7  XMsc3
-timestamp 1725517196
+timestamp 1725599052
 transform 0 1 1490 -1 0 1531
 box -211 -350 211 350
-use sky130_fd_pr__nfet_01v8_2BSVCH  XMsd1
-timestamp 1725517196
+use sky130_fd_pr__nfet_01v8_2BSVCH  XMsd1 segdac__devices
+timestamp 1725599052
 transform 0 1 610 -1 0 1196
 box -216 -540 216 540
 use sky130_fd_pr__nfet_01v8_2BSVCH  XMsd2
-timestamp 1725517196
+timestamp 1725599052
 transform 0 1 -140 -1 0 776
 box -216 -540 216 540
 use sky130_fd_pr__nfet_01v8_2BSVCH  XMsd3
-timestamp 1725517196
+timestamp 1725599052
 transform 0 1 -890 -1 0 1196
 box -216 -540 216 540
 << labels >>
