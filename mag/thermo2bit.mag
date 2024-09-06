@@ -1,7 +1,7 @@
 magic
 tech sky130A
 magscale 1 2
-timestamp 1725609024
+timestamp 1725609404
 << pwell >>
 rect 1880 -1960 1930 -1760
 << viali >>
@@ -233,9 +233,9 @@ rect 980 -4370 1040 -4310
 rect 870 -4560 940 -4490
 rect 1954 -4536 2006 -4484
 << metal2 >>
-rect 720 -330 840 -210
-rect 1510 -330 1630 -210
-rect 750 -610 810 -330
+rect 720 -470 840 -350
+rect 1510 -470 1630 -350
+rect 750 -610 810 -470
 rect 744 -670 750 -610
 rect 810 -670 816 -610
 rect 750 -1530 810 -670
@@ -256,7 +256,7 @@ rect 920 -1690 980 -1590
 rect 1020 -1540 1200 -1400
 rect 1408 -1501 1414 -1449
 rect 1466 -1501 1472 -1449
-rect 1545 -1501 1595 -330
+rect 1545 -1501 1595 -470
 rect 1020 -1600 1030 -1540
 rect 1190 -1600 1200 -1540
 rect 1020 -1610 1200 -1600
@@ -392,15 +392,15 @@ rect 1540 -3250 1710 -3130
 rect 1130 -4040 1210 -3940
 rect 1390 -4570 1510 -4450
 << metal3 >>
-rect 950 -400 1070 -210
-rect 850 -540 1070 -400
-rect 1240 -415 1360 -210
-rect 1240 -540 1385 -415
-rect 850 -1010 980 -540
+rect 950 -500 1070 -350
+rect 850 -600 1070 -500
+rect 1240 -515 1360 -350
+rect 1240 -600 1385 -515
+rect 850 -1010 980 -600
 rect 850 -1140 860 -1010
 rect 970 -1140 980 -1010
 rect 850 -3725 980 -1140
-rect 1255 -1545 1385 -540
+rect 1255 -1545 1385 -600
 rect 1255 -1675 1630 -1545
 rect 1500 -2140 1630 -1675
 rect 1500 -2270 1905 -2140
@@ -449,11 +449,11 @@ rect 1589 -4570 1590 -4560
 rect 1710 -4560 1750 -4450
 rect 1710 -4570 1711 -4560
 rect 1589 -4571 1711 -4570
-use sky130_fd_pr__res_generic_m4_VRQADB  R1
+use sky130_fd_pr__res_generic_m4_VRQADB  R1 thermo2bit__devices
 timestamp 1725602025
 transform 1 0 1650 0 1 -4243
 box -100 -157 100 157
-use sky130_fd_pr__pfet_01v8_XLV5ZZ  XMA1
+use sky130_fd_pr__pfet_01v8_XLV5ZZ  XMA1 thermo2bit__devices
 timestamp 1725602025
 transform 0 1 1219 -1 0 -869
 box -211 -419 211 419
@@ -461,7 +461,7 @@ use sky130_fd_pr__pfet_01v8_XLV5ZZ  XMA2
 timestamp 1725602025
 transform 0 1 1219 -1 0 -1279
 box -211 -419 211 419
-use sky130_fd_pr__nfet_01v8_V8CAV6  XMA3
+use sky130_fd_pr__nfet_01v8_V8CAV6  XMA3 thermo2bit__devices
 timestamp 1725602025
 transform 0 1 1110 -1 0 -1719
 box -211 -310 211 310
@@ -502,18 +502,18 @@ timestamp 1725602025
 transform 1 0 1011 0 1 -4180
 box -211 -310 211 310
 << labels >>
-flabel metal2 720 -330 840 -210 0 FreeSans 640 0 0 0 b0
-port 7 nsew
-flabel metal2 1510 -330 1630 -210 0 FreeSans 640 0 0 0 b1
-port 8 nsew
-flabel metal3 950 -330 1070 -210 0 FreeSans 640 0 0 0 VCC
-port 10 nsew
-flabel metal3 1240 -330 1360 -210 0 FreeSans 640 0 0 0 VSS
-port 11 nsew
 flabel metal2 860 -4700 980 -4580 0 FreeSans 640 0 0 0 s1
 port 12 nsew
 flabel metal2 1920 -4700 2040 -4580 0 FreeSans 640 0 0 0 s3
 port 9 nsew
 flabel metal2 1390 -4700 1510 -4580 0 FreeSans 640 0 0 0 s2
 port 13 nsew
+flabel metal2 720 -470 840 -350 0 FreeSans 640 0 0 0 b0
+port 7 nsew
+flabel metal2 1510 -470 1630 -350 0 FreeSans 640 0 0 0 b1
+port 8 nsew
+flabel metal3 950 -470 1070 -350 0 FreeSans 640 0 0 0 VCC
+port 10 nsew
+flabel metal3 1240 -470 1360 -350 0 FreeSans 640 0 0 0 VSS
+port 11 nsew
 << end >>
