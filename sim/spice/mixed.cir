@@ -136,14 +136,24 @@ Vreset  rst_n   GND PULSE {vcc}   0.0  10n    1n    1n  80n  34m
 * Vin6 ui_in6 GND dc 0.0
 * Vin7 ui_in7 GND dc 0.0
 
-* --- MODE 5: XOR2, starting line 32:
-Vin0 ui_in0 GND dc 0.0
+* * --- MODE 5: XOR2, starting line 32:
+* Vin0 ui_in0 GND dc 0.0
+* Vin1 ui_in1 GND dc {vcc}
+* Vin2 ui_in2 GND dc 0.0
+* Vin3 ui_in3 GND dc {vcc}
+* Vin4 ui_in4 GND dc {vcc}
+* Vin5 ui_in5 GND dc 0.0
+* Vin6 ui_in6 GND dc {vcc}
+* Vin7 ui_in7 GND dc 0.0
+
+* --- MODE 1: RAMP, on all 3 channels"
+Vin0 ui_in0 GND dc {vcc}
 Vin1 ui_in1 GND dc {vcc}
 Vin2 ui_in2 GND dc 0.0
-Vin3 ui_in3 GND dc {vcc}
+Vin3 ui_in3 GND dc 0.0
 Vin4 ui_in4 GND dc {vcc}
 Vin5 ui_in5 GND dc 0.0
-Vin6 ui_in6 GND dc {vcc}
+Vin6 ui_in6 GND dc 0.0
 Vin7 ui_in7 GND dc 0.0
 
 * * --- Mode 1: RAMP: Ramp generator with primary=X, secondary=Y, fade=frame# ---

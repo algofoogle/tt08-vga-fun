@@ -74,9 +74,20 @@ xtt
 + tt_um_algofoogle_tt08_vga_fun_parax
 
 
-XRpin routpin ua0 GND vcca tt08pin ; ua0 is actually Vbias
-XGpin goutpin ua1 GND vcca tt08pin ; ua1 is actually Vneg
-XBpin boutpin ua2 GND vcca tt08pin ; ua2 is actually Vpos
+Xua0pin ua0pin  ua0 GND vcca tt08pin
+XRpin   routpin ua1 GND vcca tt08pin
+XGpin   goutpin ua2 GND vcca tt08pin
+XBpin   boutpin ua3 GND vcca tt08pin
+
+* Additional pin loading:
+Cua0pin ua0pin  GND 5p
+CRpin   routpin GND 5p
+CGpin   goutpin GND 5p
+CBpin   boutpin GND 5p
+Rua0pin ua0pin  GND 1000k
+RRpin   routpin GND 1000k
+RGpin   goutpin GND 1000k
+RBpin   boutpin GND 1000k
 
 
 **** End of the DAC and its subcircuits.  Begin test circuit ****
@@ -119,24 +130,34 @@ vcca vcca 0 {vapwr}
 * Vin6 ui_in6 GND     PULSE   0.0  {vcc}   120n {rise} {fall} {h6} {p6}
 * Vin7 ui_in7 GND     PULSE   0.0  {vcc}   120n {rise} {fall} {h0} {p0}
 
-* * --- MODE 2: BARS:
-* Vin0 ui_in0 GND dc 0.0
+* * --- MODE 2: BARS (div-2):
+* Vin0 ui_in0 GND dc {vcc}
 * Vin1 ui_in1 GND dc 0.0
-* Vin2 ui_in2 GND dc 0.0
+* Vin2 ui_in2 GND dc {vcc}
 * Vin3 ui_in3 GND dc 0.0
 * Vin4 ui_in4 GND dc 0.0
 * Vin5 ui_in5 GND dc {vcc}
 * Vin6 ui_in6 GND dc 0.0
 * Vin7 ui_in7 GND dc 0.0
 
-* --- MODE 5: XOR2:
-Vin0 ui_in0 GND dc 0.0
-Vin1 ui_in1 GND dc 0.0
+* * --- MODE 5: XOR2:
+* Vin0 ui_in0 GND dc 0.0
+* Vin1 ui_in1 GND dc {vcc}
+* Vin2 ui_in2 GND dc 0.0
+* Vin3 ui_in3 GND dc {vcc}
+* Vin4 ui_in4 GND dc {vcc}
+* Vin5 ui_in5 GND dc 0.0
+* Vin6 ui_in6 GND dc {vcc}
+* Vin7 ui_in7 GND dc 0.0
+
+* --- MODE 1: RAMP, on all 3 channels"
+Vin0 ui_in0 GND dc {vcc}
+Vin1 ui_in1 GND dc {vcc}
 Vin2 ui_in2 GND dc 0.0
 Vin3 ui_in3 GND dc 0.0
 Vin4 ui_in4 GND dc {vcc}
 Vin5 ui_in5 GND dc 0.0
-Vin6 ui_in6 GND dc {vcc}
+Vin6 ui_in6 GND dc 0.0
 Vin7 ui_in7 GND dc 0.0
 
 * * Digital clock signal
@@ -161,6 +182,8 @@ Vreset  rst_n   GND PULSE {vcc}   0.0  10n    1n    1n  80n  34m
     + v(ua0)
     + v(ua1)
     + v(ua2)
+    + v(ua3)
+    + v(ua0pin)
     + v(routpin)
     + v(goutpin)
     + v(boutpin)
@@ -221,6 +244,8 @@ Vreset  rst_n   GND PULSE {vcc}   0.0  10n    1n    1n  80n  34m
     + v(ua0)
     + v(ua1)
     + v(ua2)
+    + v(ua3)
+    + v(ua0pin)
     + v(routpin)
     + v(goutpin)
     + v(boutpin)

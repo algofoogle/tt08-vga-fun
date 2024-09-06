@@ -1,0 +1,18 @@
+** sch_path: /home/anton/projects/tt08-vga-fun/xschem/thermo2bit.sch
+.subckt thermo2bit VCC VSS s3 b1 s2 s1 b0
+*.PININFO b1:I s2:O b0:I s3:O VCC:B VSS:B s1:O
+XMA1 net1 b0 VCC VCC sky130_fd_pr__pfet_01v8 L=0.15 W=2 nf=1 m=1
+XMA3 net1 b0 net2 VSS sky130_fd_pr__nfet_01v8 L=0.15 W=1 nf=1 m=1
+XMA2 net1 b1 VCC VCC sky130_fd_pr__pfet_01v8 L=0.15 W=2 nf=1 m=1
+XMA4 net2 b1 VSS VSS sky130_fd_pr__nfet_01v8 L=0.15 W=1 nf=1 m=1
+XMA5 s3 net1 VCC VCC sky130_fd_pr__pfet_01v8 L=0.15 W=2 nf=1 m=1
+XMA6 s3 net1 VSS VSS sky130_fd_pr__nfet_01v8 L=0.15 W=1 nf=1 m=1
+XMO5 s1 net3 VCC VCC sky130_fd_pr__pfet_01v8 L=0.15 W=2 nf=1 m=1
+XMO6 s1 net3 VSS VSS sky130_fd_pr__nfet_01v8 L=0.15 W=1 nf=1 m=1
+XMO1 net4 b0 VCC VCC sky130_fd_pr__pfet_01v8 L=0.15 W=2 nf=1 m=1
+XMO2 net3 b1 net4 VCC sky130_fd_pr__pfet_01v8 L=0.15 W=2 nf=1 m=1
+XMO3 net3 b0 VSS VSS sky130_fd_pr__nfet_01v8 L=0.15 W=1 nf=1 m=1
+XMO4 net3 b1 VSS VSS sky130_fd_pr__nfet_01v8 L=0.15 W=1 nf=1 m=1
+R1 b1 s2 sky130_fd_pr__res_generic_m4 W=1 L=1 m=1
+.ends
+.end
