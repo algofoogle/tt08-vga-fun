@@ -31,8 +31,9 @@ VB = 'V(boutpin)'
 # scale_max = 1.80
 
 # --- tt08-vga-fun csdac_nom range: ---
-scale_min = 0.83
-scale_max = 1.80
+# NOTE: These figures are now an array, to allow a different scale for each channel (R,G,B):
+scale_min = [0.83, 0.83, 0.63]
+scale_max = [1.80, 1.80, 1.80]
 
 # # --- Typical amplified outputs: ---
 # scale_min = 0.30
@@ -107,8 +108,12 @@ x = -200
 # -- Raw (unbuffered) DAC output:
 # scale_min = 0.00
 # scale_max = 1.67
-sr = scale_max-scale_min
-transform = lambda c: int(255*max(0,min(1,(c-scale_min)/sr)))
+srr = scale_max[0]-scale_min[0]
+srg = scale_max[1]-scale_min[1]
+srb = scale_max[2]-scale_min[2]
+transform_r = lambda c: int(255*max(0,min(1,(c-scale_min[0])/srr)))
+transform_g = lambda c: int(255*max(0,min(1,(c-scale_min[1])/srg)))
+transform_b = lambda c: int(255*max(0,min(1,(c-scale_min[2])/srb)))
 # -- Buffered DAC output:
 # scale_min = 0.3
 # scale_max = 1.4
@@ -130,9 +135,9 @@ with open(out_file, 'w') as f:
         n = min(n,r,g,b)
         x = max(x,r,g,b)
         # Now scale them to the 0..255 range:
-        r = transform(r)
-        g = transform(g)
-        b = transform(b)
+        r = transform_r(r)
+        g = transform_g(g)
+        b = transform_b(b)
         f.write(f'{r} {g} {b} ')
         if i % 800 == 799: f.write('\n')
         # breakpoint()

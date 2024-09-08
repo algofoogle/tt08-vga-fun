@@ -1,5 +1,5 @@
-** sch_path: /home/anton/projects/tt08-vga-fun/xschem/tb_segdac.sch
-**.subckt tb_segdac
+** sch_path: /home/anton/projects/tt08-vga-fun/xschem/tb_segdac_pex.sch
+**.subckt tb_segdac_pex
 Vvcc1 vcc1 GND 1.8
 Vvss vss GND 0
 Vvccnom vcc1 vcc_nom 0
@@ -12,6 +12,17 @@ x2 vout net1 vss tt08pin
 C1 vout vss 3p m=1
 VCurrent vcc_nom net2 0
 R1 net2 vout 1.65k m=1
+Vvccpex vcc1 vcc_pex 0
+x3 vcc_pex vss vss vcc_pex vcc_pex sa1_pex sa2_pex sa3_pex Vbias_pex net3 sb1_pex sb2_pex sb3_pex sc1_pex sc2_pex sc3_pex sd1_pex
++ sd2_pex sd3_pex segdac_parax
+XSA1 n0 n1 sa3_pex vcc_pex vss sa1_pex sa2_pex thermo2bit_parax
+XSB1 n2 n3 sb3_pex vcc_pex vss sb1_pex sb2_pex thermo2bit_parax
+XSC1 n4 n5 sc3_pex vcc_pex vss sc1_pex sc2_pex thermo2bit_parax
+XSD1 n6 n7 sd3_pex vcc_pex vss sd1_pex sd2_pex thermo2bit_parax
+x4 vout_pex net3 vss tt08pin
+C2 vout_pex vss 3p m=1
+VCurrentpex vcc_pex net4 0
+R2 net4 vout_pex 1.65k m=1
 **** begin user architecture code
 
 
@@ -62,9 +73,20 @@ Vxn7 n7 GND pulse 0v 1.8v 0n 1n 1n 5119n 10240n
   repeat 1
     save all
     tran 1n 12.8u
-    write tb_segdac.raw i(vvss) vcc1 vbias vout i(vvccnom) i(vcurrent)
-    + p0 p1 p2 p3 p4 p5 p6 p7
-    + sa1 sa2 sa3 sb1 sb2 sb3 sc1 sc2 sc3 sd1 sd2 sd3
+    write tb_segdac_pex.raw
+    + i(vvss) vcc1 vbias vout i(vvccnom) i(vcurrent)
+      + p0 p1 p2 p3 p4 p5 p6 p7
+      + sa1 sa2 sa3
+      + sb1 sb2 sb3
+      + sc1 sc2 sc3
+      + sd1 sd2 sd3
+    + vbias_pex vout_pex i(vvccpex) i(vcurrentpex)
+      + p0 p1 p2 p3 p4 p5 p6 p7
+      + sa1_pex sa2_pex sa3_pex
+      + sb1_pex sb2_pex sb3_pex
+      + sc1_pex sc2_pex sc3_pex
+      + sd1_pex sd2_pex sd3_pex
+
     * + i(voutload)
     set appendwrite
     reset
@@ -240,6 +262,14 @@ XM3 net3 VGND VGND VGND sky130_fd_pr__nfet_g5v0d10v5 L=0.5 W=60 nf=12 ad='int((n
 C3 mod VGND 250f m=1
 .ends
 
+
+* expanding   symbol:  segdac_parax.sym # of pins=19
+** sym_path: /home/anton/projects/tt08-vga-fun/xschem/segdac.sym
+.include /home/anton/projects/tt08-vga-fun/mag/segdac.sim.spice
+
+* expanding   symbol:  thermo2bit_parax.sym # of pins=7
+** sym_path: /home/anton/projects/tt08-vga-fun/xschem/thermo2bit.sym
+.include /home/anton/projects/tt08-vga-fun/mag/thermo2bit.sim.spice
 .GLOBAL GND
 .GLOBAL vss
 .GLOBAL VGND

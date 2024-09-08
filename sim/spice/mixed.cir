@@ -35,6 +35,9 @@ adut
 * -- in turn that means you'll need to ensure the `.subckt csdac_nom_parax ...`
 * port list matches what the instances of csdac_nom_parax expect.
 
+.include "../../mag/segdac.sim.spice"
+.include "../../mag/thermo2bit.sim.spice"
+
 * This is the model of estimated TT08 pin loading:
 .include "tt08pin.spice"
 
@@ -52,10 +55,14 @@ Rvsync  vsync  GND 10000000
 Rhblank hblank GND 10000000
 Rvblank vblank GND 10000000
 
+* NOTE: VbiasR is pulled slightly by being an output, making VnegR slightly different from VnegG.
+
 Xua0pin ua0pin  VbiasR GND vcca tt08pin
 XRpin   routpin VnegR  GND vcca tt08pin
 XGpin   goutpin VnegG  GND vcca tt08pin
-XBpin   boutpin VnegB  GND vcca tt08pin
+XBpin   boutpin VoutB  GND vcca tt08pin
+* NOTE: VoutB is the odd one out (instead of VnegB) because the blue channel's
+* implementation is different (i.e. using segdac instead of csdac_nom)...
 
 * Additional pin loading:
 Cua0pin ua0pin  GND 5p
@@ -65,7 +72,8 @@ CBpin   boutpin GND 5p
 Rua0pin ua0pin  GND 1000k
 RRpin   routpin GND 1000k
 RGpin   goutpin GND 1000k
-RBpin   boutpin GND 1000k
+* This is the 'external' pull-up resistor for the blue SEGDAC's VoutB:
+RBpin   boutpin vcc 1650
 
 XR_dac vcc GND
 + rn7 r7 rn6 r6 rn5 r5 rn4 r4 rn3 r3 rn2 r2 rn1 r1 rn0 r0
@@ -77,15 +85,40 @@ XG_dac vcc GND
 + VbiasG VnegG VposG
 + csdac_nom_parax
 
-XB_dac vcc GND
-+ bn7 b7 bn6 b6 bn5 b5 bn4 b4 bn3 b3 bn2 b2 bn1 b1 bn0 b0
-+ VbiasB VnegB VposB
-+ csdac_nom_parax
+* This is the blue channel's SEGDAC:
+* NOTE:
+* - uio_in[5..7] are bias1..3
+* - VoutB is the output of the CURRENT, and it needs an (external)
+*   pull-up resistor to convert it to a voltage; 1k-2k should do it.
+* - VbiasB is unused by the circuit, but recorded simulation debugging.
+Xsegdac_0 vcc GND
++ uio_in5 uio_in6 uio_in7
++ sa1 sa2 sa3
++ VbiasB
++ VoutB
++ sb1 sb2 sb3
++ sc1 sc2 sc3
++ sd1 sd2 sd3
++ segdac_parax
+
+
+* These are the four 2bit-to-unary decoders, connected to the
+* blue channel's negative output bits (bn0..7):
+Xthermo_a bn0 bn1 sa3 vcc GND sa1 sa2 thermo2bit_parax
+Xthermo_b bn2 bn3 sb3 vcc GND sb1 sb2 thermo2bit_parax
+Xthermo_c bn4 bn5 sc3 vcc GND sc1 sc2 thermo2bit_parax
+Xthermo_d bn6 bn7 sd3 vcc GND sd1 sd2 thermo2bit_parax
+
+* XB_dac vcc GND
+* + bn7 b7 bn6 b6 bn5 b5 bn4 b4 bn3 b3 bn2 b2 bn1 b1 bn0 b0
+* + VbiasB VnegB VposB
+* + csdac_nom_parax
 
 **** End of the DAC and its subcircuits.  Begin test circuit ****
 
 .param vcc=1.8
 vcc vcc 0 {vcc}
+
 .param vapwr=3.3
 vcca vcca 0 {vapwr}
 
@@ -136,25 +169,25 @@ Vreset  rst_n   GND PULSE {vcc}   0.0  10n    1n    1n  80n  34m
 * Vin6 ui_in6 GND dc 0.0
 * Vin7 ui_in7 GND dc 0.0
 
-* * --- MODE 5: XOR2, starting line 32:
-* Vin0 ui_in0 GND dc 0.0
-* Vin1 ui_in1 GND dc {vcc}
-* Vin2 ui_in2 GND dc 0.0
-* Vin3 ui_in3 GND dc {vcc}
-* Vin4 ui_in4 GND dc {vcc}
-* Vin5 ui_in5 GND dc 0.0
-* Vin6 ui_in6 GND dc {vcc}
-* Vin7 ui_in7 GND dc 0.0
-
-* --- MODE 1: RAMP, on all 3 channels"
-Vin0 ui_in0 GND dc {vcc}
+* --- MODE 5: XOR2, starting line 32:
+Vin0 ui_in0 GND dc 0.0
 Vin1 ui_in1 GND dc {vcc}
 Vin2 ui_in2 GND dc 0.0
-Vin3 ui_in3 GND dc 0.0
+Vin3 ui_in3 GND dc {vcc}
 Vin4 ui_in4 GND dc {vcc}
 Vin5 ui_in5 GND dc 0.0
-Vin6 ui_in6 GND dc 0.0
+Vin6 ui_in6 GND dc {vcc}
 Vin7 ui_in7 GND dc 0.0
+
+* * --- MODE 1: RAMP, on all 3 channels:
+* Vin0 ui_in0 GND dc {vcc}
+* Vin1 ui_in1 GND dc {vcc}
+* Vin2 ui_in2 GND dc 0.0
+* Vin3 ui_in3 GND dc 0.0
+* Vin4 ui_in4 GND dc {vcc}
+* Vin5 ui_in5 GND dc 0.0
+* Vin6 ui_in6 GND dc 0.0
+* Vin7 ui_in7 GND dc 0.0
 
 * * --- Mode 1: RAMP: Ramp generator with primary=X, secondary=Y, fade=frame# ---
 * Vin0 ui_in0 GND dc 0.0 ; Primary...
@@ -166,13 +199,24 @@ Vin7 ui_in7 GND dc 0.0
 * Vin6 ui_in6 GND dc 0.0 ; ...= 011 (XOR)
 * Vin7 ui_in7 GND dc 0.0 ; Timing = 0 (standard VGA)
 
+* Select a mid-range bias voltage for the blue channel's SEGDAC:
+Vuio_in5 uio_in5 GND dc 0.0   ; ENABLE bias1.
+Vuio_in6 uio_in6 GND dc {vcc} ; Disable bias2.
+Vuio_in7 uio_in7 GND dc {vcc} ; Disable bias3.
+
 
 .control
+  * NOTE: VoutB is the odd one out (instead of VnegB) because the blue channel's
+  * implementation is different (i.e. using segdac instead of csdac_nom)...
   save 
   + vcc vcca
   + VposR VnegR VbiasR
   + VposG VnegG VbiasG
-  + VposB VnegB VbiasB
+  +       VoutB VbiasB
+  + sa1 sa2 sa3
+  + sb1 sb2 sb3
+  + sc1 sc2 sc3
+  + sd1 sd2 sd3
   + ua0pin routpin goutpin boutpin
   + hsync vsync
   + r7 r6 r5 r4 r3 r2 r1 r0
@@ -217,7 +261,11 @@ Vin7 ui_in7 GND dc 0.0
   + vcc vcca
   + VposR VnegR VbiasR
   + VposG VnegG VbiasG
-  + VposB VnegB VbiasB
+  +       VoutB VbiasB
+  + sa1 sa2 sa3
+  + sb1 sb2 sb3
+  + sc1 sc2 sc3
+  + sd1 sd2 sd3
   + ua0pin routpin goutpin boutpin
   + hsync vsync
   + r7 r6 r5 r4 r3 r2 r1 r0

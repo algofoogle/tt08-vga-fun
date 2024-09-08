@@ -32,9 +32,6 @@ xtt
 + uio_in2
 + uio_in3
 + uio_in4
-+ uio_in5
-+ uio_in6
-+ uio_in7
 + uio_oe0
 + uio_oe1
 + uio_oe2
@@ -54,6 +51,7 @@ xtt
 + uo_out5
 + uo_out6
 + vcca
++ ua3
 + ui_in3
 + ua2
 + ui_in5
@@ -63,11 +61,13 @@ xtt
 + ua1
 + uo_out7
 + ui_in0
++ uio_in7
 + uo_out2
 + uo_out1
++ uio_in6
 + uio_out0
++ uio_in5
 + ui_in2
-+ ua3
 + ui_in4
 + 0
 + vcc
@@ -87,7 +87,9 @@ CBpin   boutpin GND 5p
 Rua0pin ua0pin  GND 1000k
 RRpin   routpin GND 1000k
 RGpin   goutpin GND 1000k
-RBpin   boutpin GND 1000k
+* This is the 'external' pull-up resistor for the blue SEGDAC's VoutB:
+RBpin   boutpin vcc 1650
+* RBpin   boutpin GND 1000k
 
 
 **** End of the DAC and its subcircuits.  Begin test circuit ****
@@ -130,15 +132,15 @@ vcca vcca 0 {vapwr}
 * Vin6 ui_in6 GND     PULSE   0.0  {vcc}   120n {rise} {fall} {h6} {p6}
 * Vin7 ui_in7 GND     PULSE   0.0  {vcc}   120n {rise} {fall} {h0} {p0}
 
-* * --- MODE 2: BARS (div-2):
-* Vin0 ui_in0 GND dc {vcc}
-* Vin1 ui_in1 GND dc 0.0
-* Vin2 ui_in2 GND dc {vcc}
-* Vin3 ui_in3 GND dc 0.0
-* Vin4 ui_in4 GND dc 0.0
-* Vin5 ui_in5 GND dc {vcc}
-* Vin6 ui_in6 GND dc 0.0
-* Vin7 ui_in7 GND dc 0.0
+* --- MODE 2: BARS (div-2):
+Vin0 ui_in0 GND dc {vcc}
+Vin1 ui_in1 GND dc 0.0
+Vin2 ui_in2 GND dc {vcc}
+Vin3 ui_in3 GND dc 0.0
+Vin4 ui_in4 GND dc 0.0
+Vin5 ui_in5 GND dc {vcc}
+Vin6 ui_in6 GND dc 0.0
+Vin7 ui_in7 GND dc 0.0
 
 * * --- MODE 5: XOR2:
 * Vin0 ui_in0 GND dc 0.0
@@ -150,15 +152,15 @@ vcca vcca 0 {vapwr}
 * Vin6 ui_in6 GND dc {vcc}
 * Vin7 ui_in7 GND dc 0.0
 
-* --- MODE 1: RAMP, on all 3 channels"
-Vin0 ui_in0 GND dc {vcc}
-Vin1 ui_in1 GND dc {vcc}
-Vin2 ui_in2 GND dc 0.0
-Vin3 ui_in3 GND dc 0.0
-Vin4 ui_in4 GND dc {vcc}
-Vin5 ui_in5 GND dc 0.0
-Vin6 ui_in6 GND dc 0.0
-Vin7 ui_in7 GND dc 0.0
+* * --- MODE 1: RAMP, on all 3 channels"
+* Vin0 ui_in0 GND dc {vcc}
+* Vin1 ui_in1 GND dc {vcc}
+* Vin2 ui_in2 GND dc 0.0
+* Vin3 ui_in3 GND dc 0.0
+* Vin4 ui_in4 GND dc {vcc}
+* Vin5 ui_in5 GND dc 0.0
+* Vin6 ui_in6 GND dc 0.0
+* Vin7 ui_in7 GND dc 0.0
 
 * * Digital clock signal
 * aclock 0 clk clock

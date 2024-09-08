@@ -5,7 +5,7 @@ K {}
 V {}
 S {}
 E {}
-B 2 950 -980 2450 -90 {flags=graph
+B 2 920 -980 2420 -90 {flags=graph
 y1=-0.019
 y2=1.9
 ypos1=0
@@ -38,11 +38,15 @@ rainbow=1
 
 
 
-color="11 10 6 8"
-node="vout
-vbias
-\\"nom mA;i(vvccnom) 1000 *\\"
-\\"out mA;i(vcurrent) 1000 *\\""}
+color="7 7 7 7 11 11 11 11"
+node="\\"o; vout\\"
+\\"bR; vbias\\"
+\\"tmA;i(vvccnom) 1000 *\\"
+\\"xmA;i(vcurrent) 1000 *\\"
+\\"Po; vout_pex\\"
+\\"PbR; vbias_pex\\"
+\\"PtmA;i(vvccpex) 1000 *\\"
+\\"PxmA;i(vcurrentpex) 1000 *\\""}
 T {TT_MODELS is set to use
 'tt_mm' (for Monte Carlo)
 instead of just 'tt'.
@@ -56,6 +60,8 @@ setting power supply to:
 1.8 trrandom(1 15us 0s 100mV 0mV)} 610 -960 0 0 0.3 0.3 {}
 T {This is csdac_nom.sch (fixed, nominal).
 There is also csdac.sch (parametric).} 390 -510 0 0 0.3 0.3 {}
+T {This is csdac_nom.sch (fixed, nominal).
+There is also csdac.sch (parametric).} 2850 -420 0 0 0.3 0.3 {}
 N 500 -40 550 -40 {
 lab=p0}
 N 500 -60 550 -60 {
@@ -130,6 +136,64 @@ N 620 -780 680 -780 {
 lab=vout}
 N 680 -780 680 -720 {
 lab=vout}
+N 2840 -760 2910 -760 {
+lab=Vbias_pex}
+N 2510 -820 2540 -820 {
+lab=sa1_pex}
+N 2510 -800 2540 -800 {
+lab=sa2_pex}
+N 2510 -780 2540 -780 {
+lab=sa3_pex}
+N 2510 -760 2540 -760 {
+lab=sb1_pex}
+N 2510 -740 2540 -740 {
+lab=sb2_pex}
+N 2510 -720 2540 -720 {
+lab=sb3_pex}
+N 2510 -700 2540 -700 {
+lab=sc1_pex}
+N 2510 -680 2540 -680 {
+lab=sc2_pex}
+N 2510 -660 2540 -660 {
+lab=sc3_pex}
+N 2510 -640 2540 -640 {
+lab=sd1_pex}
+N 2510 -620 2540 -620 {
+lab=sd2_pex}
+N 2510 -600 2540 -600 {
+lab=sd3_pex}
+N 2860 -860 2860 -820 {
+lab=vcc_pex}
+N 2840 -820 2860 -820 {
+lab=vcc_pex}
+N 2840 -800 2880 -800 {
+lab=vss}
+N 2880 -800 2880 -680 {
+lab=vss}
+N 2560 -40 2580 -40 {
+lab=vcc_pex}
+N 2560 -160 2580 -160 {
+lab=vcc_pex}
+N 2560 -280 2580 -280 {
+lab=vcc_pex}
+N 2560 -400 2580 -400 {
+lab=vcc_pex}
+N 2840 -780 2980 -780 {
+lab=#net3}
+N 3140 -720 3280 -720 {
+lab=vout_pex}
+N 3200 -840 3220 -840 {
+lab=vcc_pex}
+N 2980 -780 2980 -720 {
+lab=#net3}
+N 3080 -840 3140 -840 {
+lab=#net4}
+N 2690 -570 2710 -570 {
+lab=vcc_pex}
+N 3080 -780 3140 -780 {
+lab=vout_pex}
+N 3140 -780 3140 -720 {
+lab=vout_pex}
 C {devices/vsource.sym} 550 -920 0 0 {name=Vvcc1 value="1.8" savecurrent=false}
 C {devices/lab_pin.sym} 550 -950 0 0 {name=p1 sig_type=std_logic lab=vcc1}
 C {devices/gnd.sym} 550 -890 0 0 {name=l2 lab=GND}
@@ -183,9 +247,20 @@ Vxn7 n7 GND pulse 0v 1.8v 0n 1n 1n 5119n 10240n
   repeat 1
     save all
     tran 1n 12.8u
-    write tb_segdac.raw i(vvss) vcc1 vbias vout i(vvccnom) i(vcurrent)
-    + p0 p1 p2 p3 p4 p5 p6 p7
-    + sa1 sa2 sa3 sb1 sb2 sb3 sc1 sc2 sc3 sd1 sd2 sd3
+    write tb_segdac_pex.raw
+    + i(vvss) vcc1 vbias vout i(vvccnom) i(vcurrent)
+      + p0 p1 p2 p3 p4 p5 p6 p7
+      + sa1 sa2 sa3
+      + sb1 sb2 sb3
+      + sc1 sc2 sc3
+      + sd1 sd2 sd3
+    + vbias_pex vout_pex i(vvccpex) i(vcurrentpex)
+      + p0 p1 p2 p3 p4 p5 p6 p7
+      + sa1_pex sa2_pex sa3_pex
+      + sb1_pex sb2_pex sb3_pex
+      + sc1_pex sc2_pex sc3_pex
+      + sd1_pex sd2_pex sd3_pex
+
     * + i(voutload)
     set appendwrite
     reset
@@ -210,7 +285,7 @@ Vxn7 n7 GND pulse 0v 1.8v 0n 1n 1n 5119n 10240n
 C {devices/gnd.sym} 470 -890 0 0 {name=l6 lab=GND}
 C {devices/launcher.sym} 1010 -50 0 0 {name=h5
 descr="load waves" 
-tclcommand="xschem raw_read $netlist_dir/tb_segdac.raw tran"
+tclcommand="xschem raw_read $netlist_dir/tb_segdac_pex.raw tran"
 }
 C {devices/vsource.sym} 470 -920 0 0 {name=Vvss value=0 savecurrent=false}
 C {devices/lab_pin.sym} 470 -950 0 0 {name=p42 sig_type=std_logic lab=vss}
@@ -255,16 +330,28 @@ C {devices/lab_pin.sym} 50 -660 0 0 {name=p33 lab=sc3}
 C {devices/lab_pin.sym} 50 -640 0 0 {name=p34 lab=sd1}
 C {devices/lab_pin.sym} 50 -620 0 0 {name=p35 lab=sd2}
 C {devices/lab_pin.sym} 50 -600 0 0 {name=p36 lab=sd3}
-C {thermo2bit.sym} 200 -40 0 0 {name=XSA}
+C {thermo2bit.sym} 200 -40 0 0 {name=XSA
+
+
+}
 C {devices/lab_pin.sym} 300 -60 2 0 {name=p5 lab=sa1}
 C {devices/lab_pin.sym} 300 -80 2 0 {name=p7 lab=sa2}
 C {devices/lab_pin.sym} 300 -100 2 0 {name=p8 lab=sa3}
 C {devices/lab_pin.sym} 100 -40 0 0 {name=p26 sig_type=std_logic lab=vcc_nom}
-C {thermo2bit.sym} 200 -160 0 0 {name=XSB}
+C {thermo2bit.sym} 200 -160 0 0 {name=XSB
+
+
+}
 C {devices/lab_pin.sym} 100 -160 0 0 {name=p46 sig_type=std_logic lab=vcc_nom}
-C {thermo2bit.sym} 200 -280 0 0 {name=XSC}
+C {thermo2bit.sym} 200 -280 0 0 {name=XSC
+
+
+}
 C {devices/lab_pin.sym} 100 -280 0 0 {name=p43 sig_type=std_logic lab=vcc_nom}
-C {thermo2bit.sym} 200 -400 0 0 {name=XSD}
+C {thermo2bit.sym} 200 -400 0 0 {name=XSD
+
+
+}
 C {devices/lab_pin.sym} 100 -400 0 0 {name=p38 sig_type=std_logic lab=vcc_nom}
 C {devices/lab_pin.sym} 300 -180 2 0 {name=p44 lab=sb1}
 C {devices/lab_pin.sym} 300 -200 2 0 {name=p47 lab=sb2}
@@ -295,6 +382,90 @@ C {devices/gnd.sym} 210 -570 0 0 {name=l3 lab=vss}
 C {devices/lab_pin.sym} 400 -860 2 1 {name=p3 sig_type=std_logic lab=vcc_nom}
 C {devices/lab_pin.sym} 250 -570 2 0 {name=p57 sig_type=std_logic lab=vcc_nom}
 C {devices/res.sym} 620 -810 0 0 {name=R1
+value=1.65k
+footprint=1206
+device=resistor
+m=1}
+C {devices/lab_pin.sym} 2560 -460 2 1 {name=p66 sig_type=std_logic lab=n7}
+C {devices/lab_pin.sym} 2560 -440 2 1 {name=p67 sig_type=std_logic lab=n6}
+C {devices/lab_pin.sym} 2560 -340 2 1 {name=p68 sig_type=std_logic lab=n5}
+C {devices/lab_pin.sym} 2560 -320 2 1 {name=p69 sig_type=std_logic lab=n4}
+C {devices/lab_pin.sym} 2560 -220 2 1 {name=p70 sig_type=std_logic lab=n3}
+C {devices/lab_pin.sym} 2560 -200 2 1 {name=p71 sig_type=std_logic lab=n2}
+C {devices/lab_pin.sym} 2560 -100 2 1 {name=p72 sig_type=std_logic lab=n1}
+C {devices/lab_pin.sym} 2560 -80 2 1 {name=p73 sig_type=std_logic lab=n0}
+C {devices/vsource.sym} 3210 -400 0 0 {name=Vvccpex value=0 savecurrent=false}
+C {devices/lab_pin.sym} 3210 -370 0 0 {name=p74 sig_type=std_logic lab=vcc_pex}
+C {devices/lab_pin.sym} 3210 -430 0 0 {name=p75 sig_type=std_logic lab=vcc1}
+C {segdac.sym} 2690 -710 0 0 {name=x3
+schematic=segdac_parax.sim
+spice_sym_def="tcleval(.include [file normalize ../mag/segdac.sim.spice])"
+tclcommand="textwindow [file normalize ../mag/segdac.sim.spice]"}
+C {devices/lab_pin.sym} 2910 -760 0 1 {name=p81 lab=Vbias_pex}
+C {devices/lab_pin.sym} 2510 -820 0 0 {name=p76 lab=sa1_pex}
+C {devices/lab_pin.sym} 2510 -800 0 0 {name=p77 lab=sa2_pex}
+C {devices/lab_pin.sym} 2510 -780 0 0 {name=p78 lab=sa3_pex}
+C {devices/lab_pin.sym} 2510 -760 0 0 {name=p79 lab=sb1_pex}
+C {devices/lab_pin.sym} 2510 -740 0 0 {name=p80 lab=sb2_pex}
+C {devices/lab_pin.sym} 2510 -720 0 0 {name=p82 lab=sb3_pex}
+C {devices/lab_pin.sym} 2510 -700 0 0 {name=p83 lab=sc1_pex}
+C {devices/lab_pin.sym} 2510 -680 0 0 {name=p84 lab=sc2_pex}
+C {devices/lab_pin.sym} 2510 -660 0 0 {name=p85 lab=sc3_pex}
+C {devices/lab_pin.sym} 2510 -640 0 0 {name=p86 lab=sd1_pex}
+C {devices/lab_pin.sym} 2510 -620 0 0 {name=p87 lab=sd2_pex}
+C {devices/lab_pin.sym} 2510 -600 0 0 {name=p88 lab=sd3_pex}
+C {thermo2bit.sym} 2660 -40 0 0 {name=XSA1
+schematic=thermo2bit_parax.sim
+spice_sym_def="tcleval(.include [file normalize ../mag/thermo2bit.sim.spice])"
+tclcommand="textwindow [file normalize ../mag/thermo2bit.sim.spice]"}
+C {devices/lab_pin.sym} 2760 -60 2 0 {name=p89 lab=sa1_pex}
+C {devices/lab_pin.sym} 2760 -80 2 0 {name=p90 lab=sa2_pex}
+C {devices/lab_pin.sym} 2760 -100 2 0 {name=p91 lab=sa3_pex}
+C {devices/lab_pin.sym} 2560 -40 0 0 {name=p92 sig_type=std_logic lab=vcc_pex}
+C {thermo2bit.sym} 2660 -160 0 0 {name=XSB1
+schematic=thermo2bit_parax.sim
+spice_sym_def="tcleval(.include [file normalize ../mag/thermo2bit.sim.spice])"
+tclcommand="textwindow [file normalize ../mag/thermo2bit.sim.spice]"}
+C {devices/lab_pin.sym} 2560 -160 0 0 {name=p93 sig_type=std_logic lab=vcc_pex}
+C {thermo2bit.sym} 2660 -280 0 0 {name=XSC1
+schematic=thermo2bit_parax.sim
+spice_sym_def="tcleval(.include [file normalize ../mag/thermo2bit.sim.spice])"
+tclcommand="textwindow [file normalize ../mag/thermo2bit.sim.spice]"}
+C {devices/lab_pin.sym} 2560 -280 0 0 {name=p94 sig_type=std_logic lab=vcc_pex}
+C {thermo2bit.sym} 2660 -400 0 0 {name=XSD1
+schematic=thermo2bit_parax.sim
+spice_sym_def="tcleval(.include [file normalize ../mag/thermo2bit.sim.spice])"
+tclcommand="textwindow [file normalize ../mag/thermo2bit.sim.spice]"}
+C {devices/lab_pin.sym} 2560 -400 0 0 {name=p95 sig_type=std_logic lab=vcc_pex}
+C {devices/lab_pin.sym} 2760 -180 2 0 {name=p96 lab=sb1_pex}
+C {devices/lab_pin.sym} 2760 -200 2 0 {name=p97 lab=sb2_pex}
+C {devices/lab_pin.sym} 2760 -220 2 0 {name=p98 lab=sb3_pex}
+C {devices/lab_pin.sym} 2760 -300 2 0 {name=p99 lab=sc1_pex}
+C {devices/lab_pin.sym} 2760 -320 2 0 {name=p100 lab=sc2_pex}
+C {devices/lab_pin.sym} 2760 -340 2 0 {name=p101 lab=sc3_pex}
+C {devices/lab_pin.sym} 2760 -420 2 0 {name=p102 lab=sd1_pex}
+C {devices/lab_pin.sym} 2760 -440 2 0 {name=p103 lab=sd2_pex}
+C {devices/lab_pin.sym} 2760 -460 2 0 {name=p104 lab=sd3_pex}
+C {devices/gnd.sym} 2880 -680 0 0 {name=l7 lab=vss}
+C {devices/lab_pin.sym} 2740 -400 0 1 {name=p105 sig_type=std_logic lab=vss}
+C {devices/lab_pin.sym} 2740 -280 0 1 {name=p106 sig_type=std_logic lab=vss}
+C {devices/lab_pin.sym} 2740 -160 0 1 {name=p107 sig_type=std_logic lab=vss}
+C {devices/lab_pin.sym} 2740 -40 0 1 {name=p108 sig_type=std_logic lab=vss}
+C {tt08pin.sym} 3060 -700 0 0 {name=x4}
+C {devices/gnd.sym} 3140 -680 0 0 {name=l8 lab=vss}
+C {devices/lab_pin.sym} 3280 -720 0 1 {name=p109 lab=vout_pex}
+C {devices/capa.sym} 3230 -690 0 0 {name=C2
+m=1
+value=3p
+footprint=1206
+device="ceramic capacitor"}
+C {devices/gnd.sym} 3230 -660 0 0 {name=l9 lab=vss}
+C {devices/lab_pin.sym} 3220 -840 0 1 {name=p110 sig_type=std_logic lab=vcc_pex}
+C {devices/vsource.sym} 3170 -840 1 0 {name=VCurrentpex value=0 savecurrent=false}
+C {devices/gnd.sym} 2670 -570 0 0 {name=l10 lab=vss}
+C {devices/lab_pin.sym} 2860 -860 2 1 {name=p111 sig_type=std_logic lab=vcc_pex}
+C {devices/lab_pin.sym} 2710 -570 2 0 {name=p112 sig_type=std_logic lab=vcc_pex}
+C {devices/res.sym} 3080 -810 0 0 {name=R2
 value=1.65k
 footprint=1206
 device=resistor
