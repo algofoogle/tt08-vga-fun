@@ -16,6 +16,7 @@ This is a mixed-signal design which is intended to drive an analog VGA display b
 NOTE: Some external hardware will be required for actually buffering/biasing the analog signals to make them fully-compatible with a VGA monitor. See the "External hardware" section.
 
 **The "How to test" section will help you get things running quickly**, but otherwise here are the features of this design:
+
 *   There's a digital control block that offers different test modes and patterns. It operates from a 25MHz clock.
 *   It latches your selected test mode on reset: set `ui_in` to the mode you want, and then reset the design.
 *   It produces digital VGA outputs on `uo_out` pins, compatible with the Tiny VGA PMOD.
@@ -37,7 +38,7 @@ This design improves on my previous [tt06-grab-bag](https://github.com/algofoogl
 
 There is a digital control block which can be [controlled by the state of the `ui_in` pins](https://github.com/algofoogle/journal/blob/master/0215-2024-08-21.md#explanation-of-digital-block-control-inputs) at reset. It has various test modes -- some of which are sensitive to changes in `ui_in` *after* reset -- and also a pass-through mode (i.e. digital input code on `ui_in` passes directly through to all 3 DACs, live).
 
-Here are some of the test patterns it can produce, but note that the image probably won't be this clear because of: (a) poor matching; and (b) slew simulated to be worse than 40nS will lead to a little bit of horizontal smearing:
+The figure below shows some of the test patterns it can produce, but note that the image probably won't be this clear because of: (a) poor matching; and (b) slew simulated to be worse than 40nS will lead to a little bit of horizontal smearing:
 
 ![Some example VGA patterns](./tt08-patterns.png)
 
@@ -69,6 +70,8 @@ Additionally the first analog output pin (`ua[0]`) is the internal `VbiasR` of t
 For information on connecting the analog outputs to a VGA monitor, see below ("**External hardware**").
 
 Other things to try:
+
+*   **If things are not working properly**, you could try setting `ui_in` to 0, pulsing RESET, and then feeding in whatever values you want on `ui_in` (without a reset) after that. This will take whatever binary code you present on `ui_in` and pass it through to all 3 DACs.
 *   Set `ui_in` to `0010_0001`, pulse RESET, and expect to see the outputs inverting on every odd-numbered pixel; can be used to help test the slew rate.
 *   Try varying `uio_in[7:5]` to change the current sink strength of the blue channel (by varying the internal Vbias for the blue DAC). Note that the bit order is reversed, and the codes are inverted, so given a 1.65k pull-up to 1.8V on `ua[3]`:
     *   `111`: Level 0, weakest Vbias (~0.3V); expect no output.
@@ -90,6 +93,7 @@ Besides a 25MHz clock source and a VGA monitor, you can get away with a Tiny VGA
 Note that whatever circuit you use for the red channel, exactly the same circuit will probably be what you use for the green channel too, since they use the same DAC design. The blue channel is the one that's different.
 
 I'm yet to sketch out a suitable pair of op-amp circuits, but in any case you'll want:
+
 *   one circuit that can take the 0.8-1.8V range of the R/G channels and convert them to a 0-0.7V range; and...
 *   another circuit that *typically* converts 0.6-1.8V to the same 0-0.7V range, but which can also be adjusted, given the blue channel's Vbias can be varied using `uio_in[7:5]`.
 
